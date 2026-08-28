@@ -63,11 +63,20 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y file libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
       - run: npm ci
       - name: Build platform bundles
+        id: tauri
         uses: tauri-apps/tauri-action@v0
         with:
           args: --target ${{ matrix.target }}
-          uploadWorkflowArtifacts: true
-          artifactName: ${{ matrix.artifact }}
+      - name: Stage platform bundles
+        env:
+          ARTIFACT_PATHS: ${{ steps.tauri.outputs.artifactPaths }}
+        run: node scripts/stage-artifacts.mjs "$ARTIFACT_PATHS" release-stage
+      - name: Upload platform bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: release-stage/*
+          if-no-files-found: error
 
   publish:
     needs: build
@@ -80,6 +89,8 @@ jobs:
         with:
           path: release-assets
           merge-multiple: true
+      - name: List assembled assets
+        run: find release-assets -maxdepth 2 -type f -print
       - name: Prepare checksums and release manifest
         run: node scripts/release-manifest.mjs "$RELEASE_TAG" release-assets
       - name: Publish GitHub Release
