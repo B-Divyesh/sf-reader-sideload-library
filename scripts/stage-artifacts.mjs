@@ -1,4 +1,4 @@
-import { copyFile, mkdir } from "node:fs/promises";
+import { copyFile, mkdir, stat } from "node:fs/promises";
 import { basename, join } from "node:path";
 
 const [pathsArgument, destinationArgument] = process.argv.slice(2);
@@ -11,8 +11,12 @@ if (!Array.isArray(artifactPaths) || artifactPaths.length === 0) {
 }
 
 await mkdir(destination, { recursive: true });
+let staged = 0;
 for (const source of artifactPaths) {
+  if (!(await stat(source)).isFile()) continue;
   await copyFile(source, join(destination, basename(source)));
+  staged += 1;
 }
 
-console.log(`Staged ${artifactPaths.length} release artifact(s)`);
+if (staged === 0) throw new Error("Tauri reported no regular-file bundle artifacts");
+console.log(`Staged ${staged} release artifact(s)`);
