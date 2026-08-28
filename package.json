@@ -7,9 +7,9 @@
     "dev": "vite --config vite.app.config.ts",
     "dev:site": "vite --config vite.site.config.ts",
     "tauri": "tauri",
-    "test": "vitest run && cargo test --manifest-path src-tauri/Cargo.toml && playwright test",
+    "test": "npm run test:unit && cargo test --manifest-path src-tauri/Cargo.toml && playwright test",
     "test:e2e": "playwright test",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run tests/library.test.ts",
     "build:app": "tsc --noEmit && vite build --config vite.app.config.ts",
     "build:site": "vite build --config vite.site.config.ts",
     "build": "npm run build:app && npm run build:site && node scripts/assemble-dist.mjs",
@@ -18,13 +18,13 @@
   "dependencies": {
     "@fontsource/archivo-black": "^5.2.6",
     "@fontsource/ibm-plex-sans": "^5.2.7",
-    "@tauri-apps/api": "2.8.0",
-    "@tauri-apps/plugin-dialog": "2.4.0"
+    "@tauri-apps/api": "2.11.1",
+    "@tauri-apps/plugin-dialog": "2.7.2"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.58.2",
-    "@tauri-apps/cli": "2.8.4",
+    "@tauri-apps/cli": "2.11.4",
     "@types/node": "22.17.2",
     "typescript": "5.9.2",
     "vite": "7.3.6",

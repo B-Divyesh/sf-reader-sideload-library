@@ -179,12 +179,17 @@ fn inspect_epub(path: &Path, fallback: &str) -> Result<Inspection, String> {
     let file = File::open(path).map_err(|_| "File could not be read".to_string())?;
     let mut archive = ZipArchive::new(file).map_err(|_| "Invalid EPUB package".to_string())?;
     if let Ok(encryption) = read_zip_entry(&mut archive, "META-INF/encryption.xml") {
-        let has_drm = XmlDocument::parse(&encryption).map(|xml| {
-            xml.descendants()
-                .filter(|node| node.tag_name().name() == "EncryptionMethod")
-                .filter_map(|node| node.attribute("Algorithm"))
-                .any(|algorithm| algorithm != "http://www.idpf.org/2008/embedding" && algorithm != "http://ns.adobe.com/pdf/enc#RC")
-        }).unwrap_or(true);
+        let has_drm = XmlDocument::parse(&encryption)
+            .map(|xml| {
+                xml.descendants()
+                    .filter(|node| node.tag_name().name() == "EncryptionMethod")
+                    .filter_map(|node| node.attribute("Algorithm"))
+                    .any(|algorithm| {
+                        algorithm != "http://www.idpf.org/2008/embedding"
+                            && algorithm != "http://ns.adobe.com/pdf/enc#RC"
+                    })
+            })
+            .unwrap_or(true);
         if has_drm {
             return Ok((
                 fallback.into(),
@@ -775,12 +780,32 @@ mod tests {
         let device_dir = tempdir().unwrap();
         let source = source_dir.path().join("book.epub");
         fs::write(&source, b"owned book bytes").unwrap();
-        let make_items = || vec![SyncItem { source: source.to_string_lossy().into_owned(), relative_path: "01 - Queue/001 - Book.epub".into(), book_id: "book-1".into() }];
-        let first = sync_usb(device_dir.path().to_string_lossy().into_owned(), make_items()).unwrap();
+        let make_items = || {
+            vec![SyncItem {
+                source: source.to_string_lossy().into_owned(),
+                relative_path: "01 - Queue/001 - Book.epub".into(),
+                book_id: "book-1".into(),
+            }]
+        };
+        let first = sync_usb(
+            device_dir.path().to_string_lossy().into_owned(),
+            make_items(),
+        )
+        .unwrap();
         assert_eq!((first.copied, first.skipped), (1, 0));
-        let second = sync_usb(device_dir.path().to_string_lossy().into_owned(), make_items()).unwrap();
+        let second = sync_usb(
+            device_dir.path().to_string_lossy().into_owned(),
+            make_items(),
+        )
+        .unwrap();
         assert_eq!((second.copied, second.skipped), (0, 1));
-        assert_eq!(fs::read(device_dir.path().join("01 - Queue/001 - Book.epub")).unwrap(), b"owned book bytes");
-        assert!(device_dir.path().join(".reader-sideload-library/manifest.json").is_file());
+        assert_eq!(
+            fs::read(device_dir.path().join("01 - Queue/001 - Book.epub")).unwrap(),
+            b"owned book bytes"
+        );
+        assert!(device_dir
+            .path()
+            .join(".reader-sideload-library/manifest.json")
+            .is_file());
     }
 }

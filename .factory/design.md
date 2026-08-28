@@ -9,8 +9,8 @@ Reader Sideload Library looks like a field tool set on a concrete archive table:
 | `paper` | `#F2F0E7` | `#181B18` | page / reading surface |
 | `concrete` | `#D8D6CB` | `#292D29` | grouped controls and secondary surfaces |
 | `graphite` | `#20231F` | `#F2F0E7` | primary text and structural borders |
-| `ash` | `#5C625B` | `#B8BDB4` | secondary text (verified ≥4.5:1) |
-| `moss` | `#4D6B3C` | `#A6C98A` | primary action, focus, healthy transfer |
+| `ash` | `#50564F` | `#C1C5BC` | secondary text (verified ≥4.5:1) |
+| `moss` | `#3F5B32` | `#A6C98A` | primary action, focus, healthy transfer |
 | `lichen` | `#DDE7D4` | `#34422E` | selected/complete field |
 | `rust` | `#9B3E2D` | `#FF9D87` | errors and destructive states |
 | `amber` | `#8A5A0A` | `#F3C678` | validation warnings |

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reader-sideload-library.sociobot.in/sitemap.xml

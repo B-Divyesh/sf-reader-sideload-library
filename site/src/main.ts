@@ -5,7 +5,7 @@ import "@fontsource/ibm-plex-sans/latin-700.css";
 import "./style.css";
 
 const REPO = "https://github.com/B-Divyesh/sf-reader-sideload-library";
-const MANIFEST = `${REPO}/releases/latest/download/latest.json`;
+const RELEASE_API = "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-library/releases/latest";
 
 interface ReleaseAsset { url: string; sha256?: string; label?: string }
 interface ReleaseManifest { version: string; platforms: Record<string, ReleaseAsset>; }
@@ -32,9 +32,14 @@ async function loadRelease() {
   const status = document.querySelector("#release-status")!;
   const key = currentPlatform();
   try {
-    const response = await fetch(MANIFEST, { headers: { Accept: "application/json" } });
-    if (!response.ok) throw new Error("release manifest unavailable");
-    const release = await response.json() as ReleaseManifest;
+    const releaseResponse = await fetch(RELEASE_API, { headers: { Accept: "application/vnd.github+json" } });
+    if (!releaseResponse.ok) throw new Error("latest release unavailable");
+    const releaseMetadata = await releaseResponse.json() as { assets?: Array<{ name: string; url: string }> };
+    const manifestAsset = releaseMetadata.assets?.find((asset) => asset.name === "latest.json");
+    if (!manifestAsset) throw new Error("release manifest unavailable");
+    const manifestResponse = await fetch(manifestAsset.url, { headers: { Accept: "application/octet-stream" } });
+    if (!manifestResponse.ok) throw new Error("release manifest could not be downloaded");
+    const release = await manifestResponse.json() as ReleaseManifest;
     const asset = release.platforms[key] || release.platforms.linux_x64;
     if (!asset?.url) throw new Error("platform asset unavailable");
     primary.href = asset.url; primary.textContent = `Download for ${platformLabel(key)}`;
@@ -55,4 +60,11 @@ document.querySelectorAll<HTMLButtonElement>(".copy-command").forEach((button) =
 }));
 
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("/sw.js").catch(() => undefined);
-void loadRelease();
+if (location.hostname === "reader-sideload-library.sociobot.in") {
+  void loadRelease();
+} else {
+  const key = currentPlatform();
+  document.querySelector<HTMLAnchorElement>("#primary-download")!.textContent = `View downloads for ${platformLabel(key)}`;
+  document.querySelector("#download-detail")!.textContent = "Release links resolve on the deployed site";
+  document.querySelector("#release-status")!.textContent = "Local preview: GitHub’s latest-release page remains available.";
+}
