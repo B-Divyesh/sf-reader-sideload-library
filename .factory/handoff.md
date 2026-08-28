@@ -31,6 +31,8 @@ Verified on 2026-08-28:
 - `npm audit --audit-level=high`: zero vulnerabilities.
 - Native Linux packaging: `.deb` and `.AppImage` both produced successfully.
 - Release manifest dry run: all four required platform keys found and every generated SHA-256 entry verified.
+- GitHub Actions run [33161735802](https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33161735802): quality, Linux, Windows, macOS ARM64, macOS Intel, and publish jobs all passed.
+- Published [v0.1.0](https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.0): `latest.json` contains four live platform records. The hosted Windows MSI was downloaded independently and matched both its manifest digest and `SHA256SUMS` (`3d65f88068c81719878f81d54d5cf5511596f56e326706be0dc689d367daf579`).
 
 Lighthouse mobile for the production landing build: performance 98, accessibility 100, best practices 100, SEO 100; LCP 2.1 s, CLS 0.033, TBT 0 ms, total transfer 177 KiB, and zero console errors. Initial app JavaScript is 18.02 KB raw; site JavaScript is 2.65 KB raw; CSS is 11.4 KB; loaded WOFF2 fonts total about 88 KB; the mobile hero is 80 KB.
 
