@@ -9,6 +9,7 @@ const RELEASE_API = "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-l
 
 interface ReleaseAsset { url: string; sha256?: string; label?: string }
 interface ReleaseManifest { version: string; platforms: Record<string, ReleaseAsset>; }
+interface GitHubAsset { name: string; browser_download_url: string; digest?: string }
 
 function currentPlatform() {
   const navigatorWithHints = navigator as Navigator & { userAgentData?: { platform?: string } };
@@ -34,12 +35,25 @@ async function loadRelease() {
   try {
     const releaseResponse = await fetch(RELEASE_API, { headers: { Accept: "application/vnd.github+json" } });
     if (!releaseResponse.ok) throw new Error("latest release unavailable");
-    const releaseMetadata = await releaseResponse.json() as { assets?: Array<{ name: string; url: string }> };
-    const manifestAsset = releaseMetadata.assets?.find((asset) => asset.name === "latest.json");
-    if (!manifestAsset) throw new Error("release manifest unavailable");
-    const manifestResponse = await fetch(manifestAsset.url, { headers: { Accept: "application/octet-stream" } });
-    if (!manifestResponse.ok) throw new Error("release manifest could not be downloaded");
-    const release = await manifestResponse.json() as ReleaseManifest;
+    const metadata = await releaseResponse.json() as { tag_name?: string; assets?: GitHubAsset[] };
+    const assets = metadata.assets || [];
+    if (!assets.some((asset) => asset.name === "latest.json")) throw new Error("release manifest unavailable");
+    const choose = (pattern: RegExp) => assets.find((asset) => pattern.test(asset.name));
+    const toRecord = (asset?: GitHubAsset): ReleaseAsset | undefined => asset ? {
+      url: asset.browser_download_url,
+      label: asset.name,
+      sha256: asset.digest?.replace(/^sha256:/, "")
+    } : undefined;
+    const platforms = {
+      macos_arm64: toRecord(choose(/aarch64.*\.dmg$/i)),
+      macos_x64: toRecord(choose(/x64.*\.dmg$/i)),
+      windows_x64: toRecord(choose(/x64.*\.msi$/i)),
+      linux_x64: toRecord(choose(/amd64.*\.AppImage$/i))
+    };
+    const release: ReleaseManifest = {
+      version: (metadata.tag_name || "v0.1.0").replace(/^v/, ""),
+      platforms: Object.fromEntries(Object.entries(platforms).filter((entry): entry is [string, ReleaseAsset] => Boolean(entry[1])))
+    };
     const asset = release.platforms[key] || release.platforms.linux_x64;
     if (!asset?.url) throw new Error("platform asset unavailable");
     primary.href = asset.url; primary.textContent = `Download for ${platformLabel(key)}`;
