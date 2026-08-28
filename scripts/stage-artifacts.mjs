@@ -14,7 +14,8 @@ await mkdir(destination, { recursive: true });
 let staged = 0;
 for (const source of artifactPaths) {
   if (!(await stat(source)).isFile()) continue;
-  await copyFile(source, join(destination, basename(source)));
+  const releaseName = basename(source).replaceAll(" ", ".");
+  await copyFile(source, join(destination, releaseName));
   staged += 1;
 }
 
