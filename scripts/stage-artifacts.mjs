@@ -1,7 +1,9 @@
 import { copyFile, mkdir } from "node:fs/promises";
 import { basename, join } from "node:path";
 
-const [serializedPaths = "[]", destination = "release-stage"] = process.argv.slice(2);
+const [pathsArgument, destinationArgument] = process.argv.slice(2);
+const serializedPaths = pathsArgument || process.env.ARTIFACT_PATHS || "[]";
+const destination = destinationArgument || process.env.STAGE_DESTINATION || "release-stage";
 const artifactPaths = JSON.parse(serializedPaths);
 
 if (!Array.isArray(artifactPaths) || artifactPaths.length === 0) {

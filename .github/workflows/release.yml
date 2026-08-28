@@ -70,7 +70,8 @@ jobs:
       - name: Stage platform bundles
         env:
           ARTIFACT_PATHS: ${{ steps.tauri.outputs.artifactPaths }}
-        run: node scripts/stage-artifacts.mjs "$ARTIFACT_PATHS" release-stage
+          STAGE_DESTINATION: release-stage
+        run: node scripts/stage-artifacts.mjs
       - name: Upload platform bundles
         uses: actions/upload-artifact@v4
         with:
