@@ -1,0 +1,31 @@
+[package]
+name = "reader-sideload-library"
+version = "0.1.0"
+description = "Reliable DRM-free reader sideloading and portable highlights"
+authors = ["Param Factory"]
+license = "MIT"
+edition = "2021"
+
+[lib]
+name = "reader_sideload_library_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.4.1", features = [] }
+
+[dependencies]
+hex = "0.4.3"
+lopdf = "0.35.0"
+reqwest = { version = "0.12.23", default-features = false, features = ["rustls-tls", "json"] }
+roxmltree = "0.20.0"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.143"
+sha2 = "0.10.9"
+tauri = { version = "2.8.5", features = [] }
+tauri-plugin-dialog = "2.4.0"
+urlencoding = "2.1.3"
+walkdir = "2.5.0"
+zip = { version = "2.4.2", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+tempfile = "3.22.0"

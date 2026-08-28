@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Reader Sideload Library",
+  "version": "0.1.0",
+  "identifier": "in.sociobot.reader-sideload-library",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build:app",
+    "frontendDist": "../dist/app"
+  },
+  "app": {
+    "windows": [{
+      "title": "Reader Sideload Library",
+      "width": 1240,
+      "height": 820,
+      "minWidth": 390,
+      "minHeight": 640,
+      "resizable": true,
+      "fullscreen": false
+    }],
+    "security": { "csp": "default-src 'self'; img-src 'self' asset: data:; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.sociobot.in https://*.sociobot.in ipc: http://ipc.localhost" }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Utility",
+    "shortDescription": "Reliable sideloading for DRM-free reader libraries",
+    "longDescription": "Scan EPUB and PDF libraries, build ordered device-safe collections, sync through USB or WebDAV, and keep highlights portable in Markdown.",
+    "copyright": "Copyright © 2026 Param Factory",
+    "resources": [],
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "linux": { "deb": { "depends": [] } },
+    "macOS": { "minimumSystemVersion": "10.15", "signingIdentity": null },
+    "windows": { "digestAlgorithm": "sha256", "certificateThumbprint": null }
+  }
+}

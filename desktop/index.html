@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f0e7" />
+    <title>Reader Sideload Library</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to library</a>
+    <header class="workbench">
+      <div class="brand-lockup">
+        <svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg>
+        <div><span class="eyebrow">Local field tool</span><h1>Reader Sideload Library</h1></div>
+      </div>
+      <div class="library-source">
+        <span id="source-label">No library selected</span>
+        <button class="button button-primary" id="scan-button" type="button">Choose library folder</button>
+        <input class="visually-hidden" id="browser-folder" type="file" webkitdirectory multiple accept=".epub,.pdf" tabindex="-1" aria-label="Choose library folder" />
+      </div>
+    </header>
+
+    <nav class="task-tabs" aria-label="Library tasks" role="tablist">
+      <button class="task-tab is-active" id="tab-catalogue" data-panel="catalogue" aria-controls="catalogue" aria-selected="true" role="tab"><span>01</span> Catalogue</button>
+      <button class="task-tab" id="tab-collections" data-panel="collections" aria-controls="collections" aria-selected="false" role="tab"><span>02</span> Collections</button>
+      <button class="task-tab" id="tab-transfer" data-panel="transfer" aria-controls="transfer" aria-selected="false" role="tab"><span>03</span> Transfer &amp; notes</button>
+    </nav>
+
+    <main id="main">
+      <section class="task-panel is-active" id="catalogue" aria-labelledby="tab-catalogue" role="tabpanel">
+        <div class="section-heading">
+          <div><span class="eyebrow">Your source stays untouched</span><h2>Catalogue</h2></div>
+          <div class="metrics" aria-live="polite"><strong id="book-count">0</strong><span>books</span><strong id="issue-count">0</strong><span>issues</span></div>
+        </div>
+        <div class="tool-strip">
+          <label class="search-field" for="search"><span>Search library</span><input id="search" type="search" placeholder="Title, author, or series" /></label>
+          <label for="format-filter">Format<select id="format-filter"><option value="all">All formats</option><option>EPUB</option><option>PDF</option><option value="issues">Needs attention</option></select></label>
+        </div>
+        <div id="scan-state" class="empty-state">
+          <span class="stamp">READY TO INDEX</span>
+          <h3>Start with the folder you already own.</h3>
+          <p>Choose a folder of DRM-free EPUB and PDF files. The scan is read-only and stays on this computer.</p>
+          <button class="button button-primary" id="empty-scan-button" type="button">Choose library folder</button>
+        </div>
+        <div class="table-wrap" id="catalogue-table-wrap" hidden>
+          <table>
+            <thead><tr><th scope="col">Book</th><th scope="col">Author</th><th scope="col">Series</th><th scope="col">File</th><th scope="col">Status</th><th scope="col">Use</th></tr></thead>
+            <tbody id="catalogue-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="task-panel" id="collections" aria-labelledby="tab-collections" role="tabpanel" hidden>
+        <div class="section-heading">
+          <div><span class="eyebrow">Order survives the cable</span><h2>Device-safe collections</h2></div>
+          <button class="button button-primary" id="add-collection" type="button">Create collection</button>
+        </div>
+        <p class="lede">Collections become numbered folders and books become numbered files, so order works even on readers that ignore series metadata.</p>
+        <div id="collections-list" class="collection-board"></div>
+        <div id="collections-empty" class="empty-state compact">
+          <h3>No collections yet.</h3><p>Create one, then add books from the catalogue below it.</p>
+        </div>
+      </section>
+
+      <section class="task-panel" id="transfer" aria-labelledby="tab-transfer" role="tabpanel" hidden>
+        <div class="section-heading"><div><span class="eyebrow">A deliberate handoff</span><h2>Transfer &amp; notes</h2></div><span class="privacy-chip">No cloud account</span></div>
+        <div class="transfer-grid">
+          <section class="method-block" aria-labelledby="usb-title">
+            <span class="step-number">A</span><h3 id="usb-title">USB folder</h3>
+            <p>Connect your reader, then choose its books folder. Existing identical files are skipped; incomplete copies never replace good files.</p>
+            <button class="button button-primary" id="usb-sync" type="button">Choose reader and sync</button>
+            <div class="progress-block" id="sync-progress" hidden aria-live="polite">
+              <div class="progress-label"><span id="sync-label">Preparing transfer…</span><strong id="sync-percent">0%</strong></div>
+              <progress id="sync-meter" max="100" value="0">0%</progress>
+            </div>
+          </section>
+          <section class="method-block" aria-labelledby="webdav-title">
+            <span class="step-number">B</span><div class="title-line"><h3 id="webdav-title">WebDAV</h3><span class="paid-badge">Field edition</span></div>
+            <p>Send the same safe collection layout to a private WebDAV folder. Credentials are used for this transfer only.</p>
+            <form id="webdav-form">
+              <label for="webdav-url">Server folder<input id="webdav-url" type="url" autocomplete="url" placeholder="https://cloud.example/books" required /></label>
+              <div class="field-pair"><label for="webdav-user">Username<input id="webdav-user" autocomplete="username" /></label><label for="webdav-password">App password<input id="webdav-password" type="password" autocomplete="current-password" /></label></div>
+              <button class="button button-secondary" type="submit">Sync with WebDAV</button>
+            </form>
+          </section>
+          <section class="method-block notes-block" aria-labelledby="notes-title">
+            <span class="step-number">C</span><h3 id="notes-title">Portable highlights</h3>
+            <p>Bring in Markdown, KOReader notes, text, JSON, or embedded PDF highlight annotations. Export everything as plain Markdown.</p>
+            <div class="button-row"><button class="button button-secondary" id="import-highlights" type="button">Import highlights</button><button class="button button-secondary" id="export-highlights" type="button">Export Markdown</button></div>
+            <input class="visually-hidden" id="browser-highlight" type="file" accept=".md,.txt,.json,.pdf" tabindex="-1" aria-label="Choose highlights file" />
+            <div id="highlights-list" class="highlights-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer"><span>Local-only catalogue · originals preserved</span><button id="license-button" class="text-button" type="button">Field edition license</button></footer>
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+    <dialog id="collection-dialog">
+      <form method="dialog" id="collection-form">
+        <div class="dialog-heading"><div><span class="eyebrow">New device folder</span><h2>Create collection</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
+        <label for="collection-name">Collection name<input id="collection-name" required maxlength="80" /></label>
+        <fieldset><legend>Choose books</legend><div id="collection-books" class="book-checklist"></div></fieldset>
+        <div class="dialog-actions"><button class="button button-quiet" value="cancel" type="submit">Cancel</button><button class="button button-primary" value="default" id="save-collection" type="submit">Create collection</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="license-dialog">
+      <form method="dialog" id="license-form">
+        <div class="dialog-heading"><div><span class="eyebrow">One-time · $24</span><h2>Field edition</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
+        <p>Unlock private WebDAV transfer on every computer you own. USB sync, saved collections, and highlight export stay free.</p>
+        <a class="button button-primary" href="https://api.sociobot.in/api/v1/products/reader-sideload-library/checkout" target="_blank" rel="noreferrer">Buy Field edition</a>
+        <label for="license-token">Have a license? Paste it<input id="license-token" autocomplete="off" spellcheck="false" /></label>
+        <p class="form-note" id="license-note">Verification needs a connection once, then is cached for 24 hours.</p>
+        <div class="dialog-actions"><button class="button button-quiet" value="cancel" type="submit">Not now</button><button class="button button-secondary" id="verify-license" value="default" type="submit">Verify license</button></div>
+      </form>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
