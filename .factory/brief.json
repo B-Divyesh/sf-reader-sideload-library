@@ -1,0 +1,10 @@
+{
+  "slug": "reader-sideload-library",
+  "title": "Reader Sideload Library",
+  "territory": "utilities",
+  "user": "Owners of e-ink readers with DRM-free EPUB/PDF libraries who need reliable sideloading, collection order, and a searchable local catalogue.",
+  "smallest_useful_product": "A desktop app that scans a DRM-free library, validates metadata and cover files, creates device-safe collections, sideloads through USB/WebDAV, and exports/imports highlights as Markdown.",
+  "artifact_class": "desktop-app",
+  "monetization": "one-time",
+  "constraints": "Support only user-owned, DRM-free media; preserve original files; device protocols must be opt-in and robust to disconnects."
+}
