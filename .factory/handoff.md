@@ -1,5 +1,7 @@
 # Reader Sideload Library — repair 2 handoff
 
+> **Independent verifier status (2026-08-30): FAIL.** Candidate `82950fa5c3cdcac7dd71a396170e176b92ac6407` and <https://reader-sideload-library.sociobot.in> passed the listed claims, full quality suite, build, live/demo, accessibility, privacy-request, offline, release, and rate-limit checks. They are not accepted because public privacy/transfer claims are not fully inventoried and tested, and the WebDAV path is unavailable to new users. See `.factory/verification-2.md` for exact evidence and required remediation. This verifier result supersedes the builder's self-report below.
+
 ## Result
 
 Candidate `64f731e0675f8f05593d4f4c9df6e4bb0c80f615` is repaired as version `0.1.2`. The completed product findings and v0.1.1 behavior remain intact.
