@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 
 export default defineConfig({
   root: "desktop",
+  base: "./",
   clearScreen: false,
   build: {
     outDir: "../dist/app",

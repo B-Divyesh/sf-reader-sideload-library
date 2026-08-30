@@ -8,14 +8,34 @@ import { buildSyncItems, highlightsToMarkdown, parseMarkdownHighlights, safeName
 const PRODUCT = "reader-sideload-library";
 const API = "https://api.sociobot.in/api/v1";
 const STORAGE_KEY = "rsl:library-state:v1";
+const DEMO_STORAGE_KEY = "demo:rsl:library-state:v1";
 const LICENSE_KEY = `sb_license:${PRODUCT}`;
 const VERDICT_KEY = `sb_license_verdict:${PRODUCT}`;
 const isTauri = "__TAURI_INTERNALS__" in window;
+const isDemo = location.pathname.replace(/\/$/, "") === "/demo" || new URLSearchParams(location.search).get("demo") === "1";
 
 interface State { books: Book[]; collections: Collection[]; highlights: Highlight[]; source: string; }
-const saved = localStorage.getItem(STORAGE_KEY);
-let state: State = saved ? safeStoredState(saved) : { books: [], collections: [], highlights: [], source: "" };
+const storageKey = isDemo ? DEMO_STORAGE_KEY : STORAGE_KEY;
+const saved = localStorage.getItem(storageKey);
+let state: State = saved ? safeStoredState(saved) : isDemo ? sampleState() : { books: [], collections: [], highlights: [], source: "" };
 let activePanel = "catalogue";
+
+function sampleState(): State {
+  return {
+    source: "Demo library · 4 sample books",
+    books: [
+      { id: "demo-moss", path: "sample/The Moss Archive.epub", title: "The Moss Archive", authors: ["A. Reader"], series: "Field Library", seriesIndex: 1, format: "EPUB", sizeBytes: 1_842_000, modified: 0, coverStatus: "found", metadataStatus: "valid", warnings: [], eligible: true, selected: true },
+      { id: "demo-field", path: "sample/Field Notes 03.pdf", title: "Field Notes 03 — 秋", authors: ["Zoë Reader"], series: "Field Library", seriesIndex: 3, format: "PDF", sizeBytes: 924_000, modified: 0, coverStatus: "not-applicable", metadataStatus: "valid", warnings: [], eligible: true, selected: true },
+      { id: "demo-concrete", path: "sample/Concrete Gardens.epub", title: "Concrete Gardens", authors: ["M. Silva"], series: null, seriesIndex: null, format: "EPUB", sizeBytes: 2_106_000, modified: 0, coverStatus: "missing", metadataStatus: "warning", warnings: ["Cover image is missing or not labelled"], eligible: true, selected: true },
+      { id: "demo-locked", path: "sample/Locked Reference.pdf", title: "Locked Reference", authors: [], series: null, seriesIndex: null, format: "PDF", sizeBytes: 730_000, modified: 0, coverStatus: "not-applicable", metadataStatus: "warning", warnings: ["Password-protected PDF excluded; only DRM-free files can be transferred"], eligible: false, selected: false }
+    ],
+    collections: [{ id: "demo-autumn", name: "Autumn Queue", bookIds: ["demo-moss", "demo-field", "demo-concrete"] }],
+    highlights: [
+      { id: "demo-highlight-1", book: "The Moss Archive", quote: "A private library should remain legible when every service is gone.", note: "Keep for the archive plan.", location: "Chapter 2", created: "2026-08-28" },
+      { id: "demo-highlight-2", book: "Concrete Gardens", quote: "Order is a property of the collection, not the device.", note: "", location: "Page 41", created: "2026-08-29" }
+    ]
+  };
+}
 
 const $ = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const $$ = <T extends HTMLElement>(selector: string) => [...document.querySelectorAll<T>(selector)];
@@ -28,7 +48,7 @@ function safeStoredState(value: string): State {
 }
 
 function persist() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(storageKey, JSON.stringify(state));
 }
 
 function toast(message: string, error = false) {
@@ -72,6 +92,7 @@ async function savePath(options: Record<string, unknown>): Promise<string | null
 }
 
 async function chooseLibrary() {
+  if (isDemo) { toast("Demo mode does not read your files. Choose Start for real first.", true); return; }
   if (!isTauri) { $("#browser-folder").click(); return; }
   const folder = await openPath({ directory: true, multiple: false, title: "Choose your DRM-free library" });
   if (!folder) return;
@@ -176,7 +197,7 @@ function renderCollections() {
     <div class="collection-head"><div><span class="eyebrow">Folder ${String(cIndex + 1).padStart(2, "0")}</span><h3>${escapeHtml(collection.name)}</h3></div><div class="collection-actions"><button class="icon-button" data-delete-collection="${collection.id}" aria-label="Delete ${escapeHtml(collection.name)}">×</button></div></div>
     <ol class="ordered-books">${collection.bookIds.map((id, index) => {
       const book = state.books.find((candidate) => candidate.id === id);
-      return book ? `<li><span><strong>${escapeHtml(book.title)}</strong><br/><small>${escapeHtml(book.authors.join(", ") || "Unknown author")}</small></span><span class="move-actions"><button class="icon-button" data-move="up" data-collection="${collection.id}" data-index="${index}" aria-label="Move ${escapeHtml(book.title)} up" ${index === 0 ? "disabled" : ""}>↑</button><button class="icon-button" data-move="down" data-collection="${collection.id}" data-index="${index}" aria-label="Move ${escapeHtml(book.title)} down" ${index === collection.bookIds.length - 1 ? "disabled" : ""}>↓</button></span></li>` : "";
+      return book ? `<li><span><strong>${escapeHtml(book.title)}</strong><br/><small>${escapeHtml(book.authors.join(", ") || "Unknown author")}</small><br/><small class="device-path">${String(index + 1).padStart(3, "0")} - ${escapeHtml(safeName(book.title))}.${book.format.toLowerCase()}</small></span><span class="move-actions"><button class="icon-button" data-move="up" data-collection="${collection.id}" data-index="${index}" aria-label="Move ${escapeHtml(book.title)} up" ${index === 0 ? "disabled" : ""}>↑</button><button class="icon-button" data-move="down" data-collection="${collection.id}" data-index="${index}" aria-label="Move ${escapeHtml(book.title)} down" ${index === collection.bookIds.length - 1 ? "disabled" : ""}>↓</button></span></li>` : "";
     }).join("")}</ol>
   </article>`).join("");
   $$<HTMLButtonElement>("[data-delete-collection]").forEach((button) => button.addEventListener("click", () => {
@@ -253,8 +274,10 @@ async function browserHighlightPicked(event: Event) {
   const text = await file.text();
   let imported = parseMarkdownHighlights(text, file.name.replace(/\.[^.]+$/, ""));
   if (file.name.toLowerCase().endsWith(".json")) {
-    try { const parsed = JSON.parse(text); imported = (Array.isArray(parsed) ? parsed : parsed.highlights || []).map((item: Partial<Highlight>) => ({ id: crypto.randomUUID(), book: item.book || file.name, quote: item.quote || "", note: item.note || "", location: item.location || "Imported", created: item.created || "" })).filter((item: Highlight) => item.quote); } catch { /* Markdown fallback already parsed */ }
+    try { const parsed = JSON.parse(text); imported = (Array.isArray(parsed) ? parsed : parsed.highlights || []).map((item: Partial<Highlight>) => ({ id: crypto.randomUUID(), book: item.book || file.name, quote: item.quote || "", note: item.note || "", location: item.location || "Imported", created: item.created || "" })).filter((item: Highlight) => item.quote); }
+    catch { toast("This JSON file could not be read. Export it again or choose Markdown.", true); return; }
   }
+  if (!imported.length) { toast("No quoted highlights were found in this file.", true); return; }
   state.highlights.push(...imported); persist(); renderHighlights(); toast(`Imported ${imported.length} highlights.`);
 }
 
@@ -283,6 +306,7 @@ function licenseIsActive() {
 }
 
 async function verifyLicense(token: string, quiet = false) {
+  if (isDemo) { if (!quiet) toast("License checks are off in the demo. Start for real to restore a purchase.", true); return false; }
   if (!token) { if (!quiet) toast("Paste your license token first.", true); return false; }
   if (!navigator.onLine) { if (!quiet) toast("License verification needs a connection. Try again when online.", true); return licenseIsActive(); }
   try {
@@ -298,6 +322,7 @@ async function verifyLicense(token: string, quiet = false) {
 function safeJson(value: string | null): { valid?: boolean; checkedAt?: number } | null { try { return value ? JSON.parse(value) : null; } catch { return null; } }
 
 async function initializeLicense() {
+  if (isDemo) return;
   const params = new URLSearchParams(location.search);
   const returned = params.get("license");
   if (returned) { localStorage.setItem(LICENSE_KEY, returned); history.replaceState({}, "", location.pathname); await verifyLicense(returned); }
@@ -321,6 +346,7 @@ $$(".task-tab").forEach((tab) => {
   });
 });
 $("#scan-button").addEventListener("click", chooseLibrary); $("#empty-scan-button").addEventListener("click", chooseLibrary); $("#browser-folder").addEventListener("change", browserFolderPicked);
+$("#load-sample").addEventListener("click", () => { location.href = `${location.pathname}?demo=1`; });
 $("#search").addEventListener("input", renderCatalogue); $("#format-filter").addEventListener("change", renderCatalogue);
 $("#add-collection").addEventListener("click", openCollectionDialog); $("#collection-form").addEventListener("submit", saveCollection);
 $("#usb-sync").addEventListener("click", usbSync); $("#webdav-form").addEventListener("submit", webdavSync);
@@ -328,4 +354,14 @@ $("#import-highlights").addEventListener("click", importHighlights); $("#browser
 $("#license-button").addEventListener("click", openLicense); $("#license-form").addEventListener("submit", async (event) => { const submitter = (event as SubmitEvent).submitter as HTMLButtonElement | null; if (submitter?.value !== "default") return; event.preventDefault(); const valid = await verifyLicense(($<HTMLInputElement>("#license-token")).value.trim()); if (valid) ($("#license-dialog") as HTMLDialogElement).close(); });
 window.addEventListener("offline", () => toast("You are offline. Catalogue, collections, USB, and Markdown export still work."));
 window.addEventListener("online", () => toast("Connection restored. WebDAV and license verification are available."));
+if (!isTauri && isDemo && "serviceWorker" in navigator && (location.protocol === "https:" || ["localhost", "127.0.0.1"].includes(location.hostname))) {
+  navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+}
+if (isDemo) {
+  document.title = "Demo — Reader Sideload Library";
+  $("#demo-banner").hidden = false;
+  $("#reset-demo").addEventListener("click", () => { state = sampleState(); persist(); render(); setPanel("catalogue", true); toast("Sample data reset."); });
+  $("#start-real").addEventListener("click", () => { localStorage.removeItem(DEMO_STORAGE_KEY); });
+  persist();
+} else document.title = "Reader Sideload Library";
 render(); setPanel("catalogue"); void initializeLicense();

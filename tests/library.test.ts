@@ -13,6 +13,12 @@ describe("device-safe library planning", () => {
     expect(items.map((item) => item.bookId)).toEqual(["b", "a"]);
     expect(new Set(items.map((item) => item.relativePath.toLowerCase())).size).toBe(2);
   });
+  it("keeps a decoded Unicode PDF title intact in the sync filename", () => {
+    const pdf = { ...book("pdf", "Field Notes 03 — 秋"), format: "PDF" as const, path: "/library/field-notes.pdf" };
+    const [item] = buildSyncItems([pdf], [{ id: "queue", name: "Autumn Queue", bookIds: ["pdf"] }]);
+    expect(item?.relativePath).toBe("01 - Autumn Queue/001 - Field Notes 03 — 秋.pdf");
+    expect(item?.relativePath).not.toContain("�");
+  });
 });
 
 describe("portable Markdown highlights", () => {

@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f2f0e7" />
-    <title>Reader Sideload Library</title>
+    <meta name="description" content="Try Reader Sideload Library with an isolated sample catalogue, collection, and highlights." />
+    <link rel="canonical" href="https://reader-sideload-library.sociobot.in/demo/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Demo — Reader Sideload Library" />
+    <meta property="og:description" content="Try an isolated sample catalogue, collection, and highlights." />
+    <meta property="og:url" content="https://reader-sideload-library.sociobot.in/demo/" />
+    <meta property="og:image" content="https://reader-sideload-library.sociobot.in/assets/social-card.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Demo — Reader Sideload Library</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to library</a>
+    <aside class="demo-banner" id="demo-banner" aria-label="Demo mode" hidden>
+      <strong>Demo — sample data, nothing is saved to your library</strong>
+      <span>Try search, collection order, and Markdown export.</span>
+      <span class="demo-actions"><button id="reset-demo" type="button">Reset demo</button><a id="start-real" href="/">Start for real</a></span>
+    </aside>
     <header class="workbench">
       <div class="brand-lockup">
         <svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg>
@@ -41,6 +56,7 @@
           <h3>Start with the folder you already own.</h3>
           <p>Choose a folder of DRM-free EPUB and PDF files. The scan is read-only and stays on this computer.</p>
           <button class="button button-primary" id="empty-scan-button" type="button">Choose library folder</button>
+          <button class="button button-secondary" id="load-sample" type="button">Load sample project</button>
         </div>
         <div class="table-wrap" id="catalogue-table-wrap" hidden>
           <table>
@@ -108,9 +124,8 @@
 
     <dialog id="license-dialog">
       <form method="dialog" id="license-form">
-        <div class="dialog-heading"><div><span class="eyebrow">One-time · $24</span><h2>Field edition</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
-        <p>Unlock private WebDAV transfer on every computer you own. USB sync, saved collections, and highlight export stay free.</p>
-        <a class="button button-primary" href="https://api.sociobot.in/api/v1/products/reader-sideload-library/checkout" target="_blank" rel="noreferrer">Buy Field edition</a>
+        <div class="dialog-heading"><div><span class="eyebrow">Existing licenses</span><h2>Field edition</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
+        <p>Private WebDAV transfer remains available to existing Field edition buyers. New purchases are paused.</p>
         <label for="license-token">Have a license? Paste it<input id="license-token" autocomplete="off" spellcheck="false" /></label>
         <p class="form-note" id="license-note">Verification needs a connection once, then is cached for 24 hours.</p>
         <div class="dialog-actions"><button class="button button-quiet" value="cancel" type="submit">Not now</button><button class="button button-secondary" id="verify-license" value="default" type="submit">Verify license</button></div>

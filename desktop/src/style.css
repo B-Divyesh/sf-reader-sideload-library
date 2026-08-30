@@ -12,6 +12,11 @@ button, a, input, select { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--moss); outline-offset: 3px; }
 .skip-link { position: fixed; z-index: 30; top: 8px; left: 8px; padding: 12px; background: var(--graphite); color: var(--paper); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
+.demo-banner { min-height: 56px; display: flex; align-items: center; justify-content: center; gap: 20px; padding: 8px clamp(16px, 4vw, 56px); background: var(--graphite); color: var(--paper); }
+.demo-banner[hidden] { display: none; }
+.demo-banner span { color: color-mix(in srgb, var(--paper) 78%, transparent); }
+.demo-actions { display: flex; align-items: center; gap: 12px; }
+.demo-actions button, .demo-actions a { min-height: 44px; display: inline-flex; align-items: center; border: 1px solid currentColor; padding: 8px 12px; background: transparent; color: var(--paper); font: inherit; font-weight: 700; cursor: pointer; }
 .workbench { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 112px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 3px solid var(--graphite); background: var(--paper); }
 .brand-lockup { display: flex; align-items: center; gap: 14px; }
 .brand-lockup svg { width: 42px; fill: none; stroke: currentColor; stroke-width: 2; flex: 0 0 auto; }
@@ -63,6 +68,7 @@ td:first-child strong { display: block; } td small { color: var(--ash); }
 .collection-actions { display: flex; gap: 8px; }.icon-button { min-width: 44px; min-height: 44px; border: var(--rule); background: var(--surface); cursor: pointer; }
 .ordered-books { list-style: none; padding: 0; margin: 16px 0 0; counter-reset: books; }.ordered-books li { counter-increment: books; display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 12px; min-height: 54px; padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--graphite) 30%, transparent); }
 .ordered-books li::before { content: counter(books, decimal-leading-zero); font-variant-numeric: tabular-nums; color: var(--ash); }
+.device-path { color: var(--moss); font-variant-numeric: tabular-nums; }
 .move-actions { display: flex; gap: 8px; }.move-actions button { min-height: 44px; min-width: 44px; }
 .transfer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }.method-block { position: relative; border-top: 3px solid var(--graphite); padding: 24px; background: color-mix(in srgb, var(--surface) 76%, transparent); }.notes-block { grid-column: 1 / -1; }
 .step-number { float: right; font-size: 40px; font-weight: 900; color: var(--concrete); line-height: 1; }.title-line, .button-row, .field-pair, .progress-label { display: flex; align-items: center; gap: 12px; }.title-line { justify-content: space-between; }.paid-badge, .privacy-chip { border: 1px solid var(--moss); color: var(--moss); padding: 5px 7px; }
@@ -75,6 +81,7 @@ dialog { width: min(680px, calc(100% - 32px)); max-height: 90vh; overflow: auto;
 @keyframes settle { from { opacity: 0; transform: translateY(-4px); } }
 @media (prefers-color-scheme: dark) { :root { --paper:#181b18;--concrete:#292d29;--surface:#222622;--graphite:#f2f0e7;--ash:#c1c5bc;--moss:#a6c98a;--moss-ink:#182116;--lichen:#34422e;--rust:#ff9d87;--amber:#f3c678; } body { background-image: radial-gradient(#f2f0e714 .65px,transparent .65px); } }
 @media (max-width: 720px) {
+  .demo-banner { align-items: flex-start; flex-direction: column; gap: 4px; }
   .workbench { align-items: flex-start; flex-direction: column; padding-top: max(16px, env(safe-area-inset-top)); }.library-source { width: 100%; flex-wrap: wrap; }.library-source .button { width: 100%; }#source-label { max-width: 100%; }
   .task-tabs { display: flex; overflow-x: auto; padding: 0; }.task-tab { min-width: 180px; border-bottom: 0; }
   .section-heading { align-items: flex-start; flex-direction: column; }.metrics { align-self: stretch; grid-template-columns: auto auto auto auto; border-left: 0; border-top: 3px solid var(--moss); }.metrics strong { text-align: left; }

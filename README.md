@@ -1,8 +1,10 @@
 # Reader Sideload Library
 
-Reader Sideload Library is a local-first desktop utility for owners of DRM-free EPUB and PDF libraries. It scans a folder without modifying the source, validates book metadata and cover presence, builds ordered folders that survive limited reader software, copies safely over USB or WebDAV, and keeps reading highlights portable as Markdown.
+Reader Sideload Library is a desktop utility for e-ink reader owners with DRM-free EPUB and PDF files. It checks metadata, creates ordered device folders, copies books by USB, and exports highlights as Markdown.
 
 Live site: <https://reader-sideload-library.sociobot.in>
+
+One-click sample: <https://reader-sideload-library.sociobot.in/demo/>
 
 ## Who it is for
 
@@ -10,14 +12,21 @@ It is for people who own their book files and use e-ink readers, especially when
 
 ## What works in v0.1
 
-- Recursive read-only EPUB/PDF scan with embedded title, author, series, cover, encryption, and file validation
+- Recursive EPUB/PDF scan with embedded title, author, series, cover, encryption, and file validation
 - Searchable, locally persisted catalogue with clear warnings and opt-in inclusion
 - Ordered collections rendered as safe numbered folders/files
-- USB sync through temporary files, SHA-256 verification, atomic rename, unchanged-file skipping, and a local manifest
+- USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
 - Opt-in WebDAV sync with HTTPS enforcement and credentials kept only for the active transfer
 - Markdown, JSON, KOReader-sidecar, and embedded PDF annotation import; plain Markdown export
-- One-time Field edition license restore/verification through the Sociobot billing API; only WebDAV is paid
-- Responsive 390px app and landing site, light/dark treatments, keyboard tabs, reduced motion, and offline fallbacks
+- Existing Field edition license restore and verification through the Sociobot billing API; new purchases are paused
+- Responsive 390px app and landing site, light/dark treatments, keyboard tabs, and reduced motion
+- Catalogue, collection, and Markdown tools reopen offline after the first demo visit
+
+## Try the sample
+
+Open `/demo/` or choose **Load sample project** on the app’s first screen. The sample includes four books, one ordered collection, and two highlights. Search, reorder, and Markdown export use the same interface as a real library.
+
+Demo changes use `demo:rsl:library-state:v1`. They never read or replace the real `rsl:library-state:v1` catalogue. The sample demo sends no catalogue or interaction data to another origin. Use **Reset demo** to restore it, or **Start for real** to discard it.
 
 ## Install
 
@@ -48,7 +57,7 @@ npm run dev:site       # landing site
 npm run tauri dev      # native desktop shell
 npm test               # unit, Rust core, axe, desktop/mobile browser checks
 npm run build          # reproducible web output in dist/ and dist/site/
-npm run tauri build    # local native bundle when platform prerequisites exist
+CI=true npm run tauri build  # local native bundle when platform prerequisites exist
 ```
 
 `npm run build:site` is the factory deploy command. Its deploy root is exactly `dist/site`, with `index.html` at that root. `npm run build` also copies the landing entry to `dist/index.html` for the repository-wide quality contract.
@@ -57,7 +66,9 @@ npm run tauri build    # local native bundle when platform prerequisites exist
 
 The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. The catalogue and license verdict are local browser/WebView storage. No analytics, telemetry, CDN font, or third-party runtime script is used. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
 
-Original book files are never rewritten. Protected media is excluded rather than decrypted. WebDAV credentials are not persisted.
+Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted. WebDAV credentials are not persisted.
+
+PDF titles and authors stored as UTF-16 or PDFDocEncoding are decoded without replacement characters. Imported highlights export as plain Markdown.
 
 ## Releases
 

@@ -1,6 +1,6 @@
 {
   "name": "reader-sideload-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,10 +9,11 @@
     "tauri": "tauri",
     "test": "npm run test:unit && cargo test --manifest-path src-tauri/Cargo.toml && playwright test",
     "test:e2e": "playwright test",
+    "test:claims": "playwright test",
     "test:unit": "vitest run tests/library.test.ts",
     "build:app": "tsc --noEmit && vite build --config vite.app.config.ts",
-    "build:site": "vite build --config vite.site.config.ts",
-    "build": "npm run build:app && npm run build:site && node scripts/assemble-dist.mjs",
+    "build:site": "npm run build:app && vite build --config vite.site.config.ts && node scripts/assemble-site.mjs",
+    "build": "npm run build:site && node scripts/assemble-dist.mjs",
     "check": "tsc --noEmit"
   },
   "dependencies": {

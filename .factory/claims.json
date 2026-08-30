@@ -1,0 +1,58 @@
+[
+  {
+    "id": "demo-isolated",
+    "claim": "The sample demo never reads or changes the user's real library state.",
+    "where": "demo banner, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:demo-isolated --project=desktop-chromium",
+    "sandbox": "fresh browser context with a sentinel real-library key; use search and reset; assert only demo:rsl:library-state:v1 changes"
+  },
+  {
+    "id": "markdown-export",
+    "claim": "Exports imported highlights as plain Markdown.",
+    "where": "landing page, desktop app, README",
+    "test": "npm run test:claims -- --grep @claim:markdown-export --project=desktop-chromium",
+    "sandbox": "open /demo/ from clean storage; export bundled highlights; inspect the downloaded Markdown contents"
+  },
+  {
+    "id": "privacy-requests",
+    "claim": "The website and sample demo make no analytics or advertising requests.",
+    "where": "landing facts, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:privacy-requests --project=desktop-chromium",
+    "sandbox": "record every request across landing, search, and sample collection; allow only same-origin and the documented GitHub release API"
+  },
+  {
+    "id": "core-free",
+    "claim": "Catalogue, collection, USB, and Markdown tools do not require a purchase.",
+    "where": "landing facts, desktop app, README",
+    "test": "npm run test:claims -- --grep @claim:core-free --project=desktop-chromium",
+    "sandbox": "fresh demo context without a license; assert core task controls are enabled and no checkout link is present"
+  },
+  {
+    "id": "offline-demo",
+    "claim": "Catalogue, collection, and Markdown tools reopen offline after the first demo visit.",
+    "where": "landing facts, README",
+    "test": "npm run test:claims -- --grep @claim:offline-demo --project=desktop-chromium",
+    "sandbox": "fresh browser context; load /demo/ online under its service worker; set context offline; reload and assert sample catalogue state"
+  },
+  {
+    "id": "source-preserved",
+    "claim": "Scanning book metadata does not rewrite the source file.",
+    "where": "desktop empty state, privacy page, README",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_source_scan_preserves_file_bytes",
+    "sandbox": "temporary source PDF; record bytes, scan it through the native inspection path, and assert exact bytes remain"
+  },
+  {
+    "id": "pdf-metadata",
+    "claim": "PDF titles and authors stored as UTF-16 or PDFDocEncoding are decoded without replacement characters.",
+    "where": "desktop catalogue behavior, README",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_pdf_metadata_survives_scan",
+    "sandbox": "temporary directory containing a generated PDF with Unicode title and author; scan the file and assert exact decoded values"
+  },
+  {
+    "id": "verified-usb-copy",
+    "claim": "USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy.",
+    "where": "desktop transfer screen, README",
+    "test": "cargo test --manifest-path src-tauri/Cargo.toml claim_verified_usb_copy_is_idempotent",
+    "sandbox": "temporary source and device directories; copy twice; compare source and destination bytes and inspect the device manifest"
+  }
+]

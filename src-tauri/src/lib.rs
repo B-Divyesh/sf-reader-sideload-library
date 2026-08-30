@@ -1,4 +1,4 @@
-use lopdf::{Document, Object, ObjectId};
+use lopdf::{decode_text_string, Document, Object, ObjectId};
 use reqwest::{Client, Method, StatusCode};
 use roxmltree::Document as XmlDocument;
 use serde::{Deserialize, Serialize};
@@ -334,10 +334,9 @@ fn inspect_pdf(path: &Path, fallback: &str) -> Result<Inspection, String> {
 }
 
 fn object_text(object: &Object) -> Option<String> {
-    object
-        .as_str()
+    decode_text_string(object)
         .ok()
-        .map(|bytes| String::from_utf8_lossy(bytes).trim().to_string())
+        .map(|text| text.trim_matches(['\0', '\u{feff}']).trim().to_string())
         .filter(|text| !text.is_empty())
 }
 
@@ -756,6 +755,7 @@ pub fn run() {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use lopdf::{dictionary, StringFormat};
     use tempfile::tempdir;
 
     #[test]
@@ -774,8 +774,9 @@ mod tests {
         assert_eq!(parsed[0].note, "Keep it");
     }
 
+    // @claim:verified-usb-copy
     #[test]
-    fn usb_sync_is_verified_and_idempotent() {
+    fn claim_verified_usb_copy_is_idempotent() {
         let source_dir = tempdir().unwrap();
         let device_dir = tempdir().unwrap();
         let source = source_dir.path().join("book.epub");
@@ -803,9 +804,50 @@ mod tests {
             fs::read(device_dir.path().join("01 - Queue/001 - Book.epub")).unwrap(),
             b"owned book bytes"
         );
+        assert_eq!(fs::read(&source).unwrap(), b"owned book bytes");
         assert!(device_dir
             .path()
             .join(".reader-sideload-library/manifest.json")
             .is_file());
+    }
+
+    #[test]
+    fn pdf_metadata_decodes_utf16_and_pdfdocencoding() {
+        let utf16 = lopdf::text_string("Field Notes 03 — 秋");
+        assert_eq!(object_text(&utf16).as_deref(), Some("Field Notes 03 — 秋"));
+
+        let pdfdoc = Object::String(b"Field Notes \x8B".to_vec(), StringFormat::Literal);
+        assert_eq!(object_text(&pdfdoc).as_deref(), Some("Field Notes ‰"));
+    }
+
+    // @claim:pdf-metadata
+    #[test]
+    fn claim_pdf_metadata_survives_scan() {
+        let library = tempdir().unwrap();
+        let path = library.path().join("field-notes.pdf");
+        let mut document = Document::with_version("1.7");
+        let info_id = document.add_object(dictionary! {
+            "Title" => lopdf::text_string("Field Notes 03 — 秋"),
+            "Author" => lopdf::text_string("Zoë Reader"),
+        });
+        document.trailer.set("Info", info_id);
+        document.save(&path).unwrap();
+
+        let book = inspect_book(&path, "pdf");
+        assert_eq!(book.title, "Field Notes 03 — 秋");
+        assert_eq!(book.authors, vec!["Zoë Reader"]);
+        assert!(book.eligible);
+        assert!(!book.title.contains('\u{fffd}'));
+    }
+
+    // @claim:source-preserved
+    #[test]
+    fn claim_source_scan_preserves_file_bytes() {
+        let library = tempdir().unwrap();
+        let path = library.path().join("owned.pdf");
+        let source = b"%PDF-1.4\n% owned fixture bytes\n";
+        fs::write(&path, source).unwrap();
+        let _ = inspect_book(&path, "pdf");
+        assert_eq!(fs::read(&path).unwrap(), source);
     }
 }

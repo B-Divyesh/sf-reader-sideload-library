@@ -51,7 +51,7 @@ async function loadRelease() {
       linux_x64: toRecord(choose(/amd64.*\.AppImage$/i))
     };
     const release: ReleaseManifest = {
-      version: (metadata.tag_name || "v0.1.0").replace(/^v/, ""),
+      version: (metadata.tag_name || "v0.1.1").replace(/^v/, ""),
       platforms: Object.fromEntries(Object.entries(platforms).filter((entry): entry is [string, ReleaseAsset] => Boolean(entry[1])))
     };
     const asset = release.platforms[key] || release.platforms.linux_x64;
@@ -73,7 +73,7 @@ document.querySelectorAll<HTMLButtonElement>(".copy-command").forEach((button) =
   catch { button.textContent = "Select command"; }
 }));
 
-if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+if ("serviceWorker" in navigator && (location.protocol === "https:" || ["localhost", "127.0.0.1"].includes(location.hostname))) navigator.serviceWorker.register("/sw.js").catch(() => undefined);
 if (location.hostname === "reader-sideload-library.sociobot.in") {
   void loadRelease();
 } else {

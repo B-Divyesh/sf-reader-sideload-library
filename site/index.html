@@ -3,52 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Scan your DRM-free EPUB and PDF library, build ordered reader collections, sync safely through USB or WebDAV, and keep highlights in Markdown." />
+    <meta name="description" content="Organize DRM-free EPUB and PDF files, make ordered e-ink reader collections, copy by USB, and export highlights as Markdown." />
     <meta name="theme-color" content="#f2f0e7" />
+    <link rel="canonical" href="https://reader-sideload-library.sociobot.in/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>Reader Sideload Library — books in, reading work out</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Reader Sideload Library — organize e-ink libraries" />
+    <meta property="og:description" content="Organize DRM-free EPUB and PDF files, make ordered collections, copy by USB, and export highlights as Markdown." />
+    <meta property="og:url" content="https://reader-sideload-library.sociobot.in/" />
+    <meta property="og:image" content="https://reader-sideload-library.sociobot.in/assets/social-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reader Sideload Library — organize e-ink libraries" />
+    <meta name="twitter:description" content="Organize DRM-free EPUB and PDF files, make ordered collections, copy by USB, and export highlights as Markdown." />
+    <meta name="twitter:image" content="https://reader-sideload-library.sociobot.in/assets/social-card.jpg" />
+    <title>Reader Sideload Library — organize e-ink libraries</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Reader Sideload Library home"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg><span>Reader Sideload<br/>Library</span></a>
-      <nav aria-label="Main navigation"><a href="#workflow">How it works</a><a href="#field-edition">Field edition</a><a href="#download">Download</a></nav>
+      <nav aria-label="Main navigation"><a href="/demo/">Demo</a><a href="#workflow">How it works</a><a href="#download">Download</a><a href="/privacy/">Privacy</a></nav>
     </header>
     <main id="main">
       <section class="hero">
         <div class="hero-copy">
-          <span class="kicker"><span aria-hidden="true">●</span> DRM-free · local-first</span>
-          <h1>Books in.<br/><em>Reading work out.</em></h1>
-          <p class="hero-lede">A quiet desktop tool for getting your own EPUBs, PDFs, collections, and highlights safely across the cable.</p>
+          <span class="kicker"><span aria-hidden="true">●</span> Desktop app for DRM-free books</span>
+          <h1>Organize and sideload your <em>e-ink library.</em></h1>
+          <p class="hero-lede">For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/demo/">Try it with sample data</a>
+            <span>Open a ready sample catalogue.</span>
+          </div>
           <div id="download" class="download-block">
-            <a class="button button-primary" id="primary-download" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download for your computer</a>
+            <a class="button button-secondary" id="primary-download" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download for your computer</a>
             <span id="download-detail" aria-live="polite">Detecting your platform…</span>
           </div>
-          <a class="quiet-link" href="#all-downloads">Other platforms &amp; install methods ↓</a>
+          <a class="quiet-link" href="#all-downloads">See other platforms and install methods</a>
         </div>
         <figure class="hero-figure">
           <picture>
             <source media="(max-width: 700px)" srcset="/assets/reader-handoff-768.webp" />
             <img src="/assets/reader-handoff-1440.webp" srcset="/assets/reader-handoff-768.webp 768w, /assets/reader-handoff-1440.webp 1440w" sizes="(max-width: 900px) 100vw, 54vw" width="1440" height="960" alt="An unbranded e-ink reader, USB-C cable, and blank archive cards arranged on concrete with moss" fetchpriority="high" decoding="async" />
           </picture>
-          <figcaption><span>01</span> Your files remain originals. Copies cross only when you say so.</figcaption>
+          <figcaption><span>01</span> Choose the files and destination for each transfer.</figcaption>
         </figure>
       </section>
 
-      <section class="proof-strip" aria-label="Product principles"><span>Read-only source scan</span><span>Verified file copies</span><span>Plain Markdown notes</span><span>No telemetry</span></section>
+      <section class="proof-strip" aria-label="Product facts"><span>No account or telemetry</span><span>Catalogue tools work offline</span><span>Core tools are free</span></section>
 
       <section id="workflow" class="workflow section-shell">
-        <div class="section-intro"><span class="kicker">The handoff</span><h2>One visible route from shelf to reader.</h2><p>No opaque library import. No account. Each stage says what it found and what will cross.</p></div>
+        <div class="section-intro"><span class="kicker">How it works</span><h2>Move your library in three steps.</h2><p>Review what the app finds before any book is copied.</p></div>
         <ol class="workflow-list">
-          <li><span class="number">01</span><div><h3>Index what you own</h3><p>Choose a folder. EPUB package metadata, PDF properties, cover status, duplicates, and protected files are checked locally.</p></div><span class="status-label">Source untouched</span></li>
-          <li><span class="number">02</span><div><h3>Make order device-safe</h3><p>Arrange reading queues and series. Numbered folders and filenames preserve order even when a reader ignores metadata.</p></div><span class="status-label">Preview first</span></li>
-          <li><span class="number">03</span><div><h3>Transfer, verify, eject</h3><p>USB copies are staged and hashed before they replace anything. WebDAV stops cleanly on connection loss and retries safely.</p></div><span class="status-label">Disconnect-safe</span></li>
-          <li><span class="number">04</span><div><h3>Bring the margins home</h3><p>Import reader notes, KOReader sidecars, or embedded PDF annotations. Export the whole set as readable Markdown.</p></div><span class="status-label">Never locked in</span></li>
+          <li><span class="number">01</span><div><h3>Scan your book folder</h3><p>Choose DRM-free EPUB and PDF files. Review titles, authors, covers, and protected-file warnings.</p></div><span class="status-label">Review first</span></li>
+          <li><span class="number">02</span><div><h3>Set the reading order</h3><p>Arrange collections. Numbered folders and filenames keep that order on readers that ignore series metadata.</p></div><span class="status-label">Preview names</span></li>
+          <li><span class="number">03</span><div><h3>Copy books and export notes</h3><p>Copy selected books by USB. Import reader notes and export them as Markdown.</p></div><span class="status-label">You choose</span></li>
         </ol>
       </section>
 
       <section class="screen-section section-shell" aria-labelledby="catalogue-heading">
-        <div class="screen-copy"><span class="kicker">A catalogue, not a storefront</span><h2 id="catalogue-heading">Fifty books should feel like fifty—not fifty mysteries.</h2><p>Search title, author, and series. Missing metadata and covers stay visible. Password-protected files are excluded with a reason instead of failing halfway through a sync.</p><ul><li>EPUB and PDF</li><li>Series-aware ordering</li><li>Deterministic duplicate names</li></ul></div>
+        <div class="screen-copy"><span class="kicker">Live catalogue preview</span><h2 id="catalogue-heading">Find metadata problems before copying.</h2><p>Search titles, authors, and series. Missing covers and protected files stay visible before transfer.</p><ul><li>EPUB and PDF files</li><li>Ordered collections</li><li>Portable Markdown notes</li></ul><a class="button button-primary" href="/demo/">Open the sample catalogue</a></div>
         <div class="catalogue-demo" role="img" aria-label="Example catalogue validation view with three books ready and one metadata warning">
           <div class="demo-head"><span>LOCAL CATALOGUE</span><strong>04</strong></div>
           <div class="demo-row"><span class="book-mark"></span><div><strong>The Moss Archive</strong><small>A. Reader · EPUB</small></div><span class="ready">✓ Ready</span></div>
@@ -58,16 +74,14 @@
         </div>
       </section>
 
-      <section id="field-edition" class="edition section-shell">
-        <div><span class="kicker">One tool. Not another rent.</span><h2>USB stays free.<br/>Field edition goes farther.</h2></div>
-        <div class="price-block"><span class="price"><sup>$</sup>24</span><span>one-time purchase</span></div>
-        <div class="edition-columns"><div><h3>Free, genuinely useful</h3><ul><li>Unlimited local catalogue scans</li><li>Device-safe collections and USB sync</li><li>Highlight import and Markdown export</li><li>All validation and accessibility tools</li></ul></div><div><h3>Field edition unlock</h3><ul><li>Private WebDAV transfer</li><li>Use on computers you own</li><li>License restore without an account</li><li>Future Field upgrades included</li></ul></div></div>
-        <a class="button button-primary" href="https://api.sociobot.in/api/v1/products/reader-sideload-library/checkout">Buy Field edition — $24 once</a>
-        <p class="legal-note">Sociobot/Dodo is merchant of record. Refunds revoke the license automatically. <a href="/terms/">Terms</a> apply.</p>
+      <section id="limits" class="edition section-shell">
+        <div><span class="kicker">Scope and privacy</span><h2>Know what the app does not do.</h2></div>
+        <div class="edition-columns"><div><h3>Your library stays local</h3><ul><li>No account or cloud catalogue</li><li>No analytics or advertising</li><li>No saved WebDAV password</li></ul></div><div><h3>Bring files you own</h3><ul><li>No book store or reader</li><li>No DRM removal</li><li>No automatic device changes</li></ul></div></div>
+        <p class="legal-note">WebDAV remains available to existing Field edition buyers. New purchases are paused.</p>
       </section>
 
       <section id="all-downloads" class="install section-shell">
-        <div class="section-intro"><span class="kicker">Install the field tool</span><h2>One step on your desk.</h2><p>Version <span data-version>0.1.0</span> · unsigned preview builds. Checksums are published with every release.</p></div>
+        <div class="section-intro"><span class="kicker">Install the desktop app</span><h2>Download it for your computer.</h2><p>Version <span data-version>0.1.1</span> · unsigned preview builds. Each release includes SHA-256 checksums.</p></div>
         <div class="platforms">
           <article><span class="platform-code">MAC</span><h3>macOS</h3><p>Apple silicon and Intel disk images.</p><a data-platform="macos_arm64" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download .dmg</a><small>Unsigned: right-click the app, then choose Open.</small></article>
           <article><span class="platform-code">WIN</span><h3>Windows</h3><p>64-bit MSI installer.</p><a data-platform="windows_x64" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download .msi</a><small>Windows may show an unsigned publisher warning.</small></article>
@@ -77,7 +91,7 @@
         <p id="release-status" class="release-status" aria-live="polite">Checking the latest verified release…</p>
       </section>
     </main>
-    <footer class="site-footer"><div class="wordmark"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg><span>Reader Sideload Library</span></div><p>Made for files you own and reading work you mean to keep.<br/>No DRM removal. No store. No telemetry.</p><nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-reader-sideload-library">Source</a></nav><small>Hero imagery generated for this product with the factory image model. © 2026 Param Factory.</small></footer>
+    <footer class="site-footer"><div class="wordmark"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg><span>Reader Sideload Library</span></div><p>Organize DRM-free books for an e-ink reader.</p><nav aria-label="Legal"><a href="/demo/">Demo</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-reader-sideload-library">Source</a></nav><small>Version 0.1.1 · Hero imagery generated for this product with the factory image model. © 2026 Param Factory.</small></footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -28,3 +28,12 @@ test("desktop dark treatment has no serious accessibility violations", async ({ 
   const results = await new AxeBuilder({ page: page as never }).analyze();
   expect(results.violations.filter((violation) => ["serious", "critical"].includes(violation.impact || ""))).toEqual([]);
 });
+
+test("first-run sample project opens the isolated working catalogue", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Load sample project" }).click();
+  await expect(page).toHaveURL(/\?demo=1$/);
+  await expect(page.locator("#demo-banner")).toBeVisible();
+  await expect(page.locator("#book-count")).toHaveText("4");
+  await expect(page.locator("#catalogue-body")).toContainText("Field Notes 03 — 秋");
+});

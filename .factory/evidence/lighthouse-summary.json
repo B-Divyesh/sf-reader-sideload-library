@@ -1,0 +1,12 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "date": "2026-08-30",
+  "performance": 99,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "2.1 s",
+  "cls": 0.028,
+  "tbt": "0 ms",
+  "totalTransfer": "177 KiB"
+}

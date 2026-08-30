@@ -7,3 +7,15 @@
 @media(max-width:540px){.hero-copy{padding:54px 20px}.section-shell{padding-left:20px;padding-right:20px}.proof-strip{grid-template-columns:1fr}.proof-strip span{border-right:0;border-bottom:1px solid #f2f0e755}.workflow-list li{grid-template-columns:38px 1fr}.status-label{grid-column:2}.edition-columns{grid-template-columns:1fr}.edition-columns>div+div{border-left:0;border-top:1px solid #f2f0e777;padding-left:0}.catalogue-demo{padding:14px;box-shadow:5px 5px 0 var(--moss)}.demo-row{grid-template-columns:10px 1fr}.demo-row>.ready,.demo-row>.warning{grid-column:2;justify-self:start}.site-footer nav{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 .hero-figure picture{height:100%}.hero-figure img{max-height:none}@media(max-width:850px){.hero-figure picture{height:auto}.hero-figure img{height:auto}}
+
+/* Repair overrides: clear first actions and 44px interaction targets. */
+.site-header nav,.site-footer nav{gap:12px}
+.site-header>a,.site-header nav a,.site-footer nav a,.platforms a,.quiet-link{min-height:44px;display:inline-flex;align-items:center;padding:8px 4px}
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero-actions>span{max-width:210px;color:var(--ash);font-size:14px}
+.download-block{gap:8px;margin-top:20px}
+.button-secondary{background:var(--surface);color:var(--graphite);box-shadow:4px 4px 0 var(--graphite)}
+.proof-strip{grid-template-columns:repeat(3,1fr)}
+.copy-command{min-width:68px;min-height:44px}
+@media(max-width:850px){.proof-strip{grid-template-columns:1fr 1fr}.proof-strip span:nth-child(2){border-right:0}}
+@media(max-width:540px){.proof-strip{grid-template-columns:1fr}}
