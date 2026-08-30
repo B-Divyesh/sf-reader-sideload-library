@@ -39,7 +39,7 @@ Run from the repository root with Node.js 22+, Rust stable, and the Linux Tauri 
 - Keyboard: skip link, app tab arrow keys, dialog controls, and all task controls passed with visible focus.
 - Offline/update: a fresh browser context installed the service worker, switched offline, and reloaded the isolated sample catalogue.
 - Privacy: the complete landing and demo flow made only same-origin requests in local verification; production release lookup is limited to `api.github.com`.
-- Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 2.1 s, CLS 0.028, TBT 0 ms, transfer 177 KiB. Summary is `.factory/evidence/lighthouse-summary.json`.
+- Live Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 1.8 s, CLS 0.031, TBT 0 ms, transfer 177 KiB. Summary is `.factory/evidence/lighthouse-summary.json`.
 - PDF regression: generated UTF-16 metadata scanned as exact title `Field Notes 03 — 秋` and author `Zoë Reader`; search and sync preview contained no replacement character.
 - USB regression: source and destination bytes matched, the manifest existed, and the second copy reported unchanged.
 
@@ -47,7 +47,16 @@ Run from the repository root with Node.js 22+, Rust stable, and the Linux Tauri 
 
 - Static deploy root: `dist/site`.
 - GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.1`.
-- Live deployment identity and release-asset evidence will be appended after the repair commit is pushed and deployed.
+- GitHub Actions run `33298420454` passed quality, Linux, Windows, macOS Intel, macOS ARM64, and publish jobs: `https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33298420454`.
+- Published release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.1` with dmg, MSI/exe, AppImage/deb/rpm, `latest.json`, and `SHA256SUMS`.
+- Published `latest.json` has all four required platform records: macOS ARM64, macOS Intel, Windows x64, and Linux x64.
+- Independently downloaded published deb SHA-256 `2a30665ded3431577159c7b84796b7c651947587b8c78f5fc9e16e5bb63cc609` matches `SHA256SUMS` and GitHub’s digest.
+- The live detected Linux button resolves to the real v0.1.1 AppImage, reports version 0.1.1, and produces no console error.
+- Production deployment completed on `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
+- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `86fbfcd6cf7f617dbb0b0e5058cf51bf2d638d24f8b1b2ee07df073a1641ca07`.
+- Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
+- Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
+- Live `verify-url.sh` reports zero console errors for home and demo; reports are in `.factory/evidence/live-*/verify.json`.
 
 ## Known gaps
 
