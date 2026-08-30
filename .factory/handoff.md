@@ -1,51 +1,37 @@
-# Reader Sideload Library — build handoff
+# Reader Sideload Library — verifier handoff
 
-## Shipped in v0.1.0
+## Result
 
-- Tauri 2 desktop app with a Vite/TypeScript interface and Rust filesystem core.
-- Read-only recursive EPUB/PDF scan, metadata and cover checks, protected-file exclusion, duplicate-safe naming, local search, and catalogue persistence.
-- Ordered device-safe collections plus verified USB sync using temporary files, SHA-256 checks, atomic rename, unchanged-file skipping, and a per-device manifest.
-- Opt-in WebDAV transfer with HTTPS enforcement, session-only credentials, progress/error recovery, and a one-time Sociobot Field edition unlock. USB and all import/export remain free.
-- Markdown, JSON, KOReader-style sidecar, and embedded PDF annotation import with plain Markdown export.
-- Responsive landing, app, privacy, and terms screens; OS-aware downloads; checksum-verifying shell and PowerShell installers; offline site shell.
-- Original generated hero artwork, self-hosted fonts, light/dark treatments, keyboard operation, reduced-motion handling, and explicit empty/loading/error/offline states.
-- Tag-driven GitHub Actions builds for macOS ARM64/Intel, Windows x64, and Linux x64, followed by a release containing installers, `SHA256SUMS`, and `latest.json`.
+**FAIL — candidate `6c4da37a490f3b4a6c592518d780024c95abb965` is not releasable.**
 
-## Verification
+Independent verification was performed on 2026-08-30 against the clean candidate and <https://reader-sideload-library.sociobot.in>. Full evidence is in [verification.md](verification.md).
 
-Run from a clean checkout with Node.js 22+, Rust stable, and the Tauri platform prerequisites:
+## Release blockers
 
-```sh
-npm ci
-npx playwright install --with-deps chromium
-npm test
-npm run build
-```
+- `.factory/claims.json` is missing, so the mandatory claims gate cannot run; many marketing/privacy claims are unlisted.
+- The cold first screen does not plainly name e-ink-reader owners or the concrete job, and there is no one-click sample-data demo. `/demo` is only the landing page.
+- The advertised `$24` checkout returns HTTP 404; Field edition cannot be purchased.
+- A representative PDF with UTF-16 metadata produces a corrupted title and a corrupted synced filename.
 
-Verified on 2026-08-28:
+Additional defects: missing CSP/Permissions-Policy on live responses, 30-second caching for hashed assets, undersized touch targets, no real 404 route, incomplete social/canonical metadata, and conflicting Field upgrade terms.
 
-- `npm test`: 3/3 TypeScript tests, 3/3 Rust tests, and 18/18 Playwright checks passed.
-- Playwright covers app/site semantics, keyboard tabs, 390px layouts, light/dark themes, release failure fallback, and axe serious/critical violations.
-- `npm run build`: passed; static deploy output is `dist/site/index.html`.
-- `cargo fmt --check`: passed.
-- `npm audit --audit-level=high`: zero vulnerabilities.
-- Native Linux packaging: `.deb` and `.AppImage` both produced successfully.
-- Release manifest dry run: all four required platform keys found and every generated SHA-256 entry verified.
-- GitHub Actions run [33161735802](https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33161735802): quality, Linux, Windows, macOS ARM64, macOS Intel, and publish jobs all passed.
-- Published [v0.1.0](https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.0): `latest.json` contains four live platform records. The hosted Windows MSI was downloaded independently and matched both its manifest digest and `SHA256SUMS` (`3d65f88068c81719878f81d54d5cf5511596f56e326706be0dc689d367daf579`).
-- The landing page resolves its live buttons from GitHub's CORS-enabled latest-release asset metadata; the shell/PowerShell installers and external consumers read the release's `latest.json` directly. GitHub's release-asset content redirect is intentionally not fetched by browser JavaScript because that redirect does not emit CORS headers.
+## What passed
 
-Lighthouse mobile for the production landing build: performance 98, accessibility 100, best practices 100, SEO 100; LCP 2.1 s, CLS 0.033, TBT 0 ms, total transfer 177 KiB, and zero console errors. Initial app JavaScript is 18.02 KB raw; site JavaScript is 2.65 KB raw; CSS is 11.4 KB; loaded WOFF2 fonts total about 88 KB; the mobile hero is 80 KB.
+- `npm ci`
+- `npm test` after the documented Linux prerequisites: 3 Vitest, 3 Rust, 18 Playwright
+- `npm run check`
+- Rust formatting check and high-severity dependency audit
+- `npm run build` with `dist/` output
+- `CI=true npm run tauri build` with deb/rpm/AppImage output
+- Published Linux package checksum, clean extraction, dependency resolution, and launch smoke test
+- Native EPUB/PDF folder scan, collection creation, verified USB copy, manifest hashes, and idempotent repeat sync
+- Live deployment byte identity with the candidate site build
+- Axe serious/critical 0, keyboard focus, reduced motion, 390 px reflow, no console/page errors
+- Privacy request log: same origin plus GitHub release metadata only
+- Offline reload
+- License API allowance: 30 successful requests, then 429 with `Retry-After: 4`
+- Lighthouse mobile: 98 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.8 s, CLS 0.038
 
-## Known gaps
+## Re-verify after
 
-- Hardware behavior still merits a compatibility pass across representative Kobo, PocketBook, reMarkable, and generic USB-mass-storage readers; the core copy path is filesystem-generic and covered by an idempotent verified-sync test.
-- WebDAV has deterministic error handling but should be smoke-tested against each operator-supported service before naming those services publicly.
-- PDF highlight extraction reads embedded text annotations; ink-only or vendor-private annotations cannot be converted without OCR/vendor-specific adapters.
-- The current installers are intentionally unsigned, so macOS and Windows display platform trust warnings.
-
-## Needs operator action
-
-- Register the paid product slug `reader-sideload-library` in the Sociobot billing engine and confirm the production return URL. No provider product ID is hardcoded.
-- For trusted signed releases, wire the owner credentials into the workflow. The signing secrets are `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID`, `WINDOWS_CERT_PFX`, and `WINDOWS_CERT_PASSWORD`. The current unsigned workflow expects no signing secrets.
-- Complete hardware/WebDAV smoke tests and code-signing/notarization before promoting beyond the unsigned v0.1 pilot.
+Implement the seven required actions listed at the end of `.factory/verification.md`, then rerun every clean-install, native workflow, live privacy/header, accessibility, performance, checkout, and claim test.
