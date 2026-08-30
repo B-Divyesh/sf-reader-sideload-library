@@ -51,12 +51,24 @@ Run from the repository root with Node.js 22+ and Rust stable. Platform GUI pack
 - Release fixture: staging normalized four platform assets; `latest.json` selected macOS ARM64, macOS Intel, Windows x64, and Linux x64; every generated SHA-256 entry verified.
 - Shell installer syntax and all three release Node scripts passed syntax checks.
 - Site initial JavaScript is 2.94 KB raw; CSS is 12.15 KB raw; loaded WOFF2 fonts total 88.27 KB; mobile hero is 79,982 bytes.
+- Live Lighthouse mobile: performance 100, accessibility 100, best practices 100, SEO 100, LCP 1.4 s, CLS 0.031, TBT 0 ms, transfer 177 KiB.
 
 ## Release and deployment
 
 - Static deploy root: `dist/site`.
 - GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.2`.
-- Release assets and live identity evidence are recorded below after publication and deployment.
+- GitHub Actions run `33299554556` passed quality, macOS ARM64, macOS Intel, Windows x64, Linux x64, and publish jobs: `https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33299554556`.
+- Published release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.2`.
+- Exact assets: ARM64 and Intel `.dmg`, Windows `.msi` and `.exe`, Linux `.AppImage`, `.deb`, and `.rpm`, plus `latest.json` and `SHA256SUMS`.
+- `latest.json` reports version `0.1.2` and all four required platform records with v0.1.2 URLs.
+- Independently downloaded `Reader.Sideload.Library_0.1.2_amd64.deb` SHA-256 `92251b3eecbad4cf40a6aee302bd2995204ca2f708a29b09dbbd7485f5583528` matches both `SHA256SUMS` and GitHub metadata. Its package metadata reports version `0.1.2` and architecture `amd64`.
+- The one-line Linux installer completed in an isolated temporary home. Its installed AppImage SHA-256 `9ede42f783708549528651d677e93ec329086fb45cff9ae9b77d35fffa566aa8` matches `latest.json`.
+- Production deployment updated only `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
+- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `85b7b3cf82f701e77c10bd1c0ea354c9f26a4aafe3cefb10e78f9db70dc42c39`.
+- Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
+- Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
+- Live `verify-url.sh` reports zero console errors for home and demo.
+- A fresh live browser resolved the Linux button to the exact v0.1.2 AppImage, showed version 0.1.2, contacted only the site and GitHub API, and reopened the four-book demo offline.
 
 ## Known gaps
 

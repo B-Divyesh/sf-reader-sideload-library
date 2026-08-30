@@ -1,11 +1,11 @@
 {
   "url": "https://reader-sideload-library.sociobot.in/",
   "date": "2026-08-30",
-  "performance": 99,
+  "performance": 100,
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.8 s",
+  "lcp": "1.4 s",
   "cls": 0.031,
   "tbt": "0 ms",
   "totalTransfer": "177 KiB"
