@@ -51,7 +51,7 @@ async function loadRelease() {
       linux_x64: toRecord(choose(/amd64.*\.AppImage$/i))
     };
     const release: ReleaseManifest = {
-      version: (metadata.tag_name || "v0.1.1").replace(/^v/, ""),
+      version: (metadata.tag_name || "v0.1.2").replace(/^v/, ""),
       platforms: Object.fromEntries(Object.entries(platforms).filter((entry): entry is [string, ReleaseAsset] => Boolean(entry[1])))
     };
     const asset = release.platforms[key] || release.platforms.linux_x64;

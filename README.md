@@ -48,7 +48,7 @@ Release builds are currently unsigned. On macOS, right-click the app and choose 
 
 ## Develop
 
-Requirements: Node.js 22+, Rust stable, and the [Tauri 2 system prerequisites](https://v2.tauri.app/start/prerequisites/). On Ubuntu that includes `file`, `libwebkit2gtk-4.1-dev`, `libappindicator3-dev`, `librsvg2-dev`, and `patchelf`.
+Requirements: Node.js 22+ and Rust stable. Native desktop development also needs the [Tauri 2 system prerequisites](https://v2.tauri.app/start/prerequisites/). On Ubuntu that includes `file`, `libwebkit2gtk-4.1-dev`, `libappindicator3-dev`, `librsvg2-dev`, and `patchelf`.
 
 ```sh
 npm ci
@@ -61,6 +61,8 @@ CI=true npm run tauri build  # local native bundle when platform prerequisites e
 ```
 
 `npm run build:site` is the factory deploy command. Its deploy root is exactly `dist/site`, with `index.html` at that root. `npm run build` also copies the landing entry to `dist/index.html` for the repository-wide quality contract.
+
+`npm test` keeps Rust core tests independent from Tauri's platform GUI libraries. Native app and installer builds still enable the default `desktop` feature and require the platform prerequisites above.
 
 ## Architecture and privacy
 

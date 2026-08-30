@@ -1,62 +1,62 @@
-# Reader Sideload Library — repair handoff
+# Reader Sideload Library — repair 2 handoff
 
 ## Result
 
-Release-blocking findings from verifier commit `b47cacbfe1ed12e8d8ff8f567cf04aec5fcde004` are repaired for version `0.1.1`.
+Candidate `64f731e0675f8f05593d4f4c9df6e4bb0c80f615` is repaired as version `0.1.2`. The completed product findings and v0.1.1 behavior remain intact.
 
-## Repairs
+## Failure reproduced
 
-- Added `.factory/claims.json` with eight independently runnable claims and exact regression commands.
-- Added `/demo/`, powered by the actual desktop UI, with four sample books, an ordered collection, and two highlights.
-- Isolated demo state under `demo:rsl:library-state:v1`; reset and exit controls never touch real catalogue state.
-- Rewrote the first screen to name e-ink reader owners, the concrete sideloading job, the sample action, and three plain facts.
-- Removed every purchase link while the production Field checkout is unavailable. Existing license restore remains available.
-- Replaced UTF-8 replacement decoding with lopdf’s PDF text-string decoder for UTF-16BE, UTF-8 BOM, and PDFDocEncoding.
-- Added clean Unicode search and numbered filename previews for `Field Notes 03 — 秋`.
-- Added a designed 404 page, route metadata, canonical/Open Graph/Twitter tags, social image, and Apple touch icon.
-- Added Azure Static Web Apps CSP, Permissions-Policy, 404 override, and immutable hashed-asset cache rules.
-- Raised the cited links and Copy buttons to the 44px touch baseline.
-- Reconciled Field terms to the current major version and documented that new purchases are paused.
-- Documented the sample sandbox and completed the plain-language copy audit.
+The factory deploy configuration runs this exact clean command:
+
+```sh
+npm ci && npm test && npm run build:site
+```
+
+On the unmodified candidate, `npm test` ran unrestricted `cargo test`. Cargo selected the default Tauri desktop dependency graph and failed in `glib-sys v0.18.1` because the static worker has no `glib-2.0.pc`:
+
+```text
+error: failed to run custom build command for `glib-sys v0.18.1`
+Package 'glib-2.0', required by 'virtual:world', not found
+```
+
+The failure was a test-boundary defect. Rust catalogue and transfer tests do not need Tauri, GTK, GLib, or WebKit, but the manifest made those dependencies unconditional.
+
+## Repair
+
+- Added a default `desktop` Cargo feature for Tauri and the dialog plugin.
+- Made the native binary require `desktop`, so installer builds keep their full behavior.
+- Gated Tauri command attributes, native startup, and the Tauri build script behind `desktop`.
+- Changed Rust core tests to run with `--no-default-features --lib`.
+- Added `scripts/check-rust-core-isolation.mjs`, which fails if Tauri, GTK, GLib, or WebKit re-enters the core test graph.
+- Updated all three native claim commands to use the isolated Rust test path.
+- Advanced package, Cargo, Tauri, site, manifest, and release-workflow versions to `0.1.2`.
+- Kept the original desktop app artifact class, Tauri stack, static landing deployment, demo, claims, visual system, and privacy model.
 
 ## Verification evidence
 
-Run from the repository root with Node.js 22+, Rust stable, and the Linux Tauri prerequisites listed in `README.md`.
+Run from the repository root with Node.js 22+ and Rust stable. Platform GUI packages are needed only for native desktop development and packaging.
 
-- `npm ci`: passed; 68 packages; zero audit vulnerabilities.
-- `npm test`: passed; 4 Vitest, 6 Rust, and 40 Playwright tests across desktop and mobile Chromium.
-- Every command in `.factory/claims.json`: passed independently.
+- Cold Rust target plus exact factory command: passed.
+- `npm test`: passed; 4 Vitest, 6 Rust, and 40 Playwright tests across desktop and 390px mobile Chromium.
+- `npm run test:rust-core`: passed; dependency regression reported no Tauri or Linux GUI libraries.
+- Every command in `.factory/claims.json`: passed independently; logs are under `/work/.evidence/claims/` in the worker evidence.
 - `npm run check`: passed.
 - `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check`: passed.
 - `npm audit --audit-level=high`: passed with zero vulnerabilities.
-- `npm run build`: passed; produced `dist/`, `dist/app/`, `dist/site/`, and `dist/site/demo/`.
-- Site initial JavaScript: 2.94 KB raw; site CSS: 12.15 KB raw; loaded WOFF2 fonts: 88.27 KB; mobile hero: 79,982 bytes.
-- `CI=true npm run tauri build`: passed for version 0.1.1; Linux deb, rpm, and AppImage were produced.
-- Extracted Debian consumer: no unresolved shared libraries; Xvfb launch stayed alive through the eight-second smoke timeout.
-- Local package SHA-256: deb `d2cbb2afa3685ed2c07d38c90c0c73fe3ddb9cd70c866bc8b0b4a5b2dbab8588`; AppImage `0d8753ac877343c5b52a0d027074acad7a629cd57b521b7c7855a9ee8d84d7b2`.
-- Local `verify-url.sh` for `/` and `/demo/`: title, `lang`, one h1, main landmark, alt text, button names, and console all passed. Reports are in `.factory/evidence/`.
-- Playwright axe: zero serious or critical issues on home, demo, privacy, terms, 404, desktop app, dark mode, desktop, and 390px mobile.
-- Keyboard: skip link, app tab arrow keys, dialog controls, and all task controls passed with visible focus.
-- Offline/update: a fresh browser context installed the service worker, switched offline, and reloaded the isolated sample catalogue.
-- Privacy: the complete landing and demo flow made only same-origin requests in local verification; production release lookup is limited to `api.github.com`.
-- Live Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 1.8 s, CLS 0.031, TBT 0 ms, transfer 177 KiB. Summary is `.factory/evidence/lighthouse-summary.json`.
-- PDF regression: generated UTF-16 metadata scanned as exact title `Field Notes 03 — 秋` and author `Zoë Reader`; search and sync preview contained no replacement character.
-- USB regression: source and destination bytes matched, the manifest existed, and the second copy reported unchanged.
+- `npm run build`: passed and produced `dist/`, `dist/app/`, and `dist/site/`.
+- Local `verify-url.sh` for `/` and `/demo/`: title, `lang`, one h1, main landmark, alt text, button names, and console all passed.
+- Playwright axe: zero serious or critical findings on landing, demo, privacy, terms, 404, desktop shell, dark mode, desktop, and mobile.
+- Keyboard, 390px reflow, visible focus, 44px targets, reduced motion, offline demo reload, and demo storage isolation passed in Playwright.
+- Privacy claim: the complete landing and demo flow allowed only same-origin requests and the documented GitHub releases API.
+- Release fixture: staging normalized four platform assets; `latest.json` selected macOS ARM64, macOS Intel, Windows x64, and Linux x64; every generated SHA-256 entry verified.
+- Shell installer syntax and all three release Node scripts passed syntax checks.
+- Site initial JavaScript is 2.94 KB raw; CSS is 12.15 KB raw; loaded WOFF2 fonts total 88.27 KB; mobile hero is 79,982 bytes.
 
-## Deployment and release
+## Release and deployment
 
 - Static deploy root: `dist/site`.
-- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.1`.
-- GitHub Actions run `33298420454` passed quality, Linux, Windows, macOS Intel, macOS ARM64, and publish jobs: `https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33298420454`.
-- Published release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.1` with dmg, MSI/exe, AppImage/deb/rpm, `latest.json`, and `SHA256SUMS`.
-- Published `latest.json` has all four required platform records: macOS ARM64, macOS Intel, Windows x64, and Linux x64.
-- Independently downloaded published deb SHA-256 `2a30665ded3431577159c7b84796b7c651947587b8c78f5fc9e16e5bb63cc609` matches `SHA256SUMS` and GitHub’s digest.
-- The live detected Linux button resolves to the real v0.1.1 AppImage, reports version 0.1.1, and produces no console error.
-- Production deployment completed on `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
-- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `86fbfcd6cf7f617dbb0b0e5058cf51bf2d638d24f8b1b2ee07df073a1641ca07`.
-- Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
-- Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
-- Live `verify-url.sh` reports zero console errors for home and demo; reports are in `.factory/evidence/live-*/verify.json`.
+- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.2`.
+- Release assets and live identity evidence are recorded below after publication and deployment.
 
 ## Known gaps
 

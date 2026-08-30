@@ -58,7 +58,7 @@ struct Highlight {
     created: String,
 }
 
-#[tauri::command]
+#[cfg_attr(feature = "desktop", tauri::command)]
 fn scan_library(root: String) -> Result<Vec<Book>, String> {
     let root_path = Path::new(&root);
     if !root_path.is_dir() {
@@ -354,7 +354,7 @@ fn validate_relative(path: &str) -> Result<PathBuf, String> {
     Ok(value.to_path_buf())
 }
 
-#[tauri::command]
+#[cfg_attr(feature = "desktop", tauri::command)]
 fn sync_usb(destination: String, items: Vec<SyncItem>) -> Result<SyncReport, String> {
     let root = Path::new(&destination);
     if !root.is_dir() {
@@ -435,7 +435,7 @@ fn hash_file(path: &Path) -> std::io::Result<String> {
     Ok(hex::encode(hasher.finalize()))
 }
 
-#[tauri::command]
+#[cfg_attr(feature = "desktop", tauri::command)]
 async fn sync_webdav(
     endpoint: String,
     username: String,
@@ -529,7 +529,7 @@ async fn sync_webdav(
     })
 }
 
-#[tauri::command]
+#[cfg_attr(feature = "desktop", tauri::command)]
 fn import_highlights(path: String) -> Result<Vec<Highlight>, String> {
     let source = Path::new(&path);
     if !source.is_file() {
@@ -720,7 +720,7 @@ fn make_highlight(book: &str, quote: &str, note: &str, location: &str, created: 
     }
 }
 
-#[tauri::command]
+#[cfg_attr(feature = "desktop", tauri::command)]
 fn write_text_file(path: String, contents: String) -> Result<(), String> {
     let target = Path::new(&path);
     if target
@@ -737,6 +737,7 @@ fn write_text_file(path: String, contents: String) -> Result<(), String> {
         .map_err(|_| "The Markdown export could not be written.".to_string())
 }
 
+#[cfg(feature = "desktop")]
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
