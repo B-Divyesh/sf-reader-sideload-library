@@ -102,19 +102,48 @@ test("@claim:markdown-export exports sample highlights as Markdown", async ({ pa
   expect(markdown).toContain("A private library should remain legible");
 });
 
-test("@claim:privacy-requests uses no analytics or advertising requests", async ({ page }) => {
+test("@claim:privacy-requests uses only the disclosed GitHub release request", async ({ browser, request }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
   const requests: string[] = [];
-  page.on("request", (request) => requests.push(request.url()));
-  await page.goto("/");
-  await page.goto("/demo/");
+  context.on("request", (observed) => requests.push(observed.url()));
+  const productionOrigin = "https://reader-sideload-library.sociobot.in";
+  const releaseApi = "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-library/releases/latest";
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (url.href === releaseApi) {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          tag_name: "v0.1.3",
+          assets: [
+            { name: "latest.json", browser_download_url: "https://github.com/example/latest.json" },
+            { name: "Reader.Sideload.Library_0.1.3_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
+          ]
+        })
+      });
+      return;
+    }
+    if (url.origin === productionOrigin) {
+      const response = await request.fetch(`http://127.0.0.1:4173${url.pathname}${url.search}`);
+      await route.fulfill({ response });
+      return;
+    }
+    await route.continue();
+  });
+  await page.goto(`${productionOrigin}/`);
+  await expect(page.locator("#release-status")).toContainText("Release 0.1.3 found");
+  await page.goto(`${productionOrigin}/demo/`);
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();
   await expect(page.locator(".collection")).toContainText("Autumn Queue");
   await page.goto("http://127.0.0.1:4174/?demo=1");
   await expect(page.locator("#book-count")).toHaveText("4");
-  const allowed = new Set(["http://127.0.0.1:4173", "http://127.0.0.1:4174", "https://api.github.com"]);
-  expect(requests.filter((url) => !allowed.has(new URL(url).origin))).toEqual([]);
-  expect(await page.context().cookies()).toEqual([]);
+  const productOrigins = new Set([productionOrigin, "http://127.0.0.1:4174"]);
+  expect(requests.filter((url) => !productOrigins.has(new URL(url).origin))).toEqual([releaseApi]);
+  expect(await context.cookies()).toEqual([]);
+  await context.close();
 });
 
 test("@claim:core-free exposes core tools without a license or checkout", async ({ page }) => {

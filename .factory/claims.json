@@ -15,10 +15,10 @@
   },
   {
     "id": "privacy-requests",
-    "claim": "The website, sample demo, and idle app make no analytics, advertising, CDN-font, or third-party runtime requests and set no cookies.",
+    "claim": "The app makes no passive network requests. The website and demo use no analytics, advertising, third-party scripts, or cookies; the landing page contacts only GitHub's public releases API for current download links.",
     "where": "landing facts and privacy section, privacy page, README",
     "test": "npm run test:claims -- --grep @claim:privacy-requests --project=desktop-chromium",
-    "sandbox": "record requests across landing, demo search and collection, and idle app; allow only the two local origins and the documented GitHub release API; assert an empty cookie jar"
+    "sandbox": "serve the local build through the production origin; mock the GitHub releases API; record landing, demo, and idle-app requests; assert GitHub is the only third-party request and the cookie jar is empty"
   },
   {
     "id": "core-free",

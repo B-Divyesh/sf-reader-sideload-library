@@ -74,7 +74,7 @@ CI=true npm run tauri build  # local native bundle when platform prerequisites e
 
 ## Architecture and privacy
 
-The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, or third-party runtime script. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
+The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, third-party runtime script, or cookies. The production landing page contacts GitHub's public releases API to resolve current installer links. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
 
 Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted.
 

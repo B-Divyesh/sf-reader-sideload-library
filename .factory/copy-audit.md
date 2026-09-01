@@ -13,7 +13,7 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | Download for your computer | 4 | — |
 | See other platforms and install methods | 6 | — |
 | Choose the files and destination for each transfer. | 8 | — |
-| No account or passive network traffic | 6 | — |
+| No account or passive app traffic | 6 | — |
 | Catalogue tools work offline | 4 | — |
 | USB and WebDAV tools are free | 6 | — |
 | Move your library in three steps. | 6 | — |
@@ -52,6 +52,8 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | Release downloads open on GitHub. | 5 | — |
 | The release manifest could not be reached. | 7 | — |
 | GitHub’s latest-release page remains available. | 5 | — |
+| The landing page asks GitHub’s public releases API for current download links. | 12 | — |
+| GitHub receives normal request details, including your IP address and browser headers. | 12 | — |
 | SHA-256 checksums are published beside every installer. | 7 | — |
 | Organize DRM-free books for an e-ink reader. | 7 | — |
 | Hero imagery generated for this product with the factory image model. | 11 | — |
