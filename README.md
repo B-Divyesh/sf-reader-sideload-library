@@ -17,7 +17,7 @@ It is for people who own their book files and use e-ink readers, especially when
 - Ordered collections rendered as safe numbered folders/files
 - USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
 - Free WebDAV sync with HTTPS enforcement, a connection check, and specific recovery guidance
-- Markdown, JSON, KOReader-sidecar, and embedded PDF annotation import; plain Markdown export
+- Markdown, plain-text, JSON, KOReader-sidecar, and embedded PDF annotation import; plain Markdown export
 - Catalogue, collection, and Markdown tools reopen offline after the first demo visit
 
 ## Try the sample
