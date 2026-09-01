@@ -1,0 +1,17 @@
+{
+  "lighthouseVersion": "13.4.1",
+  "fetchTime": "2026-09-01T23:23:40.193Z",
+  "categories": {
+    "performance": 0.98,
+    "accessibility": 1,
+    "best-practices": 1,
+    "seo": 1
+  },
+  "audits": {
+    "fcp": 1355.446,
+    "lcp": 1655.446,
+    "cls": 0.07438974257028468,
+    "tbt": 0,
+    "transfer": 182137
+  }
+}
