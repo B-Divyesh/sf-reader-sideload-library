@@ -16,7 +16,10 @@ test("@claim:release-manifest release metadata names every installer and its SHA
     "Reader.Sideload.Library_0.1.3_aarch64.dmg",
     "Reader.Sideload.Library_0.1.3_x64.dmg",
     "Reader.Sideload.Library_0.1.3_x64.msi",
-    "Reader.Sideload.Library_0.1.3_amd64.AppImage"
+    "Reader.Sideload.Library_0.1.3_x64-setup.exe",
+    "Reader.Sideload.Library_0.1.3_amd64.AppImage",
+    "Reader.Sideload.Library_0.1.3_amd64.deb",
+    "Reader.Sideload.Library-0.1.3-1.x86_64.rpm"
   ];
   for (const name of fixtures) await writeFile(resolve(assets, name), `fixture:${name}`);
   const result = spawnSync(process.execPath, [resolve("scripts/release-manifest.mjs"), "v0.1.3", assets], {

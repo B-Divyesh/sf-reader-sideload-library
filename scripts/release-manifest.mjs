@@ -8,7 +8,7 @@ async function walk(path) {
   const entries = await readdir(path, { withFileTypes: true });
   return (await Promise.all(entries.map((entry) => entry.isDirectory() ? walk(join(path, entry.name)) : [join(path, entry.name)]))).flat();
 }
-const files = (await walk(directory)).filter((file) => /\.(dmg|msi|exe|AppImage|deb)$/i.test(file));
+const files = (await walk(directory)).filter((file) => /\.(dmg|msi|exe|AppImage|deb|rpm)$/i.test(file));
 const records = await Promise.all(files.map(async (file) => ({ file, name: basename(file), sha256: createHash("sha256").update(await readFile(file)).digest("hex") })));
 await writeFile("SHA256SUMS", records.map((record) => `${record.sha256}  ${record.name}`).sort().join("\n") + "\n");
 const choose = (test) => records.find((record) => test(record.name));
