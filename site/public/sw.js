@@ -1,4 +1,4 @@
-const CACHE = "rsl-shell-v4";
+const CACHE = "rsl-shell-v5";
 const SHELL = ["/", "/demo/", "/privacy/", "/terms/", "/404.html", "/assets/reader-handoff-768.webp", "/assets/social-card.jpg", "/favicon.svg", "/apple-touch-icon.png"];
 self.addEventListener("install", (event) => event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL))));
 self.addEventListener("activate", (event) => event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))));

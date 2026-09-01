@@ -235,8 +235,14 @@ test("@claim:core-free exposes core tools without a license or checkout", async 
 test("@claim:offline-demo reloads the sample catalogue offline", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
+  await page.goto("http://127.0.0.1:4173/favicon.svg");
+  await page.evaluate(async () => {
+    const oldCache = await caches.open("rsl-shell-v4");
+    await oldCache.put("/legacy-shell", new Response("old shell"));
+  });
   await page.goto("http://127.0.0.1:4173/demo/");
   await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v5"]);
   await page.reload();
   await expect(page.locator("#book-count")).toHaveText("4");
   await context.setOffline(true);
