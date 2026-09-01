@@ -1,0 +1,47 @@
+{
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "h1": {
+    "x": 81.953125,
+    "y": 224.609375,
+    "width": 415.640625,
+    "height": 485.71875,
+    "top": 224.609375,
+    "right": 497.59375,
+    "bottom": 710.328125,
+    "left": 81.953125
+  },
+  "audience": {
+    "x": 81.953125,
+    "y": 742.328125,
+    "width": 415.640625,
+    "height": 100.03125,
+    "top": 742.328125,
+    "right": 497.59375,
+    "bottom": 842.359375,
+    "left": 81.953125
+  },
+  "sample": {
+    "x": 81.953125,
+    "y": 893.359375,
+    "width": 211,
+    "height": 48,
+    "top": 893.359375,
+    "right": 292.953125,
+    "bottom": 941.359375,
+    "left": 81.953125
+  },
+  "audienceFullyVisible": false,
+  "sampleFullyVisible": false,
+  "visibleTextAtFold": [
+    "Demo",
+    "How it works",
+    "Download",
+    "Privacy",
+    "●",
+    "e-ink library.",
+    "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control."
+  ]
+}

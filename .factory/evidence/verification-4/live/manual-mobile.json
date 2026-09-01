@@ -1,0 +1,56 @@
+{
+  "landing": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "sampleVisible": true,
+    "sampleTop": 510.984375,
+    "sampleBottom": 558.984375,
+    "viewport": 844,
+    "h1": "Organize and sideload your e-ink library.",
+    "lede": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+    "short": []
+  },
+  "demo": {
+    "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "banner": true,
+    "privacy": true
+  },
+  "axeSerious": [],
+  "errors": [],
+  "reduced": {
+    "duration": "1e-05s",
+    "delay": "0s, 0s",
+    "animation": "none",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(242, 240, 231)",
+    "axeSerious": []
+  },
+  "sw": {
+    "scope": "https://reader-sideload-library.sociobot.in/",
+    "active": "https://reader-sideload-library.sociobot.in/sw.js",
+    "state": "activated",
+    "caches": [
+      "rsl-shell-v4"
+    ],
+    "offlineBooks": "4",
+    "offlineBanner": true
+  },
+  "keyboard": {
+    "initial": {
+      "tag": "H1",
+      "id": "",
+      "text": "Organize and sideload your e-ink library."
+    },
+    "skipFocused": {
+      "text": "Skip to main content",
+      "outline": "rgb(63, 91, 50) solid 3px",
+      "color": "rgb(63, 91, 50)"
+    },
+    "skipResult": {
+      "url": "https://reader-sideload-library.sociobot.in/#main",
+      "focused": null
+    }
+  }
+}

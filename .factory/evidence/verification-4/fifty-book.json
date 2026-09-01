@@ -1,0 +1,25 @@
+{
+  "zero": {
+    "count": "0",
+    "toast": "Indexed 0 files. Install the desktop app for embedded metadata and transfer."
+  },
+  "count": "50",
+  "searchRows": 1,
+  "paths": 50,
+  "unique": 50,
+  "first": "001 - Book 42.epub",
+  "last": "050 - Book 07.epub",
+  "jsonError": "This JSON file could not be read. Export it again or choose Markdown.",
+  "emptyError": "No quoted highlights were found in this file.",
+  "importToast": "Imported 1 highlights.",
+  "exportOk": true,
+  "requests": [
+    "http://127.0.0.1:4174/",
+    "http://127.0.0.1:4174/assets/index-DTIMSVft.js",
+    "http://127.0.0.1:4174/assets/index-XRjckR5E.css",
+    "http://127.0.0.1:4174/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+    "http://127.0.0.1:4174/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "http://127.0.0.1:4174/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2"
+  ],
+  "errors": []
+}

@@ -1,0 +1,132 @@
+{
+  "first": {
+    "title": "Reader Sideload Library — organize e-ink libraries",
+    "h1": "Organize and sideload your e-ink library.",
+    "lede": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+    "sampleText": "Try it with sample data",
+    "sampleVisible": true,
+    "sampleBottom": 865.59375,
+    "proof": [
+      "No account or passive app traffic",
+      "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+      "USB and WebDAV tools are free"
+    ],
+    "h1Count": 1,
+    "mainCount": 1,
+    "lang": "en"
+  },
+  "status": 200,
+  "headers": {
+    "cache-control": "public, must-revalidate, max-age=30",
+    "content-encoding": "br",
+    "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "content-type": "text/html",
+    "date": "Tue, 01 Sep 2026 22:48:55 GMT",
+    "etag": "\"38676689\"",
+    "last-modified": "Tue, 01 Sep 2026 22:07:48 GMT",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "strict-transport-security": "max-age=10886400; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-dns-prefetch-control": "off",
+    "x-xss-protection": "1; mode=block"
+  },
+  "firstFocus": {
+    "text": "Try it with sample data",
+    "tag": "A",
+    "outline": "rgb(63, 91, 50) solid 3px",
+    "outlineColor": "rgb(63, 91, 50)"
+  },
+  "afterSkip": {
+    "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "active": {
+      "id": "route-title",
+      "tag": "H1"
+    }
+  },
+  "demoUrl": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+  "banner": "Demo — sample data, nothing is saved to your library\nTry search, collection order, and Markdown export.\nReset demo\nStart for real",
+  "unicodeRows": 1,
+  "noResult": "No books match this filter.",
+  "recoveredRows": 4,
+  "issueRows": 2,
+  "endTab": "tab-transfer",
+  "homeTab": "tab-catalogue",
+  "rightTab": "tab-collections",
+  "beforePaths": [
+    "001 - The Moss Archive.epub",
+    "002 - Field Notes 03 — 秋.pdf",
+    "003 - Concrete Gardens.epub"
+  ],
+  "movedPaths": [
+    "001 - Field Notes 03 — 秋.pdf",
+    "002 - The Moss Archive.epub",
+    "003 - Concrete Gardens.epub"
+  ],
+  "persistedPaths": [
+    "001 - Field Notes 03 — 秋.pdf",
+    "002 - The Moss Archive.epub",
+    "003 - Concrete Gardens.epub"
+  ],
+  "resetPaths": [
+    "001 - The Moss Archive.epub",
+    "002 - Field Notes 03 — 秋.pdf",
+    "003 - Concrete Gardens.epub"
+  ],
+  "emptyNameInvalid": {
+    "valid": false,
+    "focused": true
+  },
+  "noBookToast": "Choose at least one book for this collection.",
+  "safeCollection": "A-B-C-",
+  "badUrl": {
+    "valid": false,
+    "focused": true
+  },
+  "webdav": {
+    "status": "Demo mode does not contact servers. Choose Start for real before checking WebDAV.",
+    "password": "",
+    "storage": "{\"demo:rsl:library-state:v1\":\"{\\\"source\\\":\\\"Demo library · 4 sample books\\\",\\\"books\\\":[{\\\"id\\\":\\\"demo-moss\\\",\\\"path\\\":\\\"sample/The Moss Archive.epub\\\",\\\"title\\\":\\\"The Moss Archive\\\",\\\"authors\\\":[\\\"A. Reader\\\"],\\\"series\\\":\\\"Field Library\\\",\\\"seriesIndex\\\":1,\\\"format\\\":\\\"EPUB\\\",\\\"sizeBytes\\\":1842000,\\\"modified\\\":0,\\\"coverStatus\\\":\\\"found\\\",\\\"metadataStatus\\\":\\\"valid\\\",\\\"warnings\\\":[],\\\"eligible\\\":true,\\\"selected\\\":true},{\\\"id\\\":\\\"demo-field\\\",\\\"path\\\":\\\"sample/Field Notes 03.pdf\\\",\\\"title\\\":\\\"Field Notes 03 — 秋\\\",\\\"authors\\\":[\\\"Zoë Reader\\\"],\\\"series\\\":\\\"Field Library\\\",\\\"seriesIndex\\\":3,\\\"format\\\":\\\"PDF\\\",\\\"sizeBytes\\\":924000,\\\"modified\\\":0,\\\"coverStatus\\\":\\\"not-applicable\\\",\\\"metadataStatus\\\":\\\"valid\\\",\\\"warnings\\\":[],\\\"eligible\\\":true,\\\"selected\\\":true},{\\\"id\\\":\\\"demo-concrete\\\",\\\"path\\\":\\\"sample/Concrete Gardens.epub\\\",\\\"title\\\":\\\"Concrete Gardens\\\",\\\"authors\\\":[\\\"M. Silva\\\"],\\\"series\\\":null,\\\"seriesIndex\\\":null,\\\"format\\\":\\\"EPUB\\\",\\\"sizeBytes\\\":2106000,\\\"modified\\\":0,\\\"coverStatus\\\":\\\"missing\\\",\\\"metadataStatus\\\":\\\"warning\\\",\\\"warnings\\\":[\\\"Cover image is missing or not labelled\\\"],\\\"eligible\\\":true,\\\"selected\\\":true},{\\\"id\\\":\\\"demo-locked\\\",\\\"path\\\":\\\"sample/Locked Reference.pdf\\\",\\\"title\\\":\\\"Locked Reference\\\",\\\"authors\\\":[],\\\"series\\\":null,\\\"seriesIndex\\\":null,\\\"format\\\":\\\"PDF\\\",\\\"sizeBytes\\\":730000,\\\"modified\\\":0,\\\"coverStatus\\\":\\\"not-applicable\\\",\\\"metadataStatus\\\":\\\"warning\\\",\\\"warnings\\\":[\\\"Password-protected PDF excluded; only DRM-free files can be transferred\\\"],\\\"eligible\\\":false,\\\"selected\\\":false}],\\\"collections\\\":[{\\\"id\\\":\\\"demo-autumn\\\",\\\"name\\\":\\\"Autumn Queue\\\",\\\"bookIds\\\":[\\\"demo-moss\\\",\\\"demo-field\\\",\\\"demo-concrete\\\"]},{\\\"id\\\":\\\"60aa00f1-b344-4958-8b98-2ce561432ffe\\\",\\\"name\\\":\\\"A-B-C-\\\",\\\"bookIds\\\":[\\\"demo-moss\\\"]}],\\\"highlights\\\":[{\\\"id\\\":\\\"demo-highlight-1\\\",\\\"book\\\":\\\"The Moss Archive\\\",\\\"quote\\\":\\\"A private library should remain legible when every service is gone.\\\",\\\"note\\\":\\\"Keep for the archive plan.\\\",\\\"location\\\":\\\"Chapter 2\\\",\\\"created\\\":\\\"2026-08-28\\\"},{\\\"id\\\":\\\"demo-highlight-2\\\",\\\"book\\\":\\\"Concrete Gardens\\\",\\\"quote\\\":\\\"Order is a property of the collection, not the device.\\\",\\\"note\\\":\\\"\\\",\\\"location\\\":\\\"Page 41\\\",\\\"created\\\":\\\"2026-08-29\\\"}]}\",\"rsl:library-state:v1\":\"{\\\"sentinel\\\":\\\"real\\\"}\"}"
+  },
+  "usbError": "USB transfer is available in the installed desktop app.",
+  "markdown": {
+    "filename": "reader-highlights.md",
+    "ok": true
+  },
+  "bannerAfter": true,
+  "preStart": {
+    "real": "{\"sentinel\":\"real\"}",
+    "demo": true
+  },
+  "postStart": {
+    "url": "https://reader-sideload-library.sociobot.in/",
+    "banner": false,
+    "real": "{\"sentinel\":\"real\"}",
+    "demo": null
+  },
+  "requests": [
+    "https://reader-sideload-library.sociobot.in/",
+    "https://reader-sideload-library.sociobot.in/assets/main-CT1JnlcJ.js",
+    "https://reader-sideload-library.sociobot.in/assets/style-DS8MAjhL.js",
+    "https://reader-sideload-library.sociobot.in/assets/style-BaHOLcC6.css",
+    "https://reader-sideload-library.sociobot.in/assets/main-BZpY0_HU.css",
+    "https://reader-sideload-library.sociobot.in/assets/reader-handoff-1440.webp",
+    "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "https://reader-sideload-library.sociobot.in/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+    "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+    "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+    "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-library/releases/latest",
+    "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "https://reader-sideload-library.sociobot.in/demo/assets/index-DTIMSVft.js",
+    "https://reader-sideload-library.sociobot.in/demo/assets/index-XRjckR5E.css",
+    "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+    "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+    "https://reader-sideload-library.sociobot.in/demo/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2"
+  ],
+  "thirdParty": [
+    "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-library/releases/latest"
+  ],
+  "cookies": [],
+  "errors": []
+}

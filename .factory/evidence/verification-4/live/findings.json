@@ -1,0 +1,156 @@
+{
+  "baseUrl": "https://reader-sideload-library.sociobot.in",
+  "checkedAt": "2026-09-01T22:45:52.757Z",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Reader Sideload Library — organize e-ink libraries",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Organize and sideload your e-ink library.",
+      "announcement": "Reader Sideload Library — organize e-ink libraries. Organize and sideload your e-ink library.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Demo",
+        "How it works",
+        "Download",
+        "Privacy"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms",
+        "Source"
+      ],
+      "builtBy": true,
+      "releaseStatus": "Release 0.1.4 found. SHA-256 checksums are published beside every installer.",
+      "downloadHref": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.4/Reader.Sideload.Library_0.1.4_amd64.AppImage",
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/demo/?demo=1",
+      "status": 200,
+      "title": "Demo — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Manage a sample e-ink library",
+      "announcement": "Demo — Reader Sideload Library. Manage a sample e-ink library",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/privacy/",
+      "status": 200,
+      "title": "Privacy — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "How the app handles your data.",
+      "announcement": "Privacy — Reader Sideload Library. How the app handles your data.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/terms/",
+      "status": 200,
+      "title": "Terms — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Use it for files you own.",
+      "announcement": "Terms — Reader Sideload Library. Use it for files you own.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/route-that-does-not-exist",
+      "status": 404,
+      "title": "Page not found — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "This page is not in the catalogue.",
+      "announcement": "Page not found — Reader Sideload Library. This page is not in the catalogue.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "seriousAxe": 0,
+      "consoleErrors": []
+    }
+  ],
+  "demo": {
+    "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "thirdParty": [],
+    "reset": {
+      "search": "",
+      "filter": "all",
+      "rows": 4,
+      "catalogueActive": "true",
+      "focus": "catalogue-heading",
+      "real": "{\"sentinel\":\"real-library\"}",
+      "demoSeeded": true
+    },
+    "mobile": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "privacyVisible": true
+    }
+  },
+  "offline": {
+    "bookCount": "4"
+  },
+  "failures": []
+}

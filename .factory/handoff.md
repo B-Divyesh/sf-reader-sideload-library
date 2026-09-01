@@ -1,41 +1,45 @@
-# Polish round 1 handoff — Reader Sideload Library
+# Verification 4 handoff — FAIL
 
-## What changed
+## Verdict
 
-Resolved every finding in `.factory/review-1.md`. The isolated sample now begins with a working search action, reset restores the whole visible catalogue state, all routes share navigation and legal footer links, and every route focuses and announces its h1. Claim wording and tests now match the exact observable behavior.
+**FAIL — do not release candidate `cf5706b4f7195334b8d099da3b354f63066b034c`.**
 
-Version 0.1.4 retains the concrete, paper, graphite, and moss visual system. No new external runtime service, analytics, payment path, or AI feature was added.
+Tested on 2026-09-01 against <https://reader-sideload-library.sociobot.in> from the clean candidate checkout. Detailed evidence is in `.factory/verification-4.md` and `.factory/evidence/verification-4/`.
 
-## Verification
+## Release blocker
 
-- `npm test`
-- every distinct command in `.factory/claims.json`, run separately from a fresh clone
-- `npm run check`
-- `cargo fmt --manifest-path src-tauri/Cargo.toml --check`
-- `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`
-- `npm audit --audit-level=high`
-- `npm run build`
-- axe CLI on `/`, `/demo/?demo=1`, `/privacy/`, `/terms/`, and `/404.html`
-- local Lighthouse mobile: performance 97, accessibility 100, best practices 100, SEO 100; LCP 2.107 s, CLS 0.075, TBT 0 ms
-- live Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100; LCP 1.810 s, CLS 0.057, TBT 8 ms
+At 1366×768, the cold landing page does not fit the required first read. The audience sentence runs from y=742px to y=842px and is cut off. **Try it with sample data** begins at y=893px and is entirely below the 768px fold. The first screen therefore does not show who the product is for or what to click first, which the work order defines as an automatic failure.
 
-Detailed finding evidence is in `.factory/polish-1.md`.
+Evidence: `.factory/evidence/verification-4/live/first-read-desktop-1366x768.png` and `.factory/evidence/verification-4/live/first-read-desktop-1366x768.json`.
 
-## Deployment and release
+## What passed
 
-- Product source commit: `eaa8ae26fcd286db7629c67a0fdccd147ec74093`.
-- Production: `https://reader-sideload-library.sociobot.in` (Azure Static Web Apps deployment succeeded on 1 September 2026).
-- Demo: `https://reader-sideload-library.sociobot.in/demo/?demo=1`.
-- Desktop release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.4`.
-- GitHub Actions run `33563007958` passed its quality, four-platform build, and publish jobs.
-- The release contains both macOS DMGs, Windows MSI/EXE, Linux AppImage/DEB/RPM, `SHA256SUMS`, and `latest.json`.
-- A newly downloaded Windows MSI matched its `SHA256SUMS` entry.
-- `node scripts/verify-live.mjs https://reader-sideload-library.sociobot.in .factory/evidence/polish-1/live` passed from a cold context after release publication. It checks release resolution, every route, real 404 handling, route focus and announcements, console output, demo isolation/reset, mobile width, request privacy, and offline reload.
+- All 17 commands in `.factory/claims.json` passed when run first.
+- `npm test`, typecheck, Rust format/lint, dependency audit, exact web build, and native Tauri release build passed.
+- Live desktop/mobile demo behavior, invalid-input recovery, privacy request logging, security headers, offline reload/update, caching, axe serious/critical checks, and console checks passed.
+- Fresh 50-file planning produced 50 unique device paths with no missing entries.
+- Fresh mobile Lighthouse: 93 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 2.2s and CLS 0.074.
+- The live pages/scripts are byte-identical to the fresh candidate build.
+- GitHub `v0.1.4` has the required platform assets and manifests; a fresh Debian download matched `SHA256SUMS`.
 
-## Known gaps
+## How to reproduce
 
-None in the reviewed scope. Physical e-ink hardware and an external WebDAV provider are not available in this container; the existing native filesystem and local WebDAV fixtures cover those paths.
+```sh
+npm ci
+npm test
+npm run check
+cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+npm run build
+CI=true npm run tauri build
+```
+
+Open the live home page at 1366×768 without scrolling. The screenshot in the evidence folder records the failure.
+
+## Known test limits
+
+No physical e-ink reader or external WebDAV provider was available. Supplied native filesystem and local WebDAV fixtures passed.
 
 ## Needs operator action
 
-macOS and Windows packages remain unsigned. Signing requires the owner’s `APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets; the product discloses this before download.
+Fix the desktop hero so the complete audience sentence and **Try it with sample data** action fit in the first 1366×768 viewport, then rerun independent verification. macOS and Windows releases also remain unsigned as disclosed; signing requires the owner’s certificates.
