@@ -28,6 +28,24 @@ test("landing states the job, audience, sample action, and three facts", async (
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
 });
 
+for (const viewport of [
+  { name: "desktop", width: 1366, height: 768 },
+  { name: "mobile", width: 390, height: 844 }
+]) {
+  test(`landing first read fits the ${viewport.name} ${viewport.width}x${viewport.height} viewport`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+
+    for (const selector of [".hero-lede", ".hero-actions .button-primary"]) {
+      const bounds = await page.locator(selector).boundingBox();
+      expect(bounds, `${selector} must have layout bounds`).not.toBeNull();
+      expect(bounds!.y, `${selector} must start inside the viewport`).toBeGreaterThanOrEqual(0);
+      expect(bounds!.y + bounds!.height, `${selector} must be fully visible without scrolling`).toBeLessThanOrEqual(viewport.height);
+    }
+  });
+}
+
 test("required metadata and hosting policy are shipped", async ({ page, request }) => {
   await page.goto("/");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://reader-sideload-library.sociobot.in/");
