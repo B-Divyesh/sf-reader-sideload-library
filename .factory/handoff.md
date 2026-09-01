@@ -21,8 +21,8 @@ The app also labelled WebDAV as a paid Field feature and disabled it without an 
 - Kept WebDAV address, username, and password out of browser storage. The password field clears after every check or sync attempt.
 - Added a local WebDAV protocol fixture that proves `PROPFIND`, authenticated `MKCOL`, encoded paths, and exact uploaded bytes without contacting a real service.
 - Added a staged USB-copy regression that simulates a connection failure and proves the existing destination remains unchanged.
-- Added nested EPUB/PDF scan fixtures covering title, author, series, cover state, protected-PDF exclusion, and unrelated-file exclusion.
-- Added Markdown, JSON, KOReader sidecar, and embedded PDF-annotation import fixtures.
+- Added nested EPUB/PDF scan fixtures covering title, author, series, cover state, encrypted-EPUB detection, protected-PDF exclusion, and unrelated-file exclusion.
+- Added Markdown, plain-text, JSON, KOReader sidecar, and embedded PDF-annotation import fixtures.
 - Narrowed site, app, privacy, terms, and README wording to the behavior the tests prove.
 - Advanced package, Cargo, Tauri, release workflow, site, and service-worker versions to `0.1.3`.
 
@@ -46,20 +46,25 @@ Run from the repository root with Node.js 22+ and Rust stable. Native Linux pack
 - Keyboard order, visible focus, 390 px reflow, 44 px targets, reduced motion, offline demo reload, and demo storage isolation passed in Playwright.
 - The privacy E2E serves the local build through the production hostname, mocks GitHub, and proves the release API is the only third-party request; the cookie jar remains empty.
 - Local Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 2.12 s, CLS 0.028, TBT 0 ms.
-- Site initial JavaScript is 2.94 KB raw / 1.35 KB gzip. App initial JavaScript is 20.44 KB raw / 7.62 KB gzip. Site CSS is 12.15 KB raw / 3.36 KB gzip. Loaded WOFF2 fonts total 88.27 KB. The mobile hero is 79,982 bytes.
+- Site initial JavaScript is 2.94 KB raw / 1.35 KB gzip. App initial JavaScript is 20.46 KB raw / 7.62 KB gzip. Site CSS is 12.15 KB raw / 3.36 KB gzip. Loaded WOFF2 fonts total 88.27 KB. The mobile hero is 79,982 bytes.
 - Local Linux bundles: AppImage 79,821,304 bytes, Debian 5,003,184 bytes, RPM 5,003,600 bytes.
 
 ## Release and deployment
 
 - Static deploy root: `dist/site`.
-- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.3`.
+- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.3`; [run 33553062634](https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33553062634) passed quality and all Linux, macOS arm64, macOS x64, Windows, and publish jobs.
+- Tag `v0.1.3` resolves to repaired commit `93c89c670cf3ea28a21accb0a6253d23ad1f7392`.
+- [GitHub release v0.1.3](https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.3) publishes seven native installers: Linux AppImage, Debian, and RPM; macOS arm64 and x64 DMGs; and Windows MSI and setup EXE.
+- `latest.json` reports version `0.1.3` and exact entries for `macos_arm64`, `macos_x64`, `windows_x64`, and `linux_x64`.
+- `SHA256SUMS` contains all seven native installers. Each entry matches its GitHub asset digest. The downloaded Linux AppImage matched `dc3bcc38b0079c2e87786bae2447149c2a0fd91846b12850e0923b0dd376651b`; the downloaded Debian package matched `7a4dbb785b09ffe3b754cf85a65dbf0ba988727c59669d9830ba169205ac0a80`.
+- The published AppImage stayed running for a 10-second Xvfb smoke window. The published Debian package reports `reader-sideload-library` version `0.1.3`, architecture `amd64`, and no unresolved shared libraries.
 - Production deployment updated only `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
-- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `631e771a77679d9bff4998975cf15f338d1ba133e0a96f61c02551182cdfd9b2`.
+- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `7caf8b7f8eeb3293f8f8e638682483ca89da432ab71f2f13054ac2421344e267`.
 - Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
 - Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
 - Live factory `verify-url.sh` reports 0 console errors for home and demo.
-- Live Lighthouse mobile: performance 98, accessibility 100, best practices 100, SEO 100, LCP 2.17 s, CLS 0.025, TBT 0 ms, total transfer 177.2 KiB.
-- GitHub release and checksum evidence will be added after the tagged workflow finishes.
+- Live Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 1.81 s, CLS 0.015, TBT 0 ms, total transfer 177.5 KiB.
+- A fresh 390 px live browser resolved the primary action to the published Linux AppImage for `v0.1.3`, had no horizontal overflow or console errors, set no cookies, and made no third-party request except the disclosed GitHub releases API call.
 
 ## Known gaps
 
