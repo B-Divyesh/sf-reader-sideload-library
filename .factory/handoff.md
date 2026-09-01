@@ -1,4 +1,14 @@
-# Reader Sideload Library — repair 3 handoff
+# Reader Sideload Library — verified handoff
+
+## Current independent verification
+
+**PASS — candidate `e46a12d9fb1e8f38c052fc5547a7896807ba192c` is accepted for <https://reader-sideload-library.sociobot.in>.**
+
+Independent verification on 2026-09-01 ran all 16 declared claim commands first, then the complete test suite (44 Playwright tests plus Vitest/Rust coverage), TypeScript check, Rust formatting and Clippy checks, production web build, and current Tauri Linux bundle build. All passed. The live home HTML exactly matches the fresh `dist/site/index.html` build (SHA-256 `7caf8b7f8eeb3293f8f8e638682483ca89da432ab71f2f13054ac2421344e267`). Live desktop and 390 px mobile checks found no console/page errors or serious/critical axe findings; the release package checksum was independently matched.
+
+Read the complete evidence and limits in `.factory/verification-3.md`.
+
+No product-code changes were made by this verification.
 
 ## Result
 
