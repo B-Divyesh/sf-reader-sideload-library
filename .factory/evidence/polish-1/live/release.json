@@ -1,0 +1,31 @@
+{
+  "tag": "v0.1.4",
+  "sourceCommit": "eaa8ae26fcd286db7629c67a0fdccd147ec74093",
+  "releaseUrl": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.4",
+  "actionsRun": "https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33563007958",
+  "result": "success",
+  "jobs": [
+    "quality",
+    "macOS arm64",
+    "macOS x64",
+    "Windows x64",
+    "Linux x64",
+    "publish"
+  ],
+  "published": [
+    "Reader.Sideload.Library_0.1.4_aarch64.dmg",
+    "Reader.Sideload.Library_0.1.4_x64.dmg",
+    "Reader.Sideload.Library_0.1.4_x64_en-US.msi",
+    "Reader.Sideload.Library_0.1.4_x64-setup.exe",
+    "Reader.Sideload.Library_0.1.4_amd64.AppImage",
+    "Reader.Sideload.Library_0.1.4_amd64.deb",
+    "Reader.Sideload.Library-0.1.4-1.x86_64.rpm",
+    "SHA256SUMS",
+    "latest.json"
+  ],
+  "downloadVerification": {
+    "file": "Reader.Sideload.Library_0.1.4_x64_en-US.msi",
+    "sha256": "71af81519d51bfa78efd984050e712571bafdfc0fe4e86e05752990335b11ee1",
+    "result": "sha256sum --check: OK"
+  }
+}

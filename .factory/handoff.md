@@ -9,19 +9,28 @@ Version 0.1.4 retains the concrete, paper, graphite, and moss visual system. No 
 ## Verification
 
 - `npm test`
+- every distinct command in `.factory/claims.json`, run separately from a fresh clone
 - `npm run check`
-- `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check`
+- `cargo fmt --manifest-path src-tauri/Cargo.toml --check`
 - `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`
 - `npm audit --audit-level=high`
 - `npm run build`
 - axe CLI on `/`, `/demo/?demo=1`, `/privacy/`, `/terms/`, and `/404.html`
-- Lighthouse mobile: performance 97, accessibility 100, best practices 100, SEO 100; LCP 2.107 s, CLS 0.075, TBT 0 ms
+- local Lighthouse mobile: performance 97, accessibility 100, best practices 100, SEO 100; LCP 2.107 s, CLS 0.075, TBT 0 ms
+- live Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100; LCP 1.810 s, CLS 0.057, TBT 8 ms
 
 Detailed finding evidence is in `.factory/polish-1.md`.
 
 ## Deployment and release
 
-Pending commit, v0.1.4 release, production deployment, and cold live verification.
+- Product source commit: `eaa8ae26fcd286db7629c67a0fdccd147ec74093`.
+- Production: `https://reader-sideload-library.sociobot.in` (Azure Static Web Apps deployment succeeded on 1 September 2026).
+- Demo: `https://reader-sideload-library.sociobot.in/demo/?demo=1`.
+- Desktop release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.4`.
+- GitHub Actions run `33563007958` passed its quality, four-platform build, and publish jobs.
+- The release contains both macOS DMGs, Windows MSI/EXE, Linux AppImage/DEB/RPM, `SHA256SUMS`, and `latest.json`.
+- A newly downloaded Windows MSI matched its `SHA256SUMS` entry.
+- `node scripts/verify-live.mjs https://reader-sideload-library.sociobot.in .factory/evidence/polish-1/live` passed from a cold context after release publication. It checks release resolution, every route, real 404 handling, route focus and announcements, console output, demo isolation/reset, mobile width, request privacy, and offline reload.
 
 ## Known gaps
 

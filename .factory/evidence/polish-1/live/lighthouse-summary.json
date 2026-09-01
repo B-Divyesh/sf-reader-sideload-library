@@ -1,0 +1,17 @@
+{
+  "url": "https://reader-sideload-library.sociobot.in/",
+  "runAt": "2026-09-01T21:51:00Z",
+  "mode": "Lighthouse 12.8.2 mobile defaults",
+  "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "largestContentfulPaintMs": 1809.556,
+    "cumulativeLayoutShift": 0.05663602643511772,
+    "totalBlockingTimeMs": 8,
+    "totalByteWeight": 181949
+  }
+}
