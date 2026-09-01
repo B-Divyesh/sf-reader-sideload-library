@@ -520,8 +520,11 @@ fn webdav_auth(
 
 fn webdav_status_error(status: StatusCode, action: &str) -> String {
     match status {
-        StatusCode::UNAUTHORIZED | StatusCode::FORBIDDEN => format!(
+        StatusCode::UNAUTHORIZED => format!(
             "WebDAV sign-in failed with status {status}. Check the username and create a new app password, then {action} again."
+        ),
+        StatusCode::FORBIDDEN => format!(
+            "The WebDAV server refused access (403). Give this account permission to the folder, then {action} again."
         ),
         StatusCode::NOT_FOUND => format!(
             "The WebDAV folder was not found (404). Copy its WebDAV address from your provider, then {action} again."
@@ -1001,6 +1004,14 @@ mod tests {
         archive.write_all(b"cover fixture").unwrap();
         archive.finish().unwrap();
 
+        let encrypted_epub_path = nested.join("locked.epub");
+        let mut encrypted_archive = ZipWriter::new(File::create(&encrypted_epub_path).unwrap());
+        encrypted_archive
+            .start_file("META-INF/encryption.xml", options)
+            .unwrap();
+        encrypted_archive.write_all(br#"<?xml version="1.0"?><encryption><EncryptedData><EncryptionMethod Algorithm="https://example.invalid/drm"/></EncryptedData></encryption>"#).unwrap();
+        encrypted_archive.finish().unwrap();
+
         let pdf_path = nested.join("protected.pdf");
         let mut protected = Document::with_version("1.7");
         let encryption_id = protected.add_object(dictionary! { "Filter" => "Standard" });
@@ -1009,13 +1020,24 @@ mod tests {
         fs::write(nested.join("ignored.txt"), b"not a book").unwrap();
 
         let books = scan_library(library.path().to_string_lossy().into_owned()).unwrap();
-        assert_eq!(books.len(), 2);
-        let epub = books.iter().find(|book| book.format == "EPUB").unwrap();
+        assert_eq!(books.len(), 3);
+        let epub = books
+            .iter()
+            .find(|book| book.format == "EPUB" && book.eligible)
+            .unwrap();
         assert_eq!(epub.title, "The Moss Archive");
         assert_eq!(epub.authors, vec!["A. Reader"]);
         assert_eq!(epub.series.as_deref(), Some("Field Library"));
         assert_eq!(epub.series_index, Some(2.0));
         assert_eq!(epub.cover_status, "found");
+        let encrypted_epub = books
+            .iter()
+            .find(|book| book.format == "EPUB" && !book.eligible)
+            .unwrap();
+        assert!(encrypted_epub
+            .warnings
+            .iter()
+            .any(|warning| warning.contains("Encrypted resources")));
         let pdf = books.iter().find(|book| book.format == "PDF").unwrap();
         assert!(!pdf.eligible);
         assert!(pdf
@@ -1035,6 +1057,13 @@ mod tests {
                 .unwrap()
                 .len(),
             1
+        );
+
+        let plain_text = directory.path().join("notes.txt");
+        fs::write(&plain_text, "> Plain-text quote\n").unwrap();
+        assert_eq!(
+            import_highlights(plain_text.to_string_lossy().into_owned()).unwrap()[0].quote,
+            "Plain-text quote"
         );
 
         let json = directory.path().join("notes.json");
@@ -1145,6 +1174,12 @@ mod tests {
         assert!(
             webdav_status_error(StatusCode::NOT_FOUND, "check the folder")
                 .contains("WebDAV address")
+        );
+        assert!(
+            webdav_status_error(StatusCode::FORBIDDEN, "check the folder").contains("permission")
+        );
+        assert!(
+            webdav_status_error(StatusCode::METHOD_NOT_ALLOWED, "sync").contains("sign-in page")
         );
         assert!(
             webdav_status_error(StatusCode::INSUFFICIENT_STORAGE, "sync").contains("Free space")

@@ -44,7 +44,7 @@ Run from the repository root with Node.js 22+ and Rust stable. Native Linux pack
 - Factory `verify-url.sh` on the local production site: HTTP 200, one h1, `lang`, main landmark, image alternatives, button names, and 0 console errors.
 - Playwright axe: 0 serious or critical findings on landing, demo, privacy, terms, 404, desktop shell, dark mode, desktop, and mobile.
 - Keyboard order, visible focus, 390 px reflow, 44 px targets, reduced motion, offline demo reload, and demo storage isolation passed in Playwright.
-- Privacy tests observed only the local site/app origins and the documented GitHub releases API; the browser cookie jar remained empty.
+- The privacy E2E serves the local build through the production hostname, mocks GitHub, and proves the release API is the only third-party request; the cookie jar remains empty.
 - Local Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 2.12 s, CLS 0.028, TBT 0 ms.
 - Site initial JavaScript is 2.94 KB raw / 1.35 KB gzip. App initial JavaScript is 20.44 KB raw / 7.62 KB gzip. Site CSS is 12.15 KB raw / 3.36 KB gzip. Loaded WOFF2 fonts total 88.27 KB. The mobile hero is 79,982 bytes.
 - Local Linux bundles: AppImage 79,821,304 bytes, Debian 5,003,184 bytes, RPM 5,003,600 bytes.
@@ -53,7 +53,13 @@ Run from the repository root with Node.js 22+ and Rust stable. Native Linux pack
 
 - Static deploy root: `dist/site`.
 - GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.3`.
-- Release and live deployment evidence will be added after the tagged workflow and exact production deployment finish.
+- Production deployment updated only `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
+- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `631e771a77679d9bff4998975cf15f338d1ba133e0a96f61c02551182cdfd9b2`.
+- Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
+- Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
+- Live factory `verify-url.sh` reports 0 console errors for home and demo.
+- Live Lighthouse mobile: performance 98, accessibility 100, best practices 100, SEO 100, LCP 2.17 s, CLS 0.025, TBT 0 ms, total transfer 177.2 KiB.
+- GitHub release and checksum evidence will be added after the tagged workflow finishes.
 
 ## Known gaps
 

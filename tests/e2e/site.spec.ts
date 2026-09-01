@@ -81,8 +81,14 @@ test("@claim:demo-isolated sample work never changes real library storage", asyn
 
 test("@claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames", async ({ page }) => {
   await page.goto("/demo/");
-  await page.locator("#search").fill("Zoë");
+  const search = page.locator("#search");
+  await search.fill("Concrete Gardens");
+  await expect(page.locator("#catalogue-body tr")).toHaveCount(1);
+  await search.fill("Zoë");
   await expect(page.locator("#catalogue-body")).toContainText("Field Notes 03 — 秋");
+  await search.fill("Field Library");
+  await expect(page.locator("#catalogue-body tr")).toHaveCount(2);
+  await search.fill("");
   await page.getByRole("tab", { name: /Collections/ }).click();
   await expect(page.locator(".device-path")).toContainText(["001 - The Moss Archive.epub", "002 - Field Notes 03 — 秋.pdf", "003 - Concrete Gardens.epub"]);
   await expect(page.locator(".collection")).not.toContainText("�");

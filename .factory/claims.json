@@ -36,7 +36,7 @@
   },
   {
     "id": "nested-library-scan",
-    "claim": "The recursive scan reads EPUB title, author, series, and cover status, includes PDFs, ignores other files, and excludes protected PDFs.",
+    "claim": "The recursive scan reads EPUB title, author, series, and cover status, includes PDFs, ignores other files, and excludes encrypted EPUBs and protected PDFs.",
     "where": "landing workflow and preview, desktop catalogue, README",
     "test": "npm run test:rust-core -- claim_nested_library_scan_reads_metadata_and_flags_protection",
     "sandbox": "temporary nested library with a metadata-rich EPUB, a protected PDF, and an unrelated text file; scan through the native core and assert all observed fields and eligibility"
@@ -57,7 +57,7 @@
   },
   {
     "id": "ordered-collections",
-    "claim": "Collection order becomes numbered, device-safe folders and filenames.",
+    "claim": "Search finds titles, authors, and series; collection order becomes numbered, device-safe folders and filenames in the transfer plan.",
     "where": "landing workflow, desktop collections, README",
     "test": "npm run test:claims -- --grep @claim:ordered-collections --project=desktop-chromium",
     "sandbox": "clean sample demo; inspect its ordered collection and assert all three Unicode-safe planned filenames in order"
@@ -92,7 +92,7 @@
   },
   {
     "id": "highlight-import-formats",
-    "claim": "Imports Markdown, JSON, KOReader sidecar, and embedded PDF annotations.",
+    "claim": "Imports Markdown, plain-text, JSON, KOReader sidecar, and embedded PDF annotations.",
     "where": "desktop notes panel, README",
     "test": "npm run test:rust-core -- claim_supported_highlight_formats_import",
     "sandbox": "temporary Markdown, JSON, KOReader Lua, and generated annotated PDF fixtures; import each through the native path and assert quote/note content"

@@ -227,7 +227,7 @@ async function usbSync() {
   try {
     const report = await invoke<{ copied: number; skipped: number; total: number }>("sync_usb", { destination, items });
     setProgress(100, `Transfer complete · ${report.copied} copied · ${report.skipped} unchanged`);
-    toast(`${report.total} books accounted for on the reader. It is safe to eject.`);
+    toast(`Transfer finished: ${report.total} books were copied or already unchanged on the reader.`);
   } catch (error) {
     setProgress(0, "Transfer stopped — reconnect the reader and retry");
     toast(String(error), true);

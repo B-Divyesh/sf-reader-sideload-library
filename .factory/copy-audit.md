@@ -23,7 +23,7 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | Review titles, authors, covers, and protected-file warnings. | 7 | — |
 | Set the reading order | 4 | — |
 | Arrange collections. | 2 | — |
-| Numbered folders and filenames keep that order on readers that ignore series metadata. | 13 | — |
+| Numbered folders and filenames preserve that order in the transfer plan. | 10 | — |
 | Copy books and export notes | 5 | — |
 | Copy selected books by USB. | 5 | — |
 | Import reader notes and export them as Markdown. | 8 | — |
@@ -34,7 +34,7 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | See where your library data goes. | 7 | — |
 | Your catalogue stays on this computer | 6 | — |
 | No product account or cloud catalogue | 6 | — |
-| No analytics, advertising, or passive network requests | 7 | — |
+| No analytics, advertising, or passive app requests | 7 | — |
 | WebDAV details are never written to app storage | 8 | — |
 | Transfers happen only when you start them | 7 | — |
 | USB copies go to the folder you choose | 8 | — |
