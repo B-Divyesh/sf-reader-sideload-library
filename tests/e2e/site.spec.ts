@@ -108,9 +108,7 @@ test("@claim:markdown-export exports sample highlights as Markdown", async ({ pa
   expect(markdown).toContain("A private library should remain legible");
 });
 
-test("@claim:privacy-requests uses only the disclosed GitHub release request", async ({ browser, request }) => {
-  const context = await browser.newContext();
-  const page = await context.newPage();
+test("@claim:privacy-requests uses only the disclosed GitHub release request", async ({ page, context, request }) => {
   const requests: string[] = [];
   context.on("request", (observed) => requests.push(observed.url()));
   const productionOrigin = "https://reader-sideload-library.sociobot.in";
@@ -149,7 +147,6 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
   const productOrigins = new Set([productionOrigin, "http://127.0.0.1:4174"]);
   expect(requests.filter((url) => !productOrigins.has(new URL(url).origin))).toEqual([releaseApi]);
   expect(await context.cookies()).toEqual([]);
-  await context.close();
 });
 
 test("@claim:core-free exposes core tools without a license or checkout", async ({ page }) => {
