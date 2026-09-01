@@ -1,6 +1,6 @@
 [package]
 name = "reader-sideload-library"
-version = "0.1.3"
+version = "0.1.4"
 description = "Reliable DRM-free reader sideloading and portable highlights"
 authors = ["Param Factory"]
 license = "MIT"

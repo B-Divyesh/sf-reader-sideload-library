@@ -106,9 +106,16 @@
   },
   {
     "id": "release-manifest",
-    "claim": "A release manifest names installers for macOS Intel and Apple silicon, Windows, and Linux, with a SHA-256 checksum for each.",
+    "claim": "The release workflow publishes macOS Intel and Apple silicon, Windows, and Linux installers with SHA-256 checksums and latest.json. The site reads GitHub release metadata; installers read latest.json.",
     "where": "landing download section, README",
     "test": "npm run test:release",
-    "sandbox": "temporary fake platform bundles; run the production manifest generator; assert all required platform URLs and exact SHA-256 entries"
+    "sandbox": "temporary fake platform bundles plus production workflow, site loader, and installer sources; assert every required platform, exact hashes, publication action, and metadata source"
+  },
+  {
+    "id": "unsigned-installers",
+    "claim": "Published installers are not code-signed.",
+    "where": "landing install section, README, installer output",
+    "test": "npm run test:release",
+    "sandbox": "inspect the production Tauri bundle and release workflow; assert macOS and Windows signing identities are unset and the public disclosure is present"
   }
 ]

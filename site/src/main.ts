@@ -6,6 +6,7 @@ import "./style.css";
 
 const REPO = "https://github.com/B-Divyesh/sf-reader-sideload-library";
 const RELEASE_API = "https://api.github.com/repos/B-Divyesh/sf-reader-sideload-library/releases/latest";
+const isDemoShortcut = location.pathname === "/" && new URLSearchParams(location.search).get("demo") === "1";
 
 interface ReleaseAsset { url: string; sha256?: string; label?: string }
 interface ReleaseManifest { version: string; platforms: Record<string, ReleaseAsset>; }
@@ -51,7 +52,7 @@ async function loadRelease() {
       linux_x64: toRecord(choose(/amd64.*\.AppImage$/i))
     };
     const release: ReleaseManifest = {
-      version: (metadata.tag_name || "v0.1.3").replace(/^v/, ""),
+      version: (metadata.tag_name || "v0.1.4").replace(/^v/, ""),
       platforms: Object.fromEntries(Object.entries(platforms).filter((entry): entry is [string, ReleaseAsset] => Boolean(entry[1])))
     };
     const asset = release.platforms[key] || release.platforms.linux_x64;
@@ -74,7 +75,9 @@ document.querySelectorAll<HTMLButtonElement>(".copy-command").forEach((button) =
 }));
 
 if ("serviceWorker" in navigator && (location.protocol === "https:" || ["localhost", "127.0.0.1"].includes(location.hostname))) navigator.serviceWorker.register("/sw.js").catch(() => undefined);
-if (location.hostname === "reader-sideload-library.sociobot.in") {
+if (isDemoShortcut) {
+  location.replace("/demo/?demo=1");
+} else if (location.hostname === "reader-sideload-library.sociobot.in") {
   void loadRelease();
 } else {
   const key = currentPlatform();
@@ -82,3 +85,10 @@ if (location.hostname === "reader-sideload-library.sociobot.in") {
   document.querySelector("#download-detail")!.textContent = "Release links resolve on the deployed site";
   document.querySelector("#release-status")!.textContent = "Local preview: GitHub’s latest-release page remains available.";
 }
+
+window.requestAnimationFrame(() => {
+  const title = document.querySelector<HTMLElement>("h1");
+  const status = document.querySelector<HTMLElement>("#route-status");
+  title?.focus({ preventScroll: true });
+  if (status && title) status.textContent = `${document.title}. ${title.textContent || ""}`;
+});

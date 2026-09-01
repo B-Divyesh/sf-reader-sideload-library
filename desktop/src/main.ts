@@ -92,7 +92,7 @@ async function savePath(options: Record<string, unknown>): Promise<string | null
 }
 
 async function chooseLibrary() {
-  if (isDemo) { toast("Demo mode does not read your files. Choose Start for real first.", true); return; }
+  if (isDemo) { toast("Start for real before choosing files from this computer.", true); return; }
   if (!isTauri) { $("#browser-folder").click(); return; }
   const folder = await openPath({ directory: true, multiple: false, title: "Choose your DRM-free library" });
   if (!folder) return;
@@ -362,7 +362,20 @@ $$(".task-tab").forEach((tab) => {
     setPanel(tabs[index]!.dataset.panel!, true);
   });
 });
-$("#scan-button").addEventListener("click", chooseLibrary); $("#empty-scan-button").addEventListener("click", chooseLibrary); $("#browser-folder").addEventListener("change", browserFolderPicked);
+if (isDemo) {
+  const sampleAction = $("#scan-button") as HTMLButtonElement;
+  sampleAction.textContent = "Search the sample catalogue";
+  sampleAction.setAttribute("aria-controls", "search");
+  sampleAction.addEventListener("click", () => {
+    setPanel("catalogue");
+    const search = $("#search") as HTMLInputElement;
+    search.focus();
+    toast("Search the four sample books by title, author, or series.");
+  });
+} else {
+  $("#scan-button").addEventListener("click", chooseLibrary);
+}
+$("#empty-scan-button").addEventListener("click", chooseLibrary); $("#browser-folder").addEventListener("change", browserFolderPicked);
 $("#load-sample").addEventListener("click", () => { location.href = `${location.pathname}?demo=1`; });
 $("#search").addEventListener("input", renderCatalogue); $("#format-filter").addEventListener("change", renderCatalogue);
 $("#add-collection").addEventListener("click", openCollectionDialog); $("#collection-form").addEventListener("submit", saveCollection);
@@ -375,9 +388,27 @@ if (!isTauri && isDemo && "serviceWorker" in navigator && (location.protocol ===
 }
 if (isDemo) {
   document.title = "Demo — Reader Sideload Library";
+  $$<HTMLElement>("[data-demo-only]").forEach((element) => { element.hidden = false; });
+  $$<HTMLElement>("[data-real-only]").forEach((element) => { element.hidden = true; });
+  $("#route-kicker").textContent = "Isolated sample workspace";
+  $("#route-title").textContent = "Manage a sample e-ink library";
   $("#demo-banner").hidden = false;
-  $("#reset-demo").addEventListener("click", () => { state = sampleState(); persist(); render(); setPanel("catalogue", true); toast("Sample data reset."); });
+  $("#reset-demo").addEventListener("click", () => {
+    state = sampleState();
+    ($<HTMLInputElement>("#search")).value = "";
+    ($<HTMLSelectElement>("#format-filter")).value = "all";
+    setPanel("catalogue");
+    persist();
+    render();
+    $("#catalogue-heading").focus({ preventScroll: true });
+    toast("Sample data and catalogue view reset.");
+  });
   $("#start-real").addEventListener("click", () => { localStorage.removeItem(DEMO_STORAGE_KEY); });
   persist();
 } else document.title = "Reader Sideload Library";
 render(); setPanel("catalogue");
+window.requestAnimationFrame(() => {
+  const title = $("#route-title");
+  title.focus({ preventScroll: true });
+  $("#route-status").textContent = `${document.title}. ${title.textContent || ""}`;
+});

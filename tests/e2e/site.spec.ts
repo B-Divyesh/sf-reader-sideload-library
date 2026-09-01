@@ -11,6 +11,8 @@ for (const path of ["/", "/demo/", "/privacy/", "/terms/", "/404.html"]) {
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("main")).toHaveCount(1);
     await expect(page).toHaveTitle(/Reader Sideload Library/);
+    await expect(page.locator("h1")).toBeFocused();
+    await expect(page.locator("#route-status")).not.toBeEmpty();
     const results = await new AxeBuilder({ page: page as never }).analyze();
     expect(results.violations.filter((violation) => ["serious", "critical"].includes(violation.impact || ""))).toEqual([]);
     expect(errors).toEqual([]);
@@ -21,7 +23,7 @@ test("landing states the job, audience, sample action, and three facts", async (
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("Organize and sideload your e-ink library.");
   await expect(page.locator(".hero-lede")).toContainText("e-ink reader owners");
-  await expect(page.getByRole("link", { name: "Try it with sample data" })).toHaveAttribute("href", "/demo/");
+  await expect(page.getByRole("link", { name: "Try it with sample data" })).toHaveAttribute("href", "/demo/?demo=1");
   await expect(page.locator(".proof-strip > span")).toHaveCount(3);
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
 });
@@ -72,11 +74,64 @@ test("@claim:demo-isolated sample work never changes real library storage", asyn
   await expect(page.locator("#book-count")).toHaveText("4");
   await page.locator("#search").fill("Zoë");
   await expect(page.locator("#catalogue-body tr")).toHaveCount(1);
+  await page.locator("#format-filter").selectOption("PDF");
+  await page.getByRole("tab", { name: /Collections/ }).click();
   const storage = await page.evaluate(() => ({ real: localStorage.getItem("rsl:library-state:v1"), demo: localStorage.getItem("demo:rsl:library-state:v1") }));
   expect(storage.real).toBe('{"sentinel":"real-library"}');
   expect(storage.demo).toContain("Field Notes 03");
   await page.getByRole("button", { name: "Reset demo" }).click();
   await expect(page.locator("#book-count")).toHaveText("4");
+  await expect(page.locator("#search")).toHaveValue("");
+  await expect(page.locator("#format-filter")).toHaveValue("all");
+  await expect(page.locator("#catalogue-body tr")).toHaveCount(4);
+  await expect(page.locator("#tab-catalogue")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#catalogue-heading")).toBeFocused();
+});
+
+test("demo primary action starts an available sample task", async ({ page }) => {
+  await page.goto("/demo/?demo=1");
+  const action = page.getByRole("button", { name: "Search the sample catalogue" });
+  await expect(action).toBeVisible();
+  await action.click();
+  await expect(page.locator("#search")).toBeFocused();
+  await page.locator("#search").fill("Zoë");
+  await expect(page.locator("#catalogue-body tr")).toHaveCount(1);
+  await expect(page.locator(".toast.error")).toHaveCount(0);
+});
+
+test("root demo shortcut enters the isolated sample without a release request", async ({ page }) => {
+  const thirdParty: string[] = [];
+  page.on("request", (request) => {
+    if (new URL(request.url()).origin !== "http://127.0.0.1:4173") thirdParty.push(request.url());
+  });
+  await page.goto("/?demo=1");
+  await expect(page).toHaveURL(/\/demo\/\?demo=1$/);
+  await expect(page.locator("#demo-banner")).toBeVisible();
+  await expect(page.locator("#book-count")).toHaveText("4");
+  expect(thirdParty).toEqual([]);
+});
+
+test("demo and content routes share navigation and legal links", async ({ page }) => {
+  for (const path of ["/demo/", "/privacy/", "/terms/", "/404.html"]) {
+    await page.goto(path);
+    const header = page.locator("header");
+    await expect(header.getByRole("link", { name: /Reader Sideload Library home/ })).toBeVisible();
+    await expect(header.getByRole("link", { name: "Demo", exact: true })).toBeVisible();
+    await expect(header.getByRole("link", { name: "Privacy", exact: true })).toBeVisible();
+    const footer = page.locator("footer");
+    await expect(footer.getByRole("link", { name: "Demo", exact: true })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "Privacy", exact: true })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "Terms", exact: true })).toBeVisible();
+    await expect(footer).toContainText("Built by Param Factory");
+  }
+});
+
+test("demo fits a 390px viewport with working navigation", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/demo/?demo=1");
+  const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+  expect(widths.scroll).toBeLessThanOrEqual(widths.client);
+  await expect(page.locator("header").getByRole("link", { name: "Privacy" })).toBeVisible();
 });
 
 test("@claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames", async ({ page }) => {
@@ -120,10 +175,10 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          tag_name: "v0.1.3",
+          tag_name: "v0.1.4",
           assets: [
             { name: "latest.json", browser_download_url: "https://github.com/example/latest.json" },
-            { name: "Reader.Sideload.Library_0.1.3_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
+            { name: "Reader.Sideload.Library_0.1.4_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
           ]
         })
       });
@@ -137,7 +192,7 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
     await route.continue();
   });
   await page.goto(`${productionOrigin}/`);
-  await expect(page.locator("#release-status")).toContainText("Release 0.1.3 found");
+  await expect(page.locator("#release-status")).toContainText("Release 0.1.4 found");
   await page.goto(`${productionOrigin}/demo/`);
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();

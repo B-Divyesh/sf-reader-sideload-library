@@ -4,25 +4,25 @@ Reader Sideload Library is a desktop utility for e-ink reader owners with DRM-fr
 
 Live site: <https://reader-sideload-library.sociobot.in>
 
-One-click sample: <https://reader-sideload-library.sociobot.in/demo/>
+One-click sample: <https://reader-sideload-library.sociobot.in/demo/?demo=1>
 
 ## Who it is for
 
-It is for people who own their book files and use e-ink readers, especially when Calibre is more library manager than they need or when annotations would otherwise remain tied to one reader. It is not an ebook store, DRM-removal tool, reader, or firmware project.
+It is for people who own book files and use e-ink readers. It suits people who need a focused alternative to a full library manager. It is not an ebook store, DRM-removal tool, reader, or firmware project.
 
 ## What works in v0.1
 
 - Recursive EPUB/PDF scan with embedded title, author, series, cover, encryption, and file validation
-- Searchable, locally persisted catalogue with clear warnings and opt-in inclusion
-- Ordered collections rendered as safe numbered folders/files
+- Searchable catalogue saved on this computer, with clear warnings and opt-in inclusion
+- Ordered collections become safe numbered folders and files
 - USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
-- Free WebDAV sync with HTTPS enforcement, a connection check, and specific recovery guidance
-- Markdown, plain-text, JSON, KOReader-sidecar, and embedded PDF annotation import; plain Markdown export
+- WebDAV sync checks HTTPS, tests the connection, and explains what to fix
+- Import Markdown, text, JSON, KOReader notes, and PDF annotations. Export plain Markdown.
 - Catalogue, collection, and Markdown tools reopen offline after the first demo visit
 
 ## Try the sample
 
-Open `/demo/` or choose **Load sample project** on the app’s first screen. The sample includes four books, one ordered collection, and two highlights. Search, reorder, and Markdown export use the same interface as a real library.
+Open `/demo/?demo=1` or choose **Load sample project** on the app’s first screen. The sample includes four books, one ordered collection, and two highlights. Search the books, reorder the collection, and export the two highlights as Markdown.
 
 Demo changes use `demo:rsl:library-state:v1`. They never read or replace the real `rsl:library-state:v1` catalogue. The sample demo sends no catalogue or interaction data to another origin. Use **Reset demo** to restore it, or **Start for real** to discard it.
 
@@ -52,7 +52,7 @@ Windows PowerShell:
 irm https://reader-sideload-library.sociobot.in/install.ps1 | iex
 ```
 
-Release builds are currently unsigned. On macOS, right-click the app and choose **Open** the first time. Windows may show an unknown-publisher prompt. Verify any download against `SHA256SUMS` in the release.
+Installers are not code-signed. On macOS, right-click the app and choose **Open** the first time. Windows may show an unknown-publisher prompt. Verify any download against `SHA256SUMS` in the release.
 
 ## Develop
 
@@ -68,21 +68,21 @@ npm run build          # reproducible web output in dist/ and dist/site/
 CI=true npm run tauri build  # local native bundle when platform prerequisites exist
 ```
 
-`npm run build:site` is the factory deploy command. Its deploy root is exactly `dist/site`, with `index.html` at that root. `npm run build` also copies the landing entry to `dist/index.html` for the repository-wide quality contract.
+`npm run build:site` is the factory deploy command. Its deploy root is exactly `dist/site`, with `index.html` at that root. `npm run build` also copies the landing page to `dist/index.html`.
 
-`npm test` keeps Rust core tests independent from Tauri's platform GUI libraries. Native app and installer builds still enable the default `desktop` feature and require the platform prerequisites above.
+`npm test` runs Rust core tests without the platform GUI libraries. Run `CI=true npm run tauri build` with the platform prerequisites to build installers.
 
 ## Architecture and privacy
 
-The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, third-party runtime script, or cookies. The production landing page contacts GitHub's public releases API to resolve current installer links. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
+The frontend is Vite + vanilla TypeScript. The Tauri Rust code scans files, copies books, reads PDF annotations, and sends WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, third-party runtime script, or cookies. The production landing page contacts GitHub's public releases API to resolve current installer links. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
 
 Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted.
 
-PDF titles and authors stored as UTF-16 or PDFDocEncoding are decoded without replacement characters. Imported highlights export as plain Markdown.
+The app keeps PDF titles and authors readable across common encodings. Imported highlights export as plain Markdown.
 
 ## Releases
 
-Tagging `v*` runs `.github/workflows/release.yml`. GitHub Actions builds unsigned macOS ARM64/Intel, Windows x64, and Linux x64 bundles, then publishes all artifacts plus `SHA256SUMS` and `latest.json`. The landing page and one-line installers resolve assets from that manifest.
+Tagging `v*` runs `.github/workflows/release.yml`. It builds installers for macOS Intel and Apple silicon, Windows x64, and Linux x64. The release includes `SHA256SUMS` and `latest.json`. The landing page reads GitHub release metadata. The one-line installers read `latest.json` and verify the selected file before installation.
 
 ## License
 

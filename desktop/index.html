@@ -18,15 +18,24 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to library</a>
+    <div class="visually-hidden" id="route-status" aria-live="polite" aria-atomic="true"></div>
     <aside class="demo-banner" id="demo-banner" aria-label="Demo mode" hidden>
       <strong>Demo — sample data, nothing is saved to your library</strong>
       <span>Try search, collection order, and Markdown export.</span>
       <span class="demo-actions"><button id="reset-demo" type="button">Reset demo</button><a id="start-real" href="/">Start for real</a></span>
     </aside>
-    <header class="workbench">
+    <header class="demo-site-header" aria-label="Site" data-demo-only hidden>
+      <a class="demo-wordmark" href="/" aria-label="Reader Sideload Library home">
+        <svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg>
+        <span>Reader Sideload<br />Library</span>
+      </a>
+      <nav aria-label="Main navigation"><a href="/">Home</a><a href="/demo/" aria-current="page">Demo</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav>
+    </header>
+    <main id="main">
+    <header class="workbench" id="workbench" aria-label="Library workbench">
       <div class="brand-lockup">
         <svg aria-hidden="true" viewBox="0 0 48 48"><path d="M8 6h25l7 7v29H8zM33 6v9h7M15 22h18M15 29h18M15 36h11"/></svg>
-        <div><span class="eyebrow">Local field tool</span><h1>Reader Sideload Library</h1></div>
+        <div><span class="eyebrow" id="route-kicker">Local field tool</span><h1 id="route-title" tabindex="-1">Organize and sideload your library</h1></div>
       </div>
       <div class="library-source">
         <span id="source-label">No library selected</span>
@@ -35,16 +44,18 @@
       </div>
     </header>
 
-    <nav class="task-tabs" aria-label="Library tasks" role="tablist">
-      <button class="task-tab is-active" id="tab-catalogue" data-panel="catalogue" aria-controls="catalogue" aria-selected="true" role="tab"><span>01</span> Catalogue</button>
-      <button class="task-tab" id="tab-collections" data-panel="collections" aria-controls="collections" aria-selected="false" role="tab"><span>02</span> Collections</button>
-      <button class="task-tab" id="tab-transfer" data-panel="transfer" aria-controls="transfer" aria-selected="false" role="tab"><span>03</span> Transfer &amp; notes</button>
+    <nav class="task-nav" aria-label="Library tasks">
+      <div class="task-tabs" role="tablist">
+        <button class="task-tab is-active" id="tab-catalogue" data-panel="catalogue" aria-controls="catalogue" aria-selected="true" role="tab"><span>01</span> Catalogue</button>
+        <button class="task-tab" id="tab-collections" data-panel="collections" aria-controls="collections" aria-selected="false" role="tab"><span>02</span> Collections</button>
+        <button class="task-tab" id="tab-transfer" data-panel="transfer" aria-controls="transfer" aria-selected="false" role="tab"><span>03</span> Transfer &amp; notes</button>
+      </div>
     </nav>
 
-    <main id="main">
+    <div class="app-content">
       <section class="task-panel is-active" id="catalogue" aria-labelledby="tab-catalogue" role="tabpanel">
         <div class="section-heading">
-          <div><span class="eyebrow">Your source stays untouched</span><h2>Catalogue</h2></div>
+          <div><span class="eyebrow">Your source stays untouched</span><h2 id="catalogue-heading" tabindex="-1">Catalogue</h2></div>
           <div class="metrics" aria-live="polite"><strong id="book-count">0</strong><span>books</span><strong id="issue-count">0</strong><span>issues</span></div>
         </div>
         <div class="tool-strip">
@@ -119,9 +130,17 @@
           </section>
         </div>
       </section>
+    </div>
     </main>
 
-    <footer class="app-footer"><span>Catalogue saved on this computer · originals preserved</span></footer>
+    <footer class="app-footer">
+      <span data-real-only>Catalogue saved on this computer · originals preserved</span>
+      <div class="demo-footer" data-demo-only hidden>
+        <p>Organize DRM-free books for an e-ink reader.</p>
+        <nav aria-label="Legal"><a href="/demo/">Demo</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav>
+        <small>Version 0.1.4 · Built by Param Factory.</small>
+      </div>
+    </footer>
     <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
 
     <dialog id="collection-dialog">

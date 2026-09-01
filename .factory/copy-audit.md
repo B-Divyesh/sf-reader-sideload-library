@@ -14,7 +14,7 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | See other platforms and install methods | 6 | — |
 | Choose the files and destination for each transfer. | 8 | — |
 | No account or passive app traffic | 6 | — |
-| Catalogue tools work offline | 4 | — |
+| Catalogue, collection, and Markdown tools reopen offline after the first sample visit | 12 | — |
 | USB and WebDAV tools are free | 6 | — |
 | Move your library in three steps. | 6 | — |
 | Review what the app finds before any book is copied. | 10 | — |
@@ -43,6 +43,8 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | WebDAV is included. | 3 | — |
 | Check the connection first to get specific help for address, sign-in, permission, and storage errors. | 15 | — |
 | Download it for your computer. | 5 | — |
+| Version 0.1.4. | 2 | — |
+| Installers are not code-signed. | 5 | — |
 | Each release includes SHA-256 checksums. | 5 | — |
 | Apple silicon and Intel disk images. | 6 | — |
 | Unsigned: right-click the app, then choose Open. | 7 | — |
@@ -56,9 +58,25 @@ Audited 1 September 2026 against `site/index.html` and runtime status copy in `s
 | GitHub receives normal request details, including your IP address and browser headers. | 12 | — |
 | SHA-256 checksums are published beside every installer. | 7 | — |
 | Organize DRM-free books for an e-ink reader. | 7 | — |
+| Built by Param Factory | 4 | — |
 | Hero imagery generated for this product with the factory image model. | 11 | — |
 
 No line exceeds 22 words. No line contains a banned marketing term. The first screen states the job, audience, next action, privacy, offline behavior, and cost in one scan.
+
+## Demo first screen
+
+| Copy | Words | Flag |
+| --- | ---: | --- |
+| Demo — sample data, nothing is saved to your library | 9 | — |
+| Try search, collection order, and Markdown export. | 7 | — |
+| Reset demo | 2 | — |
+| Start for real | 3 | — |
+| Isolated sample workspace | 3 | — |
+| Manage a sample e-ink library | 5 | — |
+| Demo library · 4 sample books | 5 | — |
+| Search the sample catalogue | 4 | — |
+
+The primary demo action starts a sample search. It does not ask for a real folder.
 
 ## Terminology
 

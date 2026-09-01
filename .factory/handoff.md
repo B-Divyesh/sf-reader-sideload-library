@@ -1,25 +1,32 @@
-# Review 1 handoff — Reader Sideload Library
+# Polish round 1 handoff — Reader Sideload Library
 
-## Work completed
+## What changed
 
-Performed the requested independent first-visit product review without changing product code. Wrote `.factory/review-1.md` with the cold-visit result, all copy counts and flags, demo/storage/privacy checks, claim evidence, earlier-handoff checks, route checks, and findings.
+Resolved every finding in `.factory/review-1.md`. The isolated sample now begins with a working search action, reset restores the whole visible catalogue state, all routes share navigation and legal footer links, and every route focuses and announces its h1. Claim wording and tests now match the exact observable behavior.
 
-## Result
+Version 0.1.4 retains the concrete, paper, graphite, and moss visual system. No new external runtime service, analytics, payment path, or AI feature was added.
 
-**FAIL** — 1 blocking finding and 4 minor findings remain.
+## Verification
 
-The blocking point is that the sample screen foregrounds **Choose library folder**, but demo mode refuses that action. See `F-1-1` in `.factory/review-1.md` for the requested correction and test.
+- `npm test`
+- `npm run check`
+- `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check`
+- `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`
+- `npm audit --audit-level=high`
+- `npm run build`
+- axe CLI on `/`, `/demo/?demo=1`, `/privacy/`, `/terms/`, and `/404.html`
+- Lighthouse mobile: performance 97, accessibility 100, best practices 100, SEO 100; LCP 2.107 s, CLS 0.075, TBT 0 ms
 
-## Verification performed
+Detailed finding evidence is in `.factory/polish-1.md`.
 
-- Fresh clone created under `/tmp`, followed by `npm ci`.
-- Opened the live site cold at 390 px and desktop; checked job, audience, first action, overflow, requests, cookies, and console/page errors.
-- Opened the live demo, verified its four realistic books and isolated `demo:rsl:library-state:v1` state, checked reset behavior, and recorded product-origin-only demo traffic.
-- Ran every one of the 16 commands in `.factory/claims.json`; all passed.
-- Ran `npm test`; it passed (claim inventory, unit tests, native tests, and 44 Playwright checks).
-- Ran `npm run build`; it passed and produced `dist/` and `dist/site/`.
-- Checked all internal routes, designed 404 behavior, metadata, route links, and GitHub/installer links.
+## Deployment and release
+
+Pending commit, v0.1.4 release, production deployment, and cold live verification.
 
 ## Known gaps
 
-The review findings are product work for the owner. No implementation changes were made in this work order.
+None in the reviewed scope. Physical e-ink hardware and an external WebDAV provider are not available in this container; the existing native filesystem and local WebDAV fixtures cover those paths.
+
+## Needs operator action
+
+macOS and Windows packages remain unsigned. Signing requires the owner’s `APPLE_CERTIFICATE` and `WINDOWS_CERT_PFX` secrets; the product discloses this before download.

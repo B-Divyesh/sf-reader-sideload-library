@@ -19,3 +19,6 @@
 .copy-command{min-width:68px;min-height:44px}
 @media(max-width:850px){.proof-strip{grid-template-columns:1fr 1fr}.proof-strip span:nth-child(2){border-right:0}}
 @media(max-width:540px){.proof-strip{grid-template-columns:1fr}}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+h1:focus{outline:3px solid var(--moss);outline-offset:4px}
+@media(max-width:850px){.site-header{height:auto;min-height:88px;flex-wrap:wrap}.site-header nav{display:flex;max-width:100%;overflow-x:auto}}
