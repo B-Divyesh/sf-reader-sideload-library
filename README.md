@@ -16,10 +16,8 @@ It is for people who own their book files and use e-ink readers, especially when
 - Searchable, locally persisted catalogue with clear warnings and opt-in inclusion
 - Ordered collections rendered as safe numbered folders/files
 - USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
-- Opt-in WebDAV sync with HTTPS enforcement and credentials kept only for the active transfer
+- Free WebDAV sync with HTTPS enforcement, a connection check, and specific recovery guidance
 - Markdown, JSON, KOReader-sidecar, and embedded PDF annotation import; plain Markdown export
-- Existing Field edition license restore and verification through the Sociobot billing API; new purchases are paused
-- Responsive 390px app and landing site, light/dark treatments, keyboard tabs, and reduced motion
 - Catalogue, collection, and Markdown tools reopen offline after the first demo visit
 
 ## Try the sample
@@ -27,6 +25,16 @@ It is for people who own their book files and use e-ink readers, especially when
 Open `/demo/` or choose **Load sample project** on the app’s first screen. The sample includes four books, one ordered collection, and two highlights. Search, reorder, and Markdown export use the same interface as a real library.
 
 Demo changes use `demo:rsl:library-state:v1`. They never read or replace the real `rsl:library-state:v1` catalogue. The sample demo sends no catalogue or interaction data to another origin. Use **Reset demo** to restore it, or **Start for real** to discard it.
+
+## Set up WebDAV
+
+1. Install the desktop app and scan your book folder.
+2. Open **Transfer & notes**. Copy the HTTPS WebDAV folder address from your storage provider.
+3. Enter the provider username and an app password when the provider offers one.
+4. Choose **Check connection**. The app distinguishes address, sign-in, permission, and storage errors.
+5. Choose **Sync with WebDAV** after the check succeeds.
+
+The app never writes the WebDAV address, username, or password to app storage. It clears the password after each check or sync attempt. If a transfer stops, fix the reported cause and sync again.
 
 ## Install
 
@@ -66,9 +74,9 @@ CI=true npm run tauri build  # local native bundle when platform prerequisites e
 
 ## Architecture and privacy
 
-The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. The catalogue and license verdict are local browser/WebView storage. No analytics, telemetry, CDN font, or third-party runtime script is used. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
+The frontend is Vite + vanilla TypeScript. The Tauri Rust core owns filesystem scanning, verified copying, PDF annotation parsing, and WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, or third-party runtime script. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
 
-Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted. WebDAV credentials are not persisted.
+Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted.
 
 PDF titles and authors stored as UTF-16 or PDFDocEncoding are decoded without replacement characters. Imported highlights export as plain Markdown.
 

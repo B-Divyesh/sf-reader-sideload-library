@@ -1,6 +1,6 @@
 # Landing copy audit
 
-Audited 30 August 2026 against `site/index.html` and runtime status copy in `site/src/main.ts`. Headings, labels, buttons, captions, list items, and status messages were included. Word counts treat hyphenated terms and URLs as one word.
+Audited 1 September 2026 against `site/index.html` and runtime status copy in `site/src/main.ts`. Headings, labels, buttons, captions, list items, and status messages were included. Word counts treat hyphenated terms and URLs as one word.
 
 ## Sentence and phrase counts
 
@@ -13,9 +13,9 @@ Audited 30 August 2026 against `site/index.html` and runtime status copy in `sit
 | Download for your computer | 4 | — |
 | See other platforms and install methods | 6 | — |
 | Choose the files and destination for each transfer. | 8 | — |
-| No account or telemetry | 4 | — |
+| No account or passive network traffic | 6 | — |
 | Catalogue tools work offline | 4 | — |
-| Core tools are free | 4 | — |
+| USB and WebDAV tools are free | 6 | — |
 | Move your library in three steps. | 6 | — |
 | Review what the app finds before any book is copied. | 10 | — |
 | Scan your book folder | 4 | — |
@@ -31,15 +31,17 @@ Audited 30 August 2026 against `site/index.html` and runtime status copy in `sit
 | Search titles, authors, and series. | 6 | — |
 | Missing covers and protected files stay visible before transfer. | 8 | — |
 | Open the sample catalogue | 4 | — |
-| Know what the app does not do. | 7 | — |
-| No account or cloud catalogue | 5 | — |
-| No analytics or advertising | 4 | — |
-| No saved WebDAV password | 4 | — |
-| No book store or reader | 5 | — |
-| No DRM removal | 3 | — |
-| No automatic device changes | 4 | — |
-| WebDAV remains available to existing Field edition buyers. | 8 | — |
-| New purchases are paused. | 4 | — |
+| See where your library data goes. | 7 | — |
+| Your catalogue stays on this computer | 6 | — |
+| No product account or cloud catalogue | 6 | — |
+| No analytics, advertising, or passive network requests | 7 | — |
+| WebDAV details are never written to app storage | 8 | — |
+| Transfers happen only when you start them | 7 | — |
+| USB copies go to the folder you choose | 8 | — |
+| WebDAV sends selected books to your server | 7 | — |
+| The app clears the password after each attempt | 8 | — |
+| WebDAV is included. | 3 | — |
+| Check the connection first to get specific help for address, sign-in, permission, and storage errors. | 15 | — |
 | Download it for your computer. | 5 | — |
 | Each release includes SHA-256 checksums. | 5 | — |
 | Apple silicon and Intel disk images. | 6 | — |
@@ -54,7 +56,7 @@ Audited 30 August 2026 against `site/index.html` and runtime status copy in `sit
 | Organize DRM-free books for an e-ink reader. | 7 | — |
 | Hero imagery generated for this product with the factory image model. | 11 | — |
 
-No line exceeds 22 words. No line contains a banned marketing term. The first screen states the job, audience, next action, privacy, offline behavior, and price in one scan.
+No line exceeds 22 words. No line contains a banned marketing term. The first screen states the job, audience, next action, privacy, offline behavior, and cost in one scan.
 
 ## Terminology
 
@@ -65,5 +67,4 @@ No line exceeds 22 words. No line contains a banned marketing term. The first sc
 | Moving books to a reader | copy or sideload |
 | User notes from books | highlights |
 | Example workspace | sample demo |
-| Paid legacy feature set | Field edition |
 | Network folder protocol | WebDAV |

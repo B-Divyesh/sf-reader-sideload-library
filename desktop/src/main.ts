@@ -5,14 +5,14 @@ import "@fontsource/ibm-plex-sans/latin-700.css";
 import "./style.css";
 import { buildSyncItems, highlightsToMarkdown, parseMarkdownHighlights, safeName, type Book, type Collection, type Highlight } from "../../shared/library";
 
-const PRODUCT = "reader-sideload-library";
-const API = "https://api.sociobot.in/api/v1";
 const STORAGE_KEY = "rsl:library-state:v1";
 const DEMO_STORAGE_KEY = "demo:rsl:library-state:v1";
-const LICENSE_KEY = `sb_license:${PRODUCT}`;
-const VERDICT_KEY = `sb_license_verdict:${PRODUCT}`;
 const isTauri = "__TAURI_INTERNALS__" in window;
 const isDemo = location.pathname.replace(/\/$/, "") === "/demo" || new URLSearchParams(location.search).get("demo") === "1";
+if (!isDemo) {
+  localStorage.removeItem("sb_license:reader-sideload-library");
+  localStorage.removeItem("sb_license_verdict:reader-sideload-library");
+}
 
 interface State { books: Book[]; collections: Collection[]; highlights: Highlight[]; source: string; }
 const storageKey = isDemo ? DEMO_STORAGE_KEY : STORAGE_KEY;
@@ -242,20 +242,71 @@ function setProgress(value: number, label: string) {
 
 async function webdavSync(event: SubmitEvent) {
   event.preventDefault();
-  if (!licenseIsActive()) { openLicense(); return; }
-  if (!navigator.onLine) { toast("WebDAV needs a connection. USB transfer and your catalogue still work offline.", true); return; }
-  if (!isTauri) { toast("WebDAV transfer runs from the installed desktop app so browser credentials are never retained.", true); return; }
-  const items = buildSyncItems(selectedBooks(), state.collections);
-  if (!items.length) { toast("Include at least one ready book before syncing.", true); return; }
   const form = event.currentTarget as HTMLFormElement;
+  const credentials = webdavCredentials();
+  ($<HTMLInputElement>("#webdav-password")).value = "";
+  if (!form.reportValidity()) return;
+  if (isDemo) { setWebdavStatus("Demo mode does not contact servers. Choose Start for real before connecting WebDAV.", true); return; }
+  if (!navigator.onLine) { setWebdavStatus("You are offline. Reconnect, then try the WebDAV transfer again.", true); return; }
+  if (!isTauri) {
+    setWebdavStatus("Install the desktop app to connect. Your password was cleared; enter it again after opening the app.", true);
+    return;
+  }
+  const items = buildSyncItems(selectedBooks(), state.collections);
+  if (!items.length) { setWebdavStatus("No books are ready. Return to Catalogue and include at least one book.", true); return; }
   const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
   button.disabled = true; button.textContent = "Transferring…";
+  setWebdavStatus(`Uploading ${items.length} planned file${items.length === 1 ? "" : "s"}…`);
   try {
-    const report = await invoke<{ copied: number; total: number }>("sync_webdav", { endpoint: ($<HTMLInputElement>("#webdav-url")).value, username: ($<HTMLInputElement>("#webdav-user")).value, password: ($<HTMLInputElement>("#webdav-password")).value, items });
-    ($<HTMLInputElement>("#webdav-password")).value = "";
-    toast(`WebDAV transfer complete: ${report.copied} of ${report.total} files uploaded.`);
-  } catch (error) { toast(`WebDAV stopped: ${String(error)}`, true); }
-  finally { button.disabled = false; button.textContent = "Sync with WebDAV"; }
+    const report = await invoke<{ copied: number; total: number }>("sync_webdav", { ...credentials, items });
+    const message = `WebDAV transfer complete: ${report.copied} of ${report.total} files uploaded.`;
+    setWebdavStatus(message); toast(message);
+  } catch (error) {
+    const message = `WebDAV stopped. ${String(error)}`;
+    setWebdavStatus(message, true); toast(message, true);
+  } finally {
+    button.disabled = false; button.textContent = "Sync with WebDAV";
+  }
+}
+
+function webdavCredentials() {
+  return {
+    endpoint: ($<HTMLInputElement>("#webdav-url")).value.trim(),
+    username: ($<HTMLInputElement>("#webdav-user")).value,
+    password: ($<HTMLInputElement>("#webdav-password")).value
+  };
+}
+
+function setWebdavStatus(message: string, error = false) {
+  const status = $("#webdav-status");
+  status.textContent = message;
+  status.classList.toggle("error", error);
+}
+
+async function checkWebdavConnection() {
+  const form = $("#webdav-form") as HTMLFormElement;
+  const credentials = webdavCredentials();
+  ($<HTMLInputElement>("#webdav-password")).value = "";
+  if (!form.reportValidity()) return;
+  if (isDemo) { setWebdavStatus("Demo mode does not contact servers. Choose Start for real before checking WebDAV.", true); return; }
+  if (!navigator.onLine) { setWebdavStatus("You are offline. Reconnect, then check the WebDAV folder again.", true); return; }
+  const button = $("#webdav-check") as HTMLButtonElement;
+  if (!isTauri) {
+    setWebdavStatus("Install the desktop app to check WebDAV. Your password was cleared.", true);
+    return;
+  }
+  button.disabled = true;
+  button.textContent = "Checking…";
+  setWebdavStatus("Checking the WebDAV folder…");
+  try {
+    const message = await invoke<string>("check_webdav", credentials);
+    setWebdavStatus(message);
+  } catch (error) {
+    setWebdavStatus(String(error), true);
+  } finally {
+    button.disabled = false;
+    button.textContent = "Check connection";
+  }
 }
 
 async function importHighlights() {
@@ -298,40 +349,6 @@ function renderHighlights() {
   $("#highlights-list").innerHTML = state.highlights.length ? state.highlights.slice(-8).reverse().map((item) => `<article class="highlight"><blockquote>“${escapeHtml(item.quote)}”</blockquote>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}<small>${escapeHtml(item.book)} · ${escapeHtml(item.location)}</small></article>`).join("") : `<p class="form-note">No highlights imported yet.</p>`;
 }
 
-function openLicense() { const dialog = $("#license-dialog") as HTMLDialogElement; dialog.showModal(); window.setTimeout(() => $("#license-token").focus(), 0); }
-
-function licenseIsActive() {
-  const verdict = safeJson(localStorage.getItem(VERDICT_KEY));
-  return Boolean(localStorage.getItem(LICENSE_KEY) && verdict?.valid);
-}
-
-async function verifyLicense(token: string, quiet = false) {
-  if (isDemo) { if (!quiet) toast("License checks are off in the demo. Start for real to restore a purchase.", true); return false; }
-  if (!token) { if (!quiet) toast("Paste your license token first.", true); return false; }
-  if (!navigator.onLine) { if (!quiet) toast("License verification needs a connection. Try again when online.", true); return licenseIsActive(); }
-  try {
-    const response = await fetch(`${API}/products/${PRODUCT}/verify?license=${encodeURIComponent(token)}`);
-    const verdict = await response.json() as { valid: boolean; reason: string };
-    localStorage.setItem(VERDICT_KEY, JSON.stringify({ ...verdict, checkedAt: Date.now() }));
-    if (verdict.valid) { localStorage.setItem(LICENSE_KEY, token); $("#license-button").textContent = "Field edition active"; if (!quiet) toast("Field edition unlocked on this computer."); }
-    else { localStorage.removeItem(LICENSE_KEY); if (!quiet) toast("This license is no longer active. Check the token or purchase again.", true); }
-    return verdict.valid;
-  } catch { if (!quiet) toast("The license server could not be reached. Your free tools still work.", true); return licenseIsActive(); }
-}
-
-function safeJson(value: string | null): { valid?: boolean; checkedAt?: number } | null { try { return value ? JSON.parse(value) : null; } catch { return null; } }
-
-async function initializeLicense() {
-  if (isDemo) return;
-  const params = new URLSearchParams(location.search);
-  const returned = params.get("license");
-  if (returned) { localStorage.setItem(LICENSE_KEY, returned); history.replaceState({}, "", location.pathname); await verifyLicense(returned); }
-  const token = localStorage.getItem(LICENSE_KEY);
-  const cached = safeJson(localStorage.getItem(VERDICT_KEY));
-  if (cached?.valid) $("#license-button").textContent = "Field edition active";
-  if (token && (!cached?.checkedAt || Date.now() - cached.checkedAt > 86_400_000)) void verifyLicense(token, true);
-}
-
 function render() { renderCatalogue(); renderCollections(); renderHighlights(); }
 function formatBytes(bytes: number) { return bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`; }
 function escapeHtml(value: string) { return value.replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character]!); }
@@ -349,11 +366,10 @@ $("#scan-button").addEventListener("click", chooseLibrary); $("#empty-scan-butto
 $("#load-sample").addEventListener("click", () => { location.href = `${location.pathname}?demo=1`; });
 $("#search").addEventListener("input", renderCatalogue); $("#format-filter").addEventListener("change", renderCatalogue);
 $("#add-collection").addEventListener("click", openCollectionDialog); $("#collection-form").addEventListener("submit", saveCollection);
-$("#usb-sync").addEventListener("click", usbSync); $("#webdav-form").addEventListener("submit", webdavSync);
+$("#usb-sync").addEventListener("click", usbSync); $("#webdav-check").addEventListener("click", checkWebdavConnection); $("#webdav-form").addEventListener("submit", webdavSync);
 $("#import-highlights").addEventListener("click", importHighlights); $("#browser-highlight").addEventListener("change", browserHighlightPicked); $("#export-highlights").addEventListener("click", exportHighlights);
-$("#license-button").addEventListener("click", openLicense); $("#license-form").addEventListener("submit", async (event) => { const submitter = (event as SubmitEvent).submitter as HTMLButtonElement | null; if (submitter?.value !== "default") return; event.preventDefault(); const valid = await verifyLicense(($<HTMLInputElement>("#license-token")).value.trim()); if (valid) ($("#license-dialog") as HTMLDialogElement).close(); });
-window.addEventListener("offline", () => toast("You are offline. Catalogue, collections, USB, and Markdown export still work."));
-window.addEventListener("online", () => toast("Connection restored. WebDAV and license verification are available."));
+window.addEventListener("offline", () => toast("You are offline. Saved catalogue work remains available; WebDAV waits for a connection."));
+window.addEventListener("online", () => toast("Connection restored. WebDAV is available."));
 if (!isTauri && isDemo && "serviceWorker" in navigator && (location.protocol === "https:" || ["localhost", "127.0.0.1"].includes(location.hostname))) {
   navigator.serviceWorker.register("/sw.js").catch(() => undefined);
 }
@@ -364,4 +380,4 @@ if (isDemo) {
   $("#start-real").addEventListener("click", () => { localStorage.removeItem(DEMO_STORAGE_KEY); });
   persist();
 } else document.title = "Reader Sideload Library";
-render(); setPanel("catalogue"); void initializeLicense();
+render(); setPanel("catalogue");

@@ -7,25 +7,25 @@
     "sandbox": "fresh browser context with a sentinel real-library key; use search and reset; assert only demo:rsl:library-state:v1 changes"
   },
   {
-    "id": "markdown-export",
-    "claim": "Exports imported highlights as plain Markdown.",
-    "where": "landing page, desktop app, README",
-    "test": "npm run test:claims -- --grep @claim:markdown-export --project=desktop-chromium",
-    "sandbox": "open /demo/ from clean storage; export bundled highlights; inspect the downloaded Markdown contents"
+    "id": "local-catalogue",
+    "claim": "Catalogue data is stored on the user's computer and catalogue work makes no passive network request.",
+    "where": "landing privacy section, desktop footer, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:local-catalogue --project=desktop-chromium",
+    "sandbox": "fresh installed-app web preview; add an EPUB; assert it is written to rsl:library-state:v1 and all observed requests stay on the app origin"
   },
   {
     "id": "privacy-requests",
-    "claim": "The website and sample demo make no analytics or advertising requests.",
-    "where": "landing facts, privacy page, README",
+    "claim": "The website, sample demo, and idle app make no analytics, advertising, CDN-font, or third-party runtime requests and set no cookies.",
+    "where": "landing facts and privacy section, privacy page, README",
     "test": "npm run test:claims -- --grep @claim:privacy-requests --project=desktop-chromium",
-    "sandbox": "record every request across landing, search, and sample collection; allow only same-origin and the documented GitHub release API"
+    "sandbox": "record requests across landing, demo search and collection, and idle app; allow only the two local origins and the documented GitHub release API; assert an empty cookie jar"
   },
   {
     "id": "core-free",
-    "claim": "Catalogue, collection, USB, and Markdown tools do not require a purchase.",
-    "where": "landing facts, desktop app, README",
+    "claim": "Catalogue, collection, USB, WebDAV, and Markdown tools require no purchase or product account.",
+    "where": "landing facts and privacy section, desktop WebDAV panel, terms, README",
     "test": "npm run test:claims -- --grep @claim:core-free --project=desktop-chromium",
-    "sandbox": "fresh demo context without a license; assert core task controls are enabled and no checkout link is present"
+    "sandbox": "fresh demo without a license; assert catalogue, collections, notes, and WebDAV controls are enabled and no checkout link exists"
   },
   {
     "id": "offline-demo",
@@ -35,9 +35,16 @@
     "sandbox": "fresh browser context; load /demo/ online under its service worker; set context offline; reload and assert sample catalogue state"
   },
   {
+    "id": "nested-library-scan",
+    "claim": "The recursive scan reads EPUB title, author, series, and cover status, includes PDFs, ignores other files, and excludes protected PDFs.",
+    "where": "landing workflow and preview, desktop catalogue, README",
+    "test": "npm run test:rust-core -- claim_nested_library_scan_reads_metadata_and_flags_protection",
+    "sandbox": "temporary nested library with a metadata-rich EPUB, a protected PDF, and an unrelated text file; scan through the native core and assert all observed fields and eligibility"
+  },
+  {
     "id": "source-preserved",
     "claim": "Scanning book metadata does not rewrite the source file.",
-    "where": "desktop empty state, privacy page, README",
+    "where": "desktop catalogue, privacy page, README",
     "test": "npm run test:rust-core -- claim_source_scan_preserves_file_bytes",
     "sandbox": "temporary source PDF; record bytes, scan it through the native inspection path, and assert exact bytes remain"
   },
@@ -46,13 +53,62 @@
     "claim": "PDF titles and authors stored as UTF-16 or PDFDocEncoding are decoded without replacement characters.",
     "where": "desktop catalogue behavior, README",
     "test": "npm run test:rust-core -- claim_pdf_metadata_survives_scan",
-    "sandbox": "temporary directory containing a generated PDF with Unicode title and author; scan the file and assert exact decoded values"
+    "sandbox": "temporary generated PDF with Unicode title and author; scan the file and assert exact decoded values"
+  },
+  {
+    "id": "ordered-collections",
+    "claim": "Collection order becomes numbered, device-safe folders and filenames.",
+    "where": "landing workflow, desktop collections, README",
+    "test": "npm run test:claims -- --grep @claim:ordered-collections --project=desktop-chromium",
+    "sandbox": "clean sample demo; inspect its ordered collection and assert all three Unicode-safe planned filenames in order"
   },
   {
     "id": "verified-usb-copy",
     "claim": "USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy.",
-    "where": "desktop transfer screen, README",
+    "where": "desktop transfer panel, privacy page, README",
     "test": "npm run test:rust-core -- claim_verified_usb_copy_is_idempotent",
     "sandbox": "temporary source and device directories; copy twice; compare source and destination bytes and inspect the device manifest"
+  },
+  {
+    "id": "usb-partial-copy",
+    "claim": "An incomplete USB staging copy never replaces an existing verified destination file.",
+    "where": "desktop USB transfer panel, README",
+    "test": "npm run test:rust-core -- claim_usb_partial_copy_keeps_existing_file",
+    "sandbox": "temporary source and device directories with an existing good destination; inject a partial staging write; assert the good file remains and the staging file is removed"
+  },
+  {
+    "id": "webdav-credentials",
+    "claim": "WebDAV setup needs no product license, does not persist its address, username, or password, clears the password after every attempt, and shows recovery guidance.",
+    "where": "landing privacy section, desktop WebDAV panel, privacy page, README",
+    "test": "npm run test:claims -- --grep @claim:webdav-credentials --project=desktop-chromium",
+    "sandbox": "fresh installed-app web preview with mocked native IPC; exercise failed and successful checks plus upload; inspect UI, IPC payloads, password field, and all local storage"
+  },
+  {
+    "id": "webdav-transfer",
+    "claim": "WebDAV enforces HTTPS except for local testing, checks the destination, creates collection folders, authenticates, and uploads exact selected bytes.",
+    "where": "desktop WebDAV panel, privacy page, README",
+    "test": "npm run test:rust-core -- claim_webdav_checks_and_uploads_with_recovery_errors",
+    "sandbox": "temporary source plus a local HTTP WebDAV fixture; assert PROPFIND, MKCOL, authenticated PUT path/body, remote error guidance, and rejection of a deceptive non-local HTTP host"
+  },
+  {
+    "id": "highlight-import-formats",
+    "claim": "Imports Markdown, JSON, KOReader sidecar, and embedded PDF annotations.",
+    "where": "desktop notes panel, README",
+    "test": "npm run test:rust-core -- claim_supported_highlight_formats_import",
+    "sandbox": "temporary Markdown, JSON, KOReader Lua, and generated annotated PDF fixtures; import each through the native path and assert quote/note content"
+  },
+  {
+    "id": "markdown-export",
+    "claim": "Exports imported highlights as plain Markdown.",
+    "where": "landing workflow and preview, desktop notes panel, README",
+    "test": "npm run test:claims -- --grep @claim:markdown-export --project=desktop-chromium",
+    "sandbox": "open /demo/ from clean storage; export bundled highlights; inspect the downloaded Markdown contents"
+  },
+  {
+    "id": "release-manifest",
+    "claim": "A release manifest names installers for macOS Intel and Apple silicon, Windows, and Linux, with a SHA-256 checksum for each.",
+    "where": "landing download section, README",
+    "test": "npm run test:release",
+    "sandbox": "temporary fake platform bundles; run the production manifest generator; assert all required platform URLs and exact SHA-256 entries"
   }
 ]

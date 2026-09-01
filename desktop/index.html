@@ -79,7 +79,7 @@
       </section>
 
       <section class="task-panel" id="transfer" aria-labelledby="tab-transfer" role="tabpanel" hidden>
-        <div class="section-heading"><div><span class="eyebrow">A deliberate handoff</span><h2>Transfer &amp; notes</h2></div><span class="privacy-chip">No cloud account</span></div>
+        <div class="section-heading"><div><span class="eyebrow">A deliberate handoff</span><h2>Transfer &amp; notes</h2></div><span class="privacy-chip">Saved on this computer</span></div>
         <div class="transfer-grid">
           <section class="method-block" aria-labelledby="usb-title">
             <span class="step-number">A</span><h3 id="usb-title">USB folder</h3>
@@ -91,12 +91,23 @@
             </div>
           </section>
           <section class="method-block" aria-labelledby="webdav-title">
-            <span class="step-number">B</span><div class="title-line"><h3 id="webdav-title">WebDAV</h3><span class="paid-badge">Field edition</span></div>
-            <p>Send the same safe collection layout to a private WebDAV folder. Credentials are used for this transfer only.</p>
-            <form id="webdav-form">
-              <label for="webdav-url">Server folder<input id="webdav-url" type="url" autocomplete="url" placeholder="https://cloud.example/books" required /></label>
-              <div class="field-pair"><label for="webdav-user">Username<input id="webdav-user" autocomplete="username" /></label><label for="webdav-password">App password<input id="webdav-password" type="password" autocomplete="current-password" /></label></div>
-              <button class="button button-secondary" type="submit">Sync with WebDAV</button>
+            <span class="step-number">B</span><div class="title-line"><h3 id="webdav-title">WebDAV</h3><span class="privacy-chip">Included</span></div>
+            <p>Send numbered collection folders to a WebDAV folder you control. No license or account with us is needed.</p>
+            <details class="setup-guide">
+              <summary>Set up a WebDAV folder</summary>
+              <ol>
+                <li>Copy the HTTPS WebDAV folder address from your storage provider. A normal sign-in page will not work.</li>
+                <li>Enter your username. Use an app password when your provider offers one.</li>
+                <li>Check the connection, then sync. A failed check explains what to change.</li>
+              </ol>
+              <p>These WebDAV details are not saved by the app. The password clears after each check or sync attempt.</p>
+            </details>
+            <form id="webdav-form" autocomplete="off">
+              <label for="webdav-url">WebDAV folder address<input id="webdav-url" type="url" inputmode="url" autocomplete="off" placeholder="https://cloud.example/remote.php/dav/files/name/Books" aria-describedby="webdav-help webdav-status" required /></label>
+              <p class="form-note" id="webdav-help">Use HTTPS. Local test servers may use http://localhost or http://127.0.0.1.</p>
+              <div class="field-pair"><label for="webdav-user">Username<input id="webdav-user" autocomplete="off" /></label><label for="webdav-password">App password<input id="webdav-password" type="password" autocomplete="off" aria-describedby="webdav-help webdav-status" /></label></div>
+              <div class="button-row"><button class="button button-secondary" id="webdav-check" type="button">Check connection</button><button class="button button-primary" type="submit">Sync with WebDAV</button></div>
+              <p class="connection-status" id="webdav-status" role="status">Enter the folder address supplied by your provider.</p>
             </form>
           </section>
           <section class="method-block notes-block" aria-labelledby="notes-title">
@@ -110,7 +121,7 @@
       </section>
     </main>
 
-    <footer class="app-footer"><span>Local-only catalogue · originals preserved</span><button id="license-button" class="text-button" type="button">Field edition license</button></footer>
+    <footer class="app-footer"><span>Catalogue saved on this computer · originals preserved</span></footer>
     <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
 
     <dialog id="collection-dialog">
@@ -122,15 +133,6 @@
       </form>
     </dialog>
 
-    <dialog id="license-dialog">
-      <form method="dialog" id="license-form">
-        <div class="dialog-heading"><div><span class="eyebrow">Existing licenses</span><h2>Field edition</h2></div><button class="icon-button" value="cancel" aria-label="Close dialog" type="submit">×</button></div>
-        <p>Private WebDAV transfer remains available to existing Field edition buyers. New purchases are paused.</p>
-        <label for="license-token">Have a license? Paste it<input id="license-token" autocomplete="off" spellcheck="false" /></label>
-        <p class="form-note" id="license-note">Verification needs a connection once, then is cached for 24 hours.</p>
-        <div class="dialog-actions"><button class="button button-quiet" value="cancel" type="submit">Not now</button><button class="button button-secondary" id="verify-license" value="default" type="submit">Verify license</button></div>
-      </form>
-    </dialog>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

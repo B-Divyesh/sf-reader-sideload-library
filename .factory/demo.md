@@ -10,7 +10,7 @@ The first demo screen is the working catalogue with four opinionated sample reco
 
 ## Isolation and reset
 
-Demo state uses only `localStorage` key `demo:rsl:library-state:v1`. Real catalogue state uses `rsl:library-state:v1`; demo code never reads or writes that key. Demo mode does not open file or directory pickers, run transfers, read license keys, or call license verification.
+Demo state uses only `localStorage` key `demo:rsl:library-state:v1`. Real catalogue state uses `rsl:library-state:v1`; demo code never reads or writes that key. Demo mode does not open file or directory pickers or run USB/WebDAV transfers.
 
 Use **Reset demo** in the persistent banner to restore the bundled sample. Use **Start for real** to delete the demo key and leave the demo. Opening `/demo/` from a fresh browser seeds the same sample automatically.
 

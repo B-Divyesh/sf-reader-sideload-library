@@ -79,7 +79,7 @@ test("@claim:demo-isolated sample work never changes real library storage", asyn
   await expect(page.locator("#book-count")).toHaveText("4");
 });
 
-test("decoded PDF metadata stays searchable and produces a clean device filename", async ({ page }) => {
+test("@claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames", async ({ page }) => {
   await page.goto("/demo/");
   await page.locator("#search").fill("Zoë");
   await expect(page.locator("#catalogue-body")).toContainText("Field Notes 03 — 秋");
@@ -110,8 +110,11 @@ test("@claim:privacy-requests uses no analytics or advertising requests", async 
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();
   await expect(page.locator(".collection")).toContainText("Autumn Queue");
-  const allowed = new Set(["http://127.0.0.1:4173", "https://api.github.com"]);
+  await page.goto("http://127.0.0.1:4174/?demo=1");
+  await expect(page.locator("#book-count")).toHaveText("4");
+  const allowed = new Set(["http://127.0.0.1:4173", "http://127.0.0.1:4174", "https://api.github.com"]);
   expect(requests.filter((url) => !allowed.has(new URL(url).origin))).toEqual([]);
+  expect(await page.context().cookies()).toEqual([]);
 });
 
 test("@claim:core-free exposes core tools without a license or checkout", async ({ page }) => {
@@ -119,7 +122,9 @@ test("@claim:core-free exposes core tools without a license or checkout", async 
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
   await expect(page.locator("#search")).toBeEnabled();
   await expect(page.getByRole("tab", { name: /Collections/ })).toBeEnabled();
-  await expect(page.getByRole("tab", { name: /Transfer & notes/ })).toBeEnabled();
+  await page.getByRole("tab", { name: /Transfer & notes/ }).click();
+  await expect(page.getByRole("button", { name: "Sync with WebDAV" })).toBeEnabled();
+  await expect(page.getByText("No license or account with us is needed.")).toBeVisible();
 });
 
 test("@claim:offline-demo reloads the sample catalogue offline", async ({ browser }) => {

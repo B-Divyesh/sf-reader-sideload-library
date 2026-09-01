@@ -1,85 +1,67 @@
-# Reader Sideload Library — repair 2 handoff
-
-> **Independent verifier status (2026-08-30): FAIL.** Candidate `82950fa5c3cdcac7dd71a396170e176b92ac6407` and <https://reader-sideload-library.sociobot.in> passed the listed claims, full quality suite, build, live/demo, accessibility, privacy-request, offline, release, and rate-limit checks. They are not accepted because public privacy/transfer claims are not fully inventoried and tested, and the WebDAV path is unavailable to new users. See `.factory/verification-2.md` for exact evidence and required remediation. This verifier result supersedes the builder's self-report below.
+# Reader Sideload Library — repair 3 handoff
 
 ## Result
 
-Candidate `64f731e0675f8f05593d4f4c9df6e4bb0c80f615` is repaired as version `0.1.2`. The completed product findings and v0.1.1 behavior remain intact.
+Version `0.1.3` repairs every release blocker in verifier report commit `8ff1f3e65c6eea9f9c928e12e47654b90458e03a` for candidate `82950fa5c3cdcac7dd71a396170e176b92ac6407`.
+
+The Tauri 2 desktop app remains the product artifact. The static site remains the deployment artifact. Existing catalogue, collection, USB, highlights, demo, offline, and installer behavior is preserved.
 
 ## Failure reproduced
 
-The factory deploy configuration runs this exact clean command:
+The candidate advertised privacy and transfer behavior that was not fully present in `.factory/claims.json`. An exact phrase-to-claim comparison reported all eight reviewed phrases as `MISSING`: local library storage, no product account or cloud catalogue, no saved WebDAV password, complete USB-copy guarantees, recursive scan behavior, WebDAV HTTPS and credential handling, supported highlight formats, and no analytics/telemetry/CDN runtime requests.
 
-```sh
-npm ci && npm test && npm run build:site
-```
-
-On the unmodified candidate, `npm test` ran unrestricted `cargo test`. Cargo selected the default Tauri desktop dependency graph and failed in `glib-sys v0.18.1` because the static worker has no `glib-2.0.pc`:
-
-```text
-error: failed to run custom build command for `glib-sys v0.18.1`
-Package 'glib-2.0', required by 'virtual:world', not found
-```
-
-The failure was a test-boundary defect. Rust catalogue and transfer tests do not need Tauri, GTK, GLib, or WebKit, but the manifest made those dependencies unconditional.
+The app also labelled WebDAV as a paid Field feature and disabled it without an existing license. Checkout remained paused. A new user therefore had no route to set up WebDAV, test the connection, or recover from a bad endpoint or app password.
 
 ## Repair
 
-- Added a default `desktop` Cargo feature for Tauri and the dialog plugin.
-- Made the native binary require `desktop`, so installer builds keep their full behavior.
-- Gated Tauri command attributes, native startup, and the Tauri build script behind `desktop`.
-- Changed Rust core tests to run with `--no-default-features --lib`.
-- Added `scripts/check-rust-core-isolation.mjs`, which fails if Tauri, GTK, GLib, or WebKit re-enters the core test graph.
-- Updated all three native claim commands to use the isolated Rust test path.
-- Advanced package, Cargo, Tauri, site, manifest, and release-workflow versions to `0.1.2`.
-- Kept the original desktop app artifact class, Tauri stack, static landing deployment, demo, claims, visual system, and privacy model.
+- Replaced the eight-claim inventory with 16 specific, observable claims and a one-to-one marker check.
+- Added exact browser, native-core, and release-fixture coverage for every claim.
+- Made WebDAV a free core tool. It no longer needs a product license or account.
+- Added a first-use guide, a connection check, HTTPS enforcement, app-password guidance, timeout handling, disabled redirects, and recovery messages for common WebDAV failures.
+- Kept WebDAV address, username, and password out of browser storage. The password field clears after every check or sync attempt.
+- Added a local WebDAV protocol fixture that proves `PROPFIND`, authenticated `MKCOL`, encoded paths, and exact uploaded bytes without contacting a real service.
+- Added a staged USB-copy regression that simulates a connection failure and proves the existing destination remains unchanged.
+- Added nested EPUB/PDF scan fixtures covering title, author, series, cover state, protected-PDF exclusion, and unrelated-file exclusion.
+- Added Markdown, JSON, KOReader sidecar, and embedded PDF-annotation import fixtures.
+- Narrowed site, app, privacy, terms, and README wording to the behavior the tests prove.
+- Advanced package, Cargo, Tauri, release workflow, site, and service-worker versions to `0.1.3`.
 
-## Verification evidence
+The verifier found that the paid WebDAV route was impossible for new users. Rather than preserve an unusable gate or access an out-of-scope billing service, this repair makes WebDAV free. Previously licensed users retain the feature; the obsolete local license cache is removed on normal startup.
 
-Run from the repository root with Node.js 22+ and Rust stable. Platform GUI packages are needed only for native desktop development and packaging.
+## Local verification evidence
 
-- Cold Rust target plus exact factory command: passed.
-- `npm test`: passed; 4 Vitest, 6 Rust, and 40 Playwright tests across desktop and 390px mobile Chromium.
-- `npm run test:rust-core`: passed; dependency regression reported no Tauri or Linux GUI libraries.
-- Every command in `.factory/claims.json`: passed independently; logs are under `/work/.evidence/claims/` in the worker evidence.
+Run from the repository root with Node.js 22+ and Rust stable. Native Linux packaging also needs the packages listed in `README.md`.
+
+- Clean `npm ci`: passed; 68 packages installed and 0 vulnerabilities.
+- `npm test`: passed; 16/16 claim mappings, 5 Vitest tests, 10 Rust tests, and 44 Playwright tests across desktop and 390 px mobile Chromium.
+- Every command in `.factory/claims.json`: passed independently.
 - `npm run check`: passed.
 - `cargo fmt --manifest-path src-tauri/Cargo.toml -- --check`: passed.
-- `npm audit --audit-level=high`: passed with zero vulnerabilities.
+- `cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings`: passed.
+- `npm audit --audit-level=high`: passed with 0 vulnerabilities.
 - `npm run build`: passed and produced `dist/`, `dist/app/`, and `dist/site/`.
-- Local `verify-url.sh` for `/` and `/demo/`: title, `lang`, one h1, main landmark, alt text, button names, and console all passed.
-- Playwright axe: zero serious or critical findings on landing, demo, privacy, terms, 404, desktop shell, dark mode, desktop, and mobile.
-- Keyboard, 390px reflow, visible focus, 44px targets, reduced motion, offline demo reload, and demo storage isolation passed in Playwright.
-- Privacy claim: the complete landing and demo flow allowed only same-origin requests and the documented GitHub releases API.
-- Release fixture: staging normalized four platform assets; `latest.json` selected macOS ARM64, macOS Intel, Windows x64, and Linux x64; every generated SHA-256 entry verified.
-- Shell installer syntax and all three release Node scripts passed syntax checks.
-- Site initial JavaScript is 2.94 KB raw; CSS is 12.15 KB raw; loaded WOFF2 fonts total 88.27 KB; mobile hero is 79,982 bytes.
-- Live Lighthouse mobile: performance 100, accessibility 100, best practices 100, SEO 100, LCP 1.4 s, CLS 0.031, TBT 0 ms, transfer 177 KiB.
+- `CI=true npm run tauri build`: passed and produced AppImage, Debian, and RPM bundles for version `0.1.3`.
+- Factory `verify-url.sh` on the local production site: HTTP 200, one h1, `lang`, main landmark, image alternatives, button names, and 0 console errors.
+- Playwright axe: 0 serious or critical findings on landing, demo, privacy, terms, 404, desktop shell, dark mode, desktop, and mobile.
+- Keyboard order, visible focus, 390 px reflow, 44 px targets, reduced motion, offline demo reload, and demo storage isolation passed in Playwright.
+- Privacy tests observed only the local site/app origins and the documented GitHub releases API; the browser cookie jar remained empty.
+- Local Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100, LCP 2.12 s, CLS 0.028, TBT 0 ms.
+- Site initial JavaScript is 2.94 KB raw / 1.35 KB gzip. App initial JavaScript is 20.44 KB raw / 7.62 KB gzip. Site CSS is 12.15 KB raw / 3.36 KB gzip. Loaded WOFF2 fonts total 88.27 KB. The mobile hero is 79,982 bytes.
+- Local Linux bundles: AppImage 79,821,304 bytes, Debian 5,003,184 bytes, RPM 5,003,600 bytes.
 
 ## Release and deployment
 
 - Static deploy root: `dist/site`.
-- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.2`.
-- GitHub Actions run `33299554556` passed quality, macOS ARM64, macOS Intel, Windows x64, Linux x64, and publish jobs: `https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33299554556`.
-- Published release: `https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.2`.
-- Exact assets: ARM64 and Intel `.dmg`, Windows `.msi` and `.exe`, Linux `.AppImage`, `.deb`, and `.rpm`, plus `latest.json` and `SHA256SUMS`.
-- `latest.json` reports version `0.1.2` and all four required platform records with v0.1.2 URLs.
-- Independently downloaded `Reader.Sideload.Library_0.1.2_amd64.deb` SHA-256 `92251b3eecbad4cf40a6aee302bd2995204ca2f708a29b09dbbd7485f5583528` matches both `SHA256SUMS` and GitHub metadata. Its package metadata reports version `0.1.2` and architecture `amd64`.
-- The one-line Linux installer completed in an isolated temporary home. Its installed AppImage SHA-256 `9ede42f783708549528651d677e93ec329086fb45cff9ae9b77d35fffa566aa8` matches `latest.json`.
-- Production deployment updated only `sf-reader-sideload-library`; custom URL is `https://reader-sideload-library.sociobot.in`.
-- Live `/` is byte-identical to `dist/site/index.html`: SHA-256 `85b7b3cf82f701e77c10bd1c0ea354c9f26a4aafe3cefb10e78f9db70dc42c39`.
-- Live `/`, `/demo/`, `/privacy/`, and `/terms/` return 200; `/definitely-missing` returns the designed page with HTTP 404.
-- Live HTML sends CSP and Permissions-Policy; hashed assets send `Cache-Control: public, max-age=31536000, immutable`.
-- Live `verify-url.sh` reports zero console errors for home and demo.
-- A fresh live browser resolved the Linux button to the exact v0.1.2 AppImage, showed version 0.1.2, contacted only the site and GitHub API, and reopened the four-book demo offline.
+- GitHub release workflow: `.github/workflows/release.yml`, triggered by tag `v0.1.3`.
+- Release and live deployment evidence will be added after the tagged workflow and exact production deployment finish.
 
 ## Known gaps
 
 - Linux, macOS, and Windows packages remain unsigned. Platform trust prompts are documented.
 - Physical-reader compatibility still merits hardware checks across Kobo, PocketBook, reMarkable, and generic USB storage.
-- WebDAV should be smoke-tested against each service before naming that service. New purchases remain paused until billing enables this product.
+- The WebDAV implementation is protocol-tested locally. No named provider is advertised without a provider-specific smoke test.
 - PDF ink annotations and vendor-private note formats still require vendor-specific extraction or OCR.
 
 ## Needs operator action
 
-- For trusted signed releases, configure `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID`, `WINDOWS_CERT_PFX`, and `WINDOWS_CERT_PASSWORD`.
-- Enable the Field product in the Sociobot billing engine before restoring any checkout link.
+For trusted signed releases, configure `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD`, `APPLE_TEAM_ID`, `WINDOWS_CERT_PFX`, and `WINDOWS_CERT_PASSWORD`.

@@ -8,7 +8,7 @@ use std::{
     fs::{self, File},
     io::{Read, Write},
     path::{Component, Path, PathBuf},
-    time::UNIX_EPOCH,
+    time::{Duration, UNIX_EPOCH},
 };
 use walkdir::WalkDir;
 use zip::ZipArchive;
@@ -356,6 +356,19 @@ fn validate_relative(path: &str) -> Result<PathBuf, String> {
 
 #[cfg_attr(feature = "desktop", tauri::command)]
 fn sync_usb(destination: String, items: Vec<SyncItem>) -> Result<SyncReport, String> {
+    sync_usb_with(destination, items, |source, target| {
+        fs::copy(source, target).map(|_| ())
+    })
+}
+
+fn sync_usb_with<F>(
+    destination: String,
+    items: Vec<SyncItem>,
+    mut copy_file: F,
+) -> Result<SyncReport, String>
+where
+    F: FnMut(&Path, &Path) -> std::io::Result<()>,
+{
     let root = Path::new(&destination);
     if !root.is_dir() {
         return Err("The reader folder is unavailable. Reconnect the device and retry; completed files are safe.".into());
@@ -386,7 +399,10 @@ fn sync_usb(destination: String, items: Vec<SyncItem>) -> Result<SyncReport, Str
                     .and_then(|value| value.to_str())
                     .unwrap_or("book")
             ));
-            fs::copy(source, &temporary).map_err(|_| "The reader disconnected during a copy. The incomplete staging file will not replace a book; reconnect and retry.".to_string())?;
+            if copy_file(source, &temporary).is_err() {
+                let _ = fs::remove_file(&temporary);
+                return Err("The reader disconnected during a copy. The incomplete staging file was removed; reconnect and retry.".into());
+            }
             if !same_file(source, &temporary).unwrap_or(false) {
                 let _ = fs::remove_file(&temporary);
                 return Err("A copied file failed verification. The incomplete copy was removed; retry with another cable or port.".into());
@@ -436,23 +452,99 @@ fn hash_file(path: &Path) -> std::io::Result<String> {
 }
 
 #[cfg_attr(feature = "desktop", tauri::command)]
+async fn check_webdav(
+    endpoint: String,
+    username: String,
+    password: String,
+) -> Result<String, String> {
+    let base = webdav_base(&endpoint, &username, &password)?;
+    let client = webdav_client()?;
+    let request = client
+        .request(Method::from_bytes(b"PROPFIND").unwrap(), base)
+        .header("Depth", "0");
+    let status = webdav_auth(request, &username, &password)
+        .send()
+        .await
+        .map_err(|_| "Could not reach the WebDAV server. Check the address and your connection, then try again.".to_string())?
+        .status();
+    if status.is_success() {
+        Ok("Connection works. The WebDAV folder is ready for a transfer.".into())
+    } else {
+        Err(webdav_status_error(status, "check the folder"))
+    }
+}
+
+fn webdav_base(endpoint: &str, username: &str, password: &str) -> Result<String, String> {
+    let parsed = reqwest::Url::parse(endpoint.trim())
+        .map_err(|_| "Enter the complete WebDAV folder address, including https://.".to_string())?;
+    let local_http = parsed.scheme() == "http"
+        && matches!(
+            parsed.host_str(),
+            Some("localhost") | Some("127.0.0.1") | Some("::1")
+        );
+    if parsed.scheme() != "https" && !local_http {
+        return Err(
+            "Use an HTTPS WebDAV address. HTTP is accepted only for localhost testing.".into(),
+        );
+    }
+    if !parsed.username().is_empty() || parsed.password().is_some() {
+        return Err("Remove sign-in details from the WebDAV address and use the username and app password fields.".into());
+    }
+    if username.trim().is_empty() && !password.is_empty() {
+        return Err("Enter the username that belongs with this app password.".into());
+    }
+    Ok(endpoint.trim().trim_end_matches('/').to_string())
+}
+
+fn webdav_client() -> Result<Client, String> {
+    Client::builder()
+        .redirect(reqwest::redirect::Policy::none())
+        .timeout(Duration::from_secs(30))
+        .build()
+        .map_err(|_| {
+            "The WebDAV connection could not be prepared. Restart the app and try again.".into()
+        })
+}
+
+fn webdav_auth(
+    request: reqwest::RequestBuilder,
+    username: &str,
+    password: &str,
+) -> reqwest::RequestBuilder {
+    if username.is_empty() {
+        request
+    } else {
+        request.basic_auth(username, Some(password))
+    }
+}
+
+fn webdav_status_error(status: StatusCode, action: &str) -> String {
+    match status {
+        StatusCode::UNAUTHORIZED | StatusCode::FORBIDDEN => format!(
+            "WebDAV sign-in failed with status {status}. Check the username and create a new app password, then {action} again."
+        ),
+        StatusCode::NOT_FOUND => format!(
+            "The WebDAV folder was not found (404). Copy its WebDAV address from your provider, then {action} again."
+        ),
+        StatusCode::METHOD_NOT_ALLOWED => "This address rejected the WebDAV request (405). Use the WebDAV folder address, not the provider's sign-in page.".to_string(),
+        StatusCode::INSUFFICIENT_STORAGE => format!(
+            "The WebDAV server is out of space (507). Free space or choose another folder, then {action} again."
+        ),
+        _ => format!(
+            "The WebDAV server returned status {status}. Check its service status and folder permissions, then {action} again."
+        ),
+    }
+}
+
+#[cfg_attr(feature = "desktop", tauri::command)]
 async fn sync_webdav(
     endpoint: String,
     username: String,
     password: String,
     items: Vec<SyncItem>,
 ) -> Result<SyncReport, String> {
-    if !endpoint.starts_with("https://")
-        && !endpoint.starts_with("http://localhost")
-        && !endpoint.starts_with("http://127.0.0.1")
-    {
-        return Err(
-            "Use an HTTPS WebDAV address. Insecure HTTP is accepted only for a local server."
-                .into(),
-        );
-    }
-    let client = Client::new();
-    let base = endpoint.trim_end_matches('/');
+    let base = webdav_base(&endpoint, &username, &password)?;
+    let client = webdav_client()?;
     let mut created = HashSet::new();
     for item in &items {
         let relative = validate_relative(&item.relative_path)?;
@@ -470,12 +562,7 @@ async fn sync_webdav(
                         Method::from_bytes(b"MKCOL").unwrap(),
                         format!("{base}/{accumulated}"),
                     );
-                    let request = if username.is_empty() {
-                        request
-                    } else {
-                        request.basic_auth(&username, Some(&password))
-                    };
-                    let status = request
+                    let status = webdav_auth(request, &username, &password)
                         .send()
                         .await
                         .map_err(|_| {
@@ -484,7 +571,7 @@ async fn sync_webdav(
                         })?
                         .status();
                     if !status.is_success() && status != StatusCode::METHOD_NOT_ALLOWED {
-                        return Err(format!("WebDAV refused collection creation with status {status}. Check folder permissions."));
+                        return Err(webdav_status_error(status, "create the collection folder"));
                     }
                 }
             }
@@ -509,16 +596,11 @@ async fn sync_webdav(
                 },
             )
             .body(bytes);
-        let request = if username.is_empty() {
-            request
-        } else {
-            request.basic_auth(&username, Some(&password))
-        };
-        let status = request.send().await.map_err(|_| "The WebDAV connection stopped during upload. Completed files are safe; retry to continue.".to_string())?.status();
+        let status = webdav_auth(request, &username, &password).send().await.map_err(|_| "The WebDAV connection stopped during upload. Check the connection, then sync again.".to_string())?.status();
         if !status.is_success() {
-            return Err(format!(
-                "WebDAV refused {} with status {status}. Check credentials and available space.",
-                item.relative_path
+            return Err(webdav_status_error(
+                status,
+                &format!("upload {}", item.relative_path),
             ));
         }
     }
@@ -721,6 +803,7 @@ fn make_highlight(book: &str, quote: &str, note: &str, location: &str, created: 
 }
 
 #[cfg_attr(feature = "desktop", tauri::command)]
+#[cfg_attr(not(feature = "desktop"), allow(dead_code))]
 fn write_text_file(path: String, contents: String) -> Result<(), String> {
     let target = Path::new(&path);
     if target
@@ -745,6 +828,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             scan_library,
             sync_usb,
+            check_webdav,
             sync_webdav,
             import_highlights,
             write_text_file
@@ -757,7 +841,19 @@ pub fn run() {
 mod tests {
     use super::*;
     use lopdf::{dictionary, StringFormat};
+    use std::{
+        net::{TcpListener, TcpStream},
+        sync::{Arc, Mutex},
+        thread,
+    };
     use tempfile::tempdir;
+    use zip::{write::SimpleFileOptions, ZipWriter};
+
+    type WebdavFixture = (
+        String,
+        thread::JoinHandle<()>,
+        Arc<Mutex<Vec<(String, Vec<u8>)>>>,
+    );
 
     #[test]
     fn rejects_parent_and_absolute_device_paths() {
@@ -812,6 +908,40 @@ mod tests {
             .is_file());
     }
 
+    // @claim:usb-partial-copy
+    #[test]
+    fn claim_usb_partial_copy_keeps_existing_file() {
+        let source_dir = tempdir().unwrap();
+        let device_dir = tempdir().unwrap();
+        let source = source_dir.path().join("book.epub");
+        let relative = "01 - Queue/001 - Book.epub";
+        let target = device_dir.path().join(relative);
+        fs::create_dir_all(target.parent().unwrap()).unwrap();
+        fs::write(&source, b"new complete book bytes").unwrap();
+        fs::write(&target, b"previous verified book bytes").unwrap();
+
+        let result = sync_usb_with(
+            device_dir.path().to_string_lossy().into_owned(),
+            vec![SyncItem {
+                source: source.to_string_lossy().into_owned(),
+                relative_path: relative.into(),
+                book_id: "book-1".into(),
+            }],
+            |source, staging| {
+                let bytes = fs::read(source)?;
+                fs::write(staging, &bytes[..5])?;
+                Err(std::io::Error::new(
+                    std::io::ErrorKind::ConnectionReset,
+                    "simulated disconnect",
+                ))
+            },
+        );
+
+        assert!(result.unwrap_err().contains("disconnected during a copy"));
+        assert_eq!(fs::read(&target).unwrap(), b"previous verified book bytes");
+        assert!(!target.with_extension("epub.rsl-part").exists());
+    }
+
     #[test]
     fn pdf_metadata_decodes_utf16_and_pdfdocencoding() {
         let utf16 = lopdf::text_string("Field Notes 03 — 秋");
@@ -850,5 +980,234 @@ mod tests {
         fs::write(&path, source).unwrap();
         let _ = inspect_book(&path, "pdf");
         assert_eq!(fs::read(&path).unwrap(), source);
+    }
+
+    // @claim:nested-library-scan
+    #[test]
+    fn claim_nested_library_scan_reads_metadata_and_flags_protection() {
+        let library = tempdir().unwrap();
+        let nested = library.path().join("shelf/field");
+        fs::create_dir_all(&nested).unwrap();
+        let epub_path = nested.join("moss.epub");
+        let mut archive = ZipWriter::new(File::create(&epub_path).unwrap());
+        let options = SimpleFileOptions::default();
+        archive
+            .start_file("META-INF/container.xml", options)
+            .unwrap();
+        archive.write_all(br#"<?xml version="1.0"?><container><rootfiles><rootfile full-path="OEBPS/book.opf"/></rootfiles></container>"#).unwrap();
+        archive.start_file("OEBPS/book.opf", options).unwrap();
+        archive.write_all(br#"<?xml version="1.0"?><package><metadata><title>The Moss Archive</title><creator>A. Reader</creator><meta name="calibre:series" content="Field Library"/><meta name="calibre:series_index" content="2"/></metadata></package>"#).unwrap();
+        archive.start_file("OEBPS/cover.jpg", options).unwrap();
+        archive.write_all(b"cover fixture").unwrap();
+        archive.finish().unwrap();
+
+        let pdf_path = nested.join("protected.pdf");
+        let mut protected = Document::with_version("1.7");
+        let encryption_id = protected.add_object(dictionary! { "Filter" => "Standard" });
+        protected.trailer.set("Encrypt", encryption_id);
+        protected.save(&pdf_path).unwrap();
+        fs::write(nested.join("ignored.txt"), b"not a book").unwrap();
+
+        let books = scan_library(library.path().to_string_lossy().into_owned()).unwrap();
+        assert_eq!(books.len(), 2);
+        let epub = books.iter().find(|book| book.format == "EPUB").unwrap();
+        assert_eq!(epub.title, "The Moss Archive");
+        assert_eq!(epub.authors, vec!["A. Reader"]);
+        assert_eq!(epub.series.as_deref(), Some("Field Library"));
+        assert_eq!(epub.series_index, Some(2.0));
+        assert_eq!(epub.cover_status, "found");
+        let pdf = books.iter().find(|book| book.format == "PDF").unwrap();
+        assert!(!pdf.eligible);
+        assert!(pdf
+            .warnings
+            .iter()
+            .any(|warning| warning.contains("Password-protected")));
+    }
+
+    // @claim:highlight-import-formats
+    #[test]
+    fn claim_supported_highlight_formats_import() {
+        let directory = tempdir().unwrap();
+        let markdown = directory.path().join("notes.md");
+        fs::write(&markdown, "## Markdown Book\n\n> Markdown quote\n").unwrap();
+        assert_eq!(
+            import_highlights(markdown.to_string_lossy().into_owned())
+                .unwrap()
+                .len(),
+            1
+        );
+
+        let json = directory.path().join("notes.json");
+        fs::write(&json, r#"[{"id":"j","book":"JSON Book","quote":"JSON quote","note":"","location":"12","created":""}]"#).unwrap();
+        assert_eq!(
+            import_highlights(json.to_string_lossy().into_owned()).unwrap()[0].quote,
+            "JSON quote"
+        );
+
+        let koreader = directory.path().join("notes.lua");
+        fs::write(
+            &koreader,
+            "text = \"KOReader quote\"\nnote = \"KOReader note\"",
+        )
+        .unwrap();
+        assert_eq!(
+            import_highlights(koreader.to_string_lossy().into_owned()).unwrap()[0].note,
+            "KOReader note"
+        );
+
+        let pdf = directory.path().join("annotated.pdf");
+        write_annotated_pdf(&pdf);
+        let highlights = import_highlights(pdf.to_string_lossy().into_owned()).unwrap();
+        assert_eq!(highlights[0].quote, "PDF quote");
+        assert_eq!(highlights[0].note, "PDF note");
+    }
+
+    fn write_annotated_pdf(path: &Path) {
+        let mut document = Document::with_version("1.7");
+        let pages_id = document.new_object_id();
+        let page_id = document.new_object_id();
+        let annotation_id = document.add_object(dictionary! {
+            "Type" => "Annot",
+            "Subtype" => "Highlight",
+            "Rect" => vec![0.into(), 0.into(), 10.into(), 10.into()],
+            "Contents" => lopdf::text_string("PDF quote"),
+            "T" => lopdf::text_string("PDF note"),
+        });
+        document.objects.insert(
+            page_id,
+            Object::Dictionary(dictionary! {
+                "Type" => "Page",
+                "Parent" => pages_id,
+                "MediaBox" => vec![0.into(), 0.into(), 100.into(), 100.into()],
+                "Annots" => vec![Object::Reference(annotation_id)],
+            }),
+        );
+        document.objects.insert(
+            pages_id,
+            Object::Dictionary(dictionary! {
+                "Type" => "Pages",
+                "Kids" => vec![Object::Reference(page_id)],
+                "Count" => 1,
+            }),
+        );
+        let catalog_id =
+            document.add_object(dictionary! { "Type" => "Catalog", "Pages" => pages_id });
+        document.trailer.set("Root", catalog_id);
+        document.save(path).unwrap();
+    }
+
+    // @claim:webdav-transfer
+    #[tokio::test]
+    async fn claim_webdav_checks_and_uploads_with_recovery_errors() {
+        let (base, server, requests) = spawn_webdav_fixture(3);
+        let ready = check_webdav(base.clone(), "reader".into(), "secret".into())
+            .await
+            .unwrap();
+        assert!(ready.contains("ready"));
+
+        let source_dir = tempdir().unwrap();
+        let source = source_dir.path().join("book.epub");
+        fs::write(&source, b"webdav book bytes").unwrap();
+        let report = sync_webdav(
+            base,
+            "reader".into(),
+            "secret".into(),
+            vec![SyncItem {
+                source: source.to_string_lossy().into_owned(),
+                relative_path: "Field Queue/001 - Book.epub".into(),
+                book_id: "book-1".into(),
+            }],
+        )
+        .await
+        .unwrap();
+        assert_eq!(report.copied, 1);
+        server.join().unwrap();
+        let requests = requests.lock().unwrap();
+        assert!(requests[0].0.starts_with("PROPFIND /library "));
+        assert!(requests[1].0.starts_with("MKCOL /library/Field%20Queue "));
+        assert!(requests[2]
+            .0
+            .starts_with("PUT /library/Field%20Queue/001%20-%20Book.epub "));
+        assert!(requests
+            .iter()
+            .all(|(headers, _)| headers.to_ascii_lowercase().contains(
+                "authorization: basic cmVhZGVyOnNlY3JldA=="
+                    .to_ascii_lowercase()
+                    .as_str()
+            )));
+        assert_eq!(requests[2].1, b"webdav book bytes");
+        assert!(webdav_base("http://localhost.attacker.invalid/books", "", "").is_err());
+        assert!(webdav_base("https://reader:secret@example.test/books", "", "").is_err());
+        assert!(
+            webdav_status_error(StatusCode::UNAUTHORIZED, "check the folder")
+                .contains("app password")
+        );
+        assert!(
+            webdav_status_error(StatusCode::NOT_FOUND, "check the folder")
+                .contains("WebDAV address")
+        );
+        assert!(
+            webdav_status_error(StatusCode::INSUFFICIENT_STORAGE, "sync").contains("Free space")
+        );
+    }
+
+    fn spawn_webdav_fixture(request_count: usize) -> WebdavFixture {
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        let address = listener.local_addr().unwrap();
+        let requests = Arc::new(Mutex::new(Vec::new()));
+        let captured = Arc::clone(&requests);
+        let handle = thread::spawn(move || {
+            for stream in listener.incoming().take(request_count) {
+                let mut stream = stream.unwrap();
+                let (headers, body) = read_http_request(&mut stream);
+                let status = if headers.starts_with("PROPFIND ") {
+                    "207 Multi-Status"
+                } else {
+                    "201 Created"
+                };
+                captured.lock().unwrap().push((headers, body));
+                write!(
+                    stream,
+                    "HTTP/1.1 {status}\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"
+                )
+                .unwrap();
+                stream.flush().unwrap();
+            }
+        });
+        (format!("http://{address}/library"), handle, requests)
+    }
+
+    fn read_http_request(stream: &mut TcpStream) -> (String, Vec<u8>) {
+        stream
+            .set_read_timeout(Some(Duration::from_secs(5)))
+            .unwrap();
+        let mut data = Vec::new();
+        let mut buffer = [0_u8; 4096];
+        let header_end = loop {
+            let count = stream.read(&mut buffer).unwrap();
+            assert!(count > 0);
+            data.extend_from_slice(&buffer[..count]);
+            if let Some(index) = data.windows(4).position(|window| window == b"\r\n\r\n") {
+                break index + 4;
+            }
+        };
+        let headers = String::from_utf8(data[..header_end].to_vec()).unwrap();
+        let content_length = headers
+            .lines()
+            .find_map(|line| {
+                line.to_ascii_lowercase()
+                    .strip_prefix("content-length: ")
+                    .and_then(|value| value.parse::<usize>().ok())
+            })
+            .unwrap_or(0);
+        while data.len() < header_end + content_length {
+            let count = stream.read(&mut buffer).unwrap();
+            assert!(count > 0);
+            data.extend_from_slice(&buffer[..count]);
+        }
+        (
+            headers,
+            data[header_end..header_end + content_length].to_vec(),
+        )
     }
 }
