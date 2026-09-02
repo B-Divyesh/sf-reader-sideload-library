@@ -147,6 +147,38 @@ try {
   results.firstScreen = firstScreen;
   await page.screenshot({ path: `${evidenceDir}/home-1366x768.png` });
 
+  results.requiredDesktopFirstScreens = {};
+  for (const viewport of [{ width: 1536, height: 864 }, { width: 1440, height: 900 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+    const items = await page.locator(".hero-facts li, .hero-lede, .hero-actions .button-primary").evaluateAll((elements) => elements.map((element) => {
+      const bounds = element.getBoundingClientRect();
+      return { text: element.textContent?.trim(), top: bounds.top, bottom: bounds.bottom };
+    }));
+    check(items.length === 5, `${viewport.width}x${viewport.height} first screen exposed ${items.length} required items instead of 5`);
+    check(items.every((item) => item.top >= 0 && item.bottom <= viewport.height), `${viewport.width}x${viewport.height} first-screen content is clipped: ${JSON.stringify(items)}`);
+    results.requiredDesktopFirstScreens[`${viewport.width}x${viewport.height}`] = items;
+    await page.screenshot({ path: `${evidenceDir}/home-${viewport.width}x${viewport.height}.png` });
+  }
+
+  await page.setViewportSize({ width: 1536, height: 864 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  const walkthroughFrames = page.locator(".walkthrough-frame");
+  check(await walkthroughFrames.count() === 4, `home has ${await walkthroughFrames.count()} walkthrough frames instead of 4`);
+  const walkthrough = [];
+  for (const frame of await walkthroughFrames.all()) {
+    const image = frame.locator("img");
+    await image.scrollIntoViewIfNeeded();
+    walkthrough.push(await frame.evaluate((element) => ({
+      caption: element.querySelector("figcaption")?.textContent?.trim(),
+      imageComplete: Boolean(element.querySelector("img")?.complete),
+      naturalWidth: element.querySelector("img")?.naturalWidth,
+      naturalHeight: element.querySelector("img")?.naturalHeight
+    })));
+  }
+  check(walkthrough.every((frame) => frame.caption && frame.imageComplete && frame.naturalWidth === 1280 && frame.naturalHeight === 800), `home walkthrough is incomplete: ${JSON.stringify(walkthrough)}`);
+  results.walkthrough = walkthrough;
+
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
   const mobileFirstScreen = await page.locator(".hero-facts li, .hero-lede, .hero-actions .button-primary").evaluateAll((elements) => elements.map((element) => {
@@ -162,10 +194,12 @@ try {
   const mobile = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
     clientWidth: document.documentElement.clientWidth,
-    privacyVisible: Boolean(document.querySelector('header a[href="/privacy/"]')?.getClientRects().length)
+    privacyVisible: Boolean(document.querySelector('header a[href="/privacy/"]')?.getClientRects().length),
+    wordmarkHeight: document.querySelector(".demo-wordmark")?.getBoundingClientRect().height
   }));
   check(mobile.scrollWidth <= mobile.clientWidth, `mobile demo overflows: ${mobile.scrollWidth} > ${mobile.clientWidth}`);
   check(mobile.privacyVisible, "mobile demo hides the Privacy navigation link");
+  check((mobile.wordmarkHeight ?? 0) >= 44, `mobile demo wordmark is ${mobile.wordmarkHeight}px high instead of at least 44px`);
   results.demo.mobile = mobile;
   await page.screenshot({ path: `${evidenceDir}/demo-mobile.png`, fullPage: true });
   await context.close();
