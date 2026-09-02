@@ -76,6 +76,10 @@ try {
       check(state.releaseStatus?.includes(`Release ${version} found`), `home did not resolve release ${version}: ${state.releaseStatus}`);
       check(state.downloadHref?.includes(`/releases/download/v${version}/`), `home download is not a v${version} asset: ${state.downloadHref}`);
       check(state.footerLinks.includes("Source on GitHub (external)"), "home source link does not name GitHub as an external destination");
+      const workflowLabels = await page.locator(".workflow-list .status-label").allTextContents();
+      const expectedWorkflowLabels = ["Review first", "Preview names", "Choose USB or WebDAV"];
+      check(JSON.stringify(workflowLabels) === JSON.stringify(expectedWorkflowLabels), `home workflow labels are not concrete: ${JSON.stringify(workflowLabels)}`);
+      results.workflow = { labels: workflowLabels };
     }
     results.routes.push({ route, status: response?.status(), ...state, seriousAxe: serious.length, consoleErrors });
     page.off("console", onConsole);

@@ -32,8 +32,9 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Arrange collections. | 2 | — |
 | Numbered folders and filenames preserve that order in the transfer plan. | 10 | — |
 | Copy books and export highlights | 5 | — |
-| Copy selected books by USB. | 5 | — |
+| Copy selected books by USB or WebDAV. | 7 | — |
 | Import highlights and export them as Markdown. | 7 | — |
+| Review first / Preview names / Choose USB or WebDAV | 2 / 2 / 4 | — Each label names a concrete review, result, or transfer method. |
 | Find metadata problems before copying. | 5 | — |
 | Search titles, authors, and series. | 6 | — |
 | Missing covers and protected files stay visible before transfer. | 8 | — |

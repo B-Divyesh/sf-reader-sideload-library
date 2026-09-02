@@ -32,6 +32,16 @@ test("landing states the job, audience, sample action, and three facts", async (
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
 });
 
+test("workflow labels name a concrete action or result", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".workflow-list .status-label")).toHaveText([
+    "Review first",
+    "Preview names",
+    "Choose USB or WebDAV"
+  ]);
+  await expect(page.getByText("You choose", { exact: true })).toHaveCount(0);
+});
+
 for (const viewport of [
   { name: "desktop", width: 1366, height: 768 },
   { name: "mobile", width: 390, height: 844 }
