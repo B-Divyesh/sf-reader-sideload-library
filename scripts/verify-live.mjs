@@ -97,9 +97,14 @@ try {
   await page.locator("#search").fill("Zoë");
   await page.locator("#format-filter").selectOption("PDF");
   await page.getByRole("tab", { name: /Collections/ }).click();
-  check(await page.getByText("Ordered device folders", { exact: true }).isVisible(), "Collections panel does not use its direct task label");
+  const collectionLabel = await page.getByText("Ordered device folders", { exact: true }).textContent();
+  check(Boolean(collectionLabel), "Collections panel does not use its direct task label");
+  await page.waitForTimeout(5200);
+  await page.screenshot({ path: `${evidenceDir}/demo-collections.png`, fullPage: true });
   await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
-  check(await page.getByText("USB, WebDAV, and Markdown export", { exact: true }).isVisible(), "Transfer panel does not use its direct task label");
+  const transferLabel = await page.getByText("USB, WebDAV, and Markdown export", { exact: true }).textContent();
+  check(Boolean(transferLabel), "Transfer panel does not use its direct task label");
+  await page.screenshot({ path: `${evidenceDir}/demo-transfer.png`, fullPage: true });
   await page.getByRole("tab", { name: /Collections/ }).click();
   await page.getByRole("button", { name: "Reset demo" }).click();
   const reset = await page.evaluate(() => ({
@@ -120,10 +125,11 @@ try {
   check(Boolean(reset.demo), "demo storage namespace was not seeded");
   results.demo = {
     url: page.url(),
-    thirdParty,
+    thirdParty: [...thirdParty],
+    labels: { collection: collectionLabel, transfer: transferLabel },
     reset: { ...reset, demo: undefined, demoSeeded: Boolean(reset.demo) }
   };
-  await page.waitForTimeout(350);
+  await page.waitForTimeout(5200);
   await page.screenshot({ path: `${evidenceDir}/demo-desktop.png`, fullPage: true });
 
   await page.setViewportSize({ width: 1366, height: 768 });

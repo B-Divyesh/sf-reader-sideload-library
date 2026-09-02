@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 
-const [tag = "v0.1.6", directory = "release-assets"] = process.argv.slice(2);
+const [tag = "v0.1.7", directory = "release-assets"] = process.argv.slice(2);
 const ownerRepo = process.env.GITHUB_REPOSITORY || "B-Divyesh/sf-reader-sideload-library";
 async function walk(path) {
   const entries = await readdir(path, { withFileTypes: true });

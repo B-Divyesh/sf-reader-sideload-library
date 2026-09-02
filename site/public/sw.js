@@ -1,4 +1,4 @@
-const CACHE = "rsl-shell-v6";
+const CACHE = "rsl-shell-v7";
 const ROUTES = ["/", "/demo/", "/demo/?demo=1", "/privacy/", "/terms/", "/404.html"];
 const BUILD_ASSETS = ["__RSL_BUILD_ASSETS__"];
 const SHELL = [...ROUTES, ...BUILD_ASSETS];

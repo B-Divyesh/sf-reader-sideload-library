@@ -229,10 +229,10 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          tag_name: "v0.1.6",
+          tag_name: "v0.1.7",
           assets: [
             { name: "latest.json", browser_download_url: "https://github.com/example/latest.json" },
-            { name: "Reader.Sideload.Library_0.1.6_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
+            { name: "Reader.Sideload.Library_0.1.7_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
           ]
         })
       });
@@ -246,7 +246,7 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
     await route.continue();
   });
   await page.goto(`${productionOrigin}/`);
-  await expect(page.locator("#release-status")).toContainText("Release 0.1.6 found");
+  await expect(page.locator("#release-status")).toContainText("Release 0.1.7 found");
   await page.goto(`${productionOrigin}/demo/`);
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();
@@ -273,12 +273,12 @@ test("@claim:offline-demo reloads the sample catalogue offline", async ({ browse
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4173/favicon.svg");
   await page.evaluate(async () => {
-    const oldCache = await caches.open("rsl-shell-v5");
+    const oldCache = await caches.open("rsl-shell-v6");
     await oldCache.put("/legacy-shell", new Response("old shell"));
   });
   await page.goto("http://127.0.0.1:4173/demo/?demo=1");
   await page.evaluate(() => navigator.serviceWorker.ready);
-  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v6"]);
+  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v7"]);
   await context.setOffline(true);
   await page.reload();
   await expect(page).toHaveURL(/\/demo\/\?demo=1$/);
