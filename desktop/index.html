@@ -48,7 +48,7 @@
       <div class="task-tabs" role="tablist">
         <button class="task-tab is-active" id="tab-catalogue" data-panel="catalogue" aria-controls="catalogue" aria-selected="true" role="tab"><span>01</span> Catalogue</button>
         <button class="task-tab" id="tab-collections" data-panel="collections" aria-controls="collections" aria-selected="false" role="tab"><span>02</span> Collections</button>
-        <button class="task-tab" id="tab-transfer" data-panel="transfer" aria-controls="transfer" aria-selected="false" role="tab"><span>03</span> Transfer &amp; notes</button>
+        <button class="task-tab" id="tab-transfer" data-panel="transfer" aria-controls="transfer" aria-selected="false" role="tab"><span>03</span> Transfer &amp; highlights</button>
       </div>
     </nav>
 
@@ -90,7 +90,7 @@
       </section>
 
       <section class="task-panel" id="transfer" aria-labelledby="tab-transfer" role="tabpanel" hidden>
-        <div class="section-heading"><div><span class="eyebrow">A deliberate handoff</span><h2>Transfer &amp; notes</h2></div><span class="privacy-chip">Saved on this computer</span></div>
+        <div class="section-heading"><div><span class="eyebrow">A deliberate handoff</span><h2>Transfer &amp; highlights</h2></div><span class="privacy-chip">Saved on this computer</span></div>
         <div class="transfer-grid">
           <section class="method-block" aria-labelledby="usb-title">
             <span class="step-number">A</span><h3 id="usb-title">USB folder</h3>
@@ -123,7 +123,7 @@
           </section>
           <section class="method-block notes-block" aria-labelledby="notes-title">
             <span class="step-number">C</span><h3 id="notes-title">Portable highlights</h3>
-            <p>Bring in Markdown, KOReader notes, text, JSON, or embedded PDF highlight annotations. Export everything as plain Markdown.</p>
+            <p>Bring in Markdown, KOReader sidecars, text, JSON, or embedded PDF highlights. Export everything as plain Markdown.</p>
             <div class="button-row"><button class="button button-secondary" id="import-highlights" type="button">Import highlights</button><button class="button button-secondary" id="export-highlights" type="button">Export Markdown</button></div>
             <input class="visually-hidden" id="browser-highlight" type="file" accept=".md,.txt,.json,.pdf" tabindex="-1" aria-label="Choose highlights file" />
             <div id="highlights-list" class="highlights-list"></div>

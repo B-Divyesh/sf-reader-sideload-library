@@ -8,16 +8,16 @@ One-click sample: <https://reader-sideload-library.sociobot.in/demo/?demo=1>
 
 ## Who it is for
 
-It is for people who own book files and use e-ink readers. It suits people who need a focused alternative to a full library manager. It is not an ebook store, DRM-removal tool, reader, or firmware project.
+It is for people who own book files and use e-ink readers. It is for people who want folder order and highlight export without a full library manager. It is not an ebook store, DRM-removal tool, reader, or firmware project.
 
 ## What works in v0.1
 
 - Recursive EPUB/PDF scan with embedded title, author, series, cover, encryption, and file validation
-- Searchable catalogue saved on this computer, with clear warnings and opt-in inclusion
+- Searchable catalogue saved on this computer, with warnings and per-book inclusion controls
 - Ordered collections become safe numbered folders and files
 - USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
 - WebDAV sync checks HTTPS, tests the connection, and explains what to fix
-- Import Markdown, text, JSON, KOReader notes, and PDF annotations. Export plain Markdown.
+- Import Markdown, text, JSON, KOReader sidecars, and PDF highlights. Export plain Markdown.
 - Catalogue, collection, and Markdown tools reopen offline after the first demo visit
 
 ## Try the sample
@@ -29,7 +29,7 @@ Demo changes use `demo:rsl:library-state:v1`. They never read or replace the rea
 ## Set up WebDAV
 
 1. Install the desktop app and scan your book folder.
-2. Open **Transfer & notes**. Copy the HTTPS WebDAV folder address from your storage provider.
+2. Open **Transfer & highlights**. Copy the HTTPS WebDAV folder address from your storage provider.
 3. Enter the provider username and an app password when the provider offers one.
 4. Choose **Check connection**. The app distinguishes address, sign-in, permission, and storage errors.
 5. Choose **Sync with WebDAV** after the check succeeds.
@@ -74,7 +74,7 @@ CI=true npm run tauri build  # local native bundle when platform prerequisites e
 
 ## Architecture and privacy
 
-The frontend is Vite + vanilla TypeScript. The Tauri Rust code scans files, copies books, reads PDF annotations, and sends WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no passive network requests. The website and demo use no analytics, advertising, CDN font, third-party runtime script, or cookies. The production landing page contacts GitHub's public releases API to resolve current installer links. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
+The frontend is Vite + vanilla TypeScript. The Tauri Rust code scans files, copies books, reads PDF annotations, and sends WebDAV requests. Catalogue data stays in local browser/WebView storage. The app makes no background network requests. The website and demo use no analytics, advertising, CDN font, third-party runtime script, or cookies. The production landing page contacts GitHub's public releases API to resolve current installer links. See the site’s [privacy policy](https://reader-sideload-library.sociobot.in/privacy/) and [terms](https://reader-sideload-library.sociobot.in/terms/).
 
 Source book files are read for metadata and are not rewritten. Protected media is excluded rather than decrypted.
 

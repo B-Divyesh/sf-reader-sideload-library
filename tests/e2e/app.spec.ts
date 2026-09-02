@@ -38,7 +38,7 @@ test("first-run sample project opens the isolated working catalogue", async ({ p
   await expect(page.locator("#catalogue-body")).toContainText("Field Notes 03 — 秋");
 });
 
-test("@claim:local-catalogue catalogue changes stay in app storage without passive requests", async ({ page }) => {
+test("@claim:local-catalogue catalogue changes stay in app storage without background requests", async ({ page }) => {
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
   await page.goto("/");
@@ -49,7 +49,7 @@ test("@claim:local-catalogue catalogue changes stay in app storage without passi
   await page.locator("#collection-name").fill("Device Queue");
   await page.locator("#collection-books input").check();
   await page.locator("#save-collection").click();
-  await page.getByRole("tab", { name: /Transfer & notes/ }).click();
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
   await page.locator("#browser-highlight").setInputFiles("tests/fixtures/highlights.md");
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem("rsl:library-state:v1") || "{}"));
   expect(stored.books[0].title).toBe("Owned Book");
@@ -83,7 +83,7 @@ test("@claim:webdav-credentials WebDAV setup is free, guided, and never persists
     });
   });
   await page.goto("/");
-  await page.getByRole("tab", { name: /Transfer & notes/ }).click();
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
   await expect(page.getByText("No license or account with us is needed.")).toBeVisible();
   await page.getByText("Set up a WebDAV folder").click();
   await expect(page.getByText("A normal sign-in page will not work.")).toBeVisible();

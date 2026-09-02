@@ -38,6 +38,11 @@
             <a class="button button-primary" href="/demo/?demo=1">Try it with sample data</a>
             <span>Open a ready sample catalogue.</span>
           </div>
+          <ul class="hero-facts" aria-label="Product facts">
+            <li>No account or background network requests</li>
+            <li>Catalogue, collection, and Markdown tools reopen offline after the first sample visit</li>
+            <li>USB and WebDAV tools are free</li>
+          </ul>
           <div id="download" class="download-block">
             <a class="button button-secondary" id="primary-download" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download for your computer</a>
             <span id="download-detail" aria-live="polite">Detecting your platform…</span>
@@ -53,19 +58,17 @@
         </figure>
       </section>
 
-      <section class="proof-strip" aria-label="Product facts"><span>No account or passive app traffic</span><span>Catalogue, collection, and Markdown tools reopen offline after the first sample visit</span><span>USB and WebDAV tools are free</span></section>
-
       <section id="workflow" class="workflow section-shell">
         <div class="section-intro"><span class="kicker">How it works</span><h2>Move your library in three steps.</h2><p>Review what the app finds before any book is copied.</p></div>
         <ol class="workflow-list">
           <li><span class="number">01</span><div><h3>Scan your book folder</h3><p>Choose DRM-free EPUB and PDF files. Review titles, authors, covers, and protected-file warnings.</p></div><span class="status-label">Review first</span></li>
           <li><span class="number">02</span><div><h3>Set the reading order</h3><p>Arrange collections. Numbered folders and filenames preserve that order in the transfer plan.</p></div><span class="status-label">Preview names</span></li>
-          <li><span class="number">03</span><div><h3>Copy books and export notes</h3><p>Copy selected books by USB. Import reader notes and export them as Markdown.</p></div><span class="status-label">You choose</span></li>
+          <li><span class="number">03</span><div><h3>Copy books and export highlights</h3><p>Copy selected books by USB. Import highlights and export them as Markdown.</p></div><span class="status-label">You choose</span></li>
         </ol>
       </section>
 
       <section class="screen-section section-shell" aria-labelledby="catalogue-heading">
-        <div class="screen-copy"><span class="kicker">Live catalogue preview</span><h2 id="catalogue-heading">Find metadata problems before copying.</h2><p>Search titles, authors, and series. Missing covers and protected files stay visible before transfer.</p><ul><li>EPUB and PDF files</li><li>Ordered collections</li><li>Portable Markdown notes</li></ul><a class="button button-primary" href="/demo/?demo=1">Open the sample catalogue</a></div>
+        <div class="screen-copy"><span class="kicker">Live catalogue preview</span><h2 id="catalogue-heading">Find metadata problems before copying.</h2><p>Search titles, authors, and series. Missing covers and protected files stay visible before transfer.</p><ul><li>EPUB and PDF files</li><li>Ordered collections</li><li>Portable Markdown highlights</li></ul><a class="button button-primary" href="/demo/?demo=1">Open the sample catalogue</a></div>
         <div class="catalogue-demo" role="img" aria-label="Example catalogue validation view with three books ready and one metadata warning">
           <div class="demo-head"><span>LOCAL CATALOGUE</span><strong>04</strong></div>
           <div class="demo-row"><span class="book-mark"></span><div><strong>The Moss Archive</strong><small>A. Reader · EPUB</small></div><span class="ready">✓ Ready</span></div>
@@ -77,7 +80,7 @@
 
       <section id="limits" class="edition section-shell">
         <div><span class="kicker">Scope and privacy</span><h2>See where your library data goes.</h2></div>
-        <div class="edition-columns"><div><h3>Your catalogue stays on this computer</h3><ul><li>No product account or cloud catalogue</li><li>No analytics, advertising, or passive app requests</li><li>WebDAV details are never written to app storage</li></ul></div><div><h3>Transfers happen only when you start them</h3><ul><li>USB copies go to the folder you choose</li><li>WebDAV sends selected books to your server</li><li>The app clears the password after each attempt</li></ul></div></div>
+        <div class="edition-columns"><div><h3>Your catalogue stays on this computer</h3><ul><li>No product account or cloud catalogue</li><li>No analytics, advertising, or background network requests</li><li>WebDAV details are never written to app storage</li></ul></div><div><h3>Transfers happen only when you start them</h3><ul><li>USB copies go to the folder you choose</li><li>WebDAV sends selected books to your server</li><li>The app clears the password after each attempt</li></ul></div></div>
         <p class="legal-note">WebDAV is included. Check the connection first to get specific help for address, sign-in, permission, and storage errors.</p>
       </section>
 
@@ -88,7 +91,7 @@
           <article><span class="platform-code">WIN</span><h3>Windows</h3><p>64-bit MSI installer.</p><a data-platform="windows_x64" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download .msi</a><small>Windows may show an unsigned publisher warning.</small></article>
           <article><span class="platform-code">LIN</span><h3>Linux</h3><p>AppImage and Debian package.</p><a data-platform="linux_x64" href="https://github.com/B-Divyesh/sf-reader-sideload-library/releases/latest">Download AppImage</a><small>Make executable, then run. A .deb is in the release.</small></article>
         </div>
-        <div class="terminal-installs"><div><span>macOS / Linux</span><button class="copy-command" data-copy="curl -fsSL https://reader-sideload-library.sociobot.in/install.sh | sh">Copy</button><code tabindex="0">curl -fsSL https://reader-sideload-library.sociobot.in/install.sh | sh</code></div><div><span>Windows PowerShell</span><button class="copy-command" data-copy="irm https://reader-sideload-library.sociobot.in/install.ps1 | iex">Copy</button><code tabindex="0">irm https://reader-sideload-library.sociobot.in/install.ps1 | iex</code></div></div>
+        <div class="terminal-installs"><div><span>macOS / Linux</span><button class="copy-command" data-copy="curl -fsSL https://reader-sideload-library.sociobot.in/install.sh | sh">Copy install command</button><code tabindex="0">curl -fsSL https://reader-sideload-library.sociobot.in/install.sh | sh</code></div><div><span>Windows PowerShell</span><button class="copy-command" data-copy="irm https://reader-sideload-library.sociobot.in/install.ps1 | iex">Copy install command</button><code tabindex="0">irm https://reader-sideload-library.sociobot.in/install.ps1 | iex</code></div></div>
         <p id="release-status" class="release-status" aria-live="polite">Checking the latest verified release…</p>
       </section>
     </main>

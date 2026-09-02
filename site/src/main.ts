@@ -70,8 +70,8 @@ async function loadRelease() {
 }
 
 document.querySelectorAll<HTMLButtonElement>(".copy-command").forEach((button) => button.addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(button.dataset.copy!); button.textContent = "Copied"; window.setTimeout(() => { button.textContent = "Copy"; }, 1800); }
-  catch { button.textContent = "Select command"; }
+  try { await navigator.clipboard.writeText(button.dataset.copy!); button.textContent = "Install command copied"; window.setTimeout(() => { button.textContent = "Copy install command"; }, 1800); }
+  catch { button.textContent = "Select install command"; }
 }));
 
 if ("serviceWorker" in navigator && (location.protocol === "https:" || ["localhost", "127.0.0.1"].includes(location.hostname))) navigator.serviceWorker.register("/sw.js").catch(() => undefined);

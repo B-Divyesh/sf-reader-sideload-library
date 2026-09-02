@@ -24,7 +24,11 @@ test("landing states the job, audience, sample action, and three facts", async (
   await expect(page.locator("h1")).toHaveText("Organize and sideload your e-ink library.");
   await expect(page.locator(".hero-lede")).toContainText("e-ink reader owners");
   await expect(page.getByRole("link", { name: "Try it with sample data" })).toHaveAttribute("href", "/demo/?demo=1");
-  await expect(page.locator(".proof-strip > span")).toHaveCount(3);
+  await expect(page.locator(".hero-facts > li")).toHaveText([
+    "No account or background network requests",
+    "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+    "USB and WebDAV tools are free"
+  ]);
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
 });
 
@@ -37,7 +41,7 @@ for (const viewport of [
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
 
-    for (const selector of [".hero-lede", ".hero-actions .button-primary"]) {
+    for (const selector of [".hero-lede", ".hero-actions .button-primary", ".hero-facts li:nth-child(1)", ".hero-facts li:nth-child(2)", ".hero-facts li:nth-child(3)"]) {
       const bounds = await page.locator(selector).boundingBox();
       expect(bounds, `${selector} must have layout bounds`).not.toBeNull();
       expect(bounds!.y, `${selector} must start inside the viewport`).toBeGreaterThanOrEqual(0);
@@ -64,7 +68,7 @@ test("download action and copy controls work without release metadata", async ({
   await expect(page.locator("#primary-download")).toBeVisible();
   await expect(page.locator("#primary-download")).toHaveAttribute("href", /releases\/latest/);
   await page.locator(".copy-command").first().click();
-  await expect(page.locator(".copy-command").first()).toHaveText("Copied");
+  await expect(page.locator(".copy-command").first()).toHaveText("Install command copied");
 });
 
 test("landing fits 390px and visible controls meet the 44px height baseline", async ({ page }) => {
@@ -169,7 +173,7 @@ test("@claim:ordered-collections decoded metadata stays searchable and produces 
 
 test("@claim:markdown-export exports sample highlights as Markdown", async ({ page }) => {
   await page.goto("/demo/");
-  await page.getByRole("tab", { name: /Transfer & notes/ }).click();
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
   const downloadEvent = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export Markdown" }).click();
   const download = await downloadEvent;
@@ -227,7 +231,7 @@ test("@claim:core-free exposes core tools without a license or checkout", async 
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
   await expect(page.locator("#search")).toBeEnabled();
   await expect(page.getByRole("tab", { name: /Collections/ })).toBeEnabled();
-  await page.getByRole("tab", { name: /Transfer & notes/ }).click();
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
   await expect(page.getByRole("button", { name: "Sync with WebDAV" })).toBeEnabled();
   await expect(page.getByText("No license or account with us is needed.")).toBeVisible();
 });
@@ -237,16 +241,16 @@ test("@claim:offline-demo reloads the sample catalogue offline", async ({ browse
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4173/favicon.svg");
   await page.evaluate(async () => {
-    const oldCache = await caches.open("rsl-shell-v4");
+    const oldCache = await caches.open("rsl-shell-v5");
     await oldCache.put("/legacy-shell", new Response("old shell"));
   });
-  await page.goto("http://127.0.0.1:4173/demo/");
+  await page.goto("http://127.0.0.1:4173/demo/?demo=1");
   await page.evaluate(() => navigator.serviceWorker.ready);
-  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v5"]);
-  await page.reload();
-  await expect(page.locator("#book-count")).toHaveText("4");
+  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v6"]);
   await context.setOffline(true);
   await page.reload();
+  await expect(page).toHaveURL(/\/demo\/\?demo=1$/);
+  await expect(page).toHaveTitle("Demo — Reader Sideload Library");
   await expect(page.locator("#demo-banner")).toBeVisible();
   await expect(page.locator("#book-count")).toHaveText("4");
   await context.close();

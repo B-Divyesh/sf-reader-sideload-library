@@ -8,14 +8,14 @@
   },
   {
     "id": "local-catalogue",
-    "claim": "Catalogue data is stored on the user's computer and catalogue work makes no passive network request.",
+    "claim": "Catalogue data is stored on the user's computer and catalogue work makes no background network request.",
     "where": "landing privacy section, desktop footer, privacy page, README",
     "test": "npm run test:claims -- --grep @claim:local-catalogue --project=desktop-chromium",
     "sandbox": "fresh installed-app web preview; add an EPUB; assert it is written to rsl:library-state:v1 and all observed requests stay on the app origin"
   },
   {
     "id": "privacy-requests",
-    "claim": "The app makes no passive network requests. The website and demo use no analytics, advertising, third-party scripts, or cookies; the landing page contacts only GitHub's public releases API for current download links.",
+    "claim": "The app makes no background network requests. The website and demo use no analytics, advertising, third-party scripts, or cookies; the landing page contacts only GitHub's public releases API for current download links.",
     "where": "landing facts and privacy section, privacy page, README",
     "test": "npm run test:claims -- --grep @claim:privacy-requests --project=desktop-chromium",
     "sandbox": "serve the local build through the production origin; mock the GitHub releases API; record landing, demo, and idle-app requests; assert GitHub is the only third-party request and the cookie jar is empty"
@@ -25,14 +25,14 @@
     "claim": "Catalogue, collection, USB, WebDAV, and Markdown tools require no purchase or product account.",
     "where": "landing facts and privacy section, desktop WebDAV panel, terms, README",
     "test": "npm run test:claims -- --grep @claim:core-free --project=desktop-chromium",
-    "sandbox": "fresh demo without a license; assert catalogue, collections, notes, and WebDAV controls are enabled and no checkout link exists"
+    "sandbox": "fresh demo without a license; assert catalogue, collections, highlights, and WebDAV controls are enabled and no checkout link exists"
   },
   {
     "id": "offline-demo",
     "claim": "Catalogue, collection, and Markdown tools reopen offline after the first demo visit.",
     "where": "landing facts, README",
     "test": "npm run test:claims -- --grep @claim:offline-demo --project=desktop-chromium",
-    "sandbox": "fresh browser context; load /demo/ online under its service worker; set context offline; reload and assert sample catalogue state"
+    "sandbox": "fresh browser context; load the advertised /demo/?demo=1 URL once, await service-worker installation, go offline without another online reload, then reload and assert the demo banner and four-book catalogue"
   },
   {
     "id": "nested-library-scan",
@@ -93,14 +93,14 @@
   {
     "id": "highlight-import-formats",
     "claim": "Imports Markdown, plain-text, JSON, KOReader sidecar, and embedded PDF annotations.",
-    "where": "desktop notes panel, README",
+    "where": "desktop highlights panel, README",
     "test": "npm run test:rust-core -- claim_supported_highlight_formats_import",
     "sandbox": "temporary Markdown, JSON, KOReader Lua, and generated annotated PDF fixtures; import each through the native path and assert quote/note content"
   },
   {
     "id": "markdown-export",
     "claim": "Exports imported highlights as plain Markdown.",
-    "where": "landing workflow and preview, desktop notes panel, README",
+    "where": "landing workflow and preview, desktop highlights panel, README",
     "test": "npm run test:claims -- --grep @claim:markdown-export --project=desktop-chromium",
     "sandbox": "open /demo/ from clean storage; export bundled highlights; inspect the downloaded Markdown contents"
   },
