@@ -1,0 +1,353 @@
+{
+  "checkedAt": "2026-09-02T00:21:27.638Z",
+  "candidate": "329e83059b770f2fe6ef2d3ad013a037f51982e4",
+  "checked": 43,
+  "matched": 43,
+  "mismatches": [],
+  "checks": [
+    {
+      "file": "404.html",
+      "url": "https://reader-sideload-library.sociobot.in/404.html",
+      "status": 200,
+      "localSha256": "591db92d6ce1f045bb7c117cdeaf14959958db12fca329017453d1d71141c3cc",
+      "liveSha256": "591db92d6ce1f045bb7c117cdeaf14959958db12fca329017453d1d71141c3cc",
+      "match": true
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "url": "https://reader-sideload-library.sociobot.in/apple-touch-icon.png",
+      "status": 200,
+      "localSha256": "da34fdb2541fab9e80a56c46c16a4f06c6a85d3bdf897dbc71ef36b4e46d045b",
+      "liveSha256": "da34fdb2541fab9e80a56c46c16a4f06c6a85d3bdf897dbc71ef36b4e46d045b",
+      "match": true
+    },
+    {
+      "file": "assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "status": 200,
+      "localSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "liveSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "match": true
+    },
+    {
+      "file": "assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "url": "https://reader-sideload-library.sociobot.in/assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "status": 200,
+      "localSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "liveSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "status": 200,
+      "localSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "liveSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "status": 200,
+      "localSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "liveSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "status": 200,
+      "localSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "liveSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "status": 200,
+      "localSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "liveSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "status": 200,
+      "localSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "liveSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "match": true
+    },
+    {
+      "file": "assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "status": 200,
+      "localSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "liveSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "match": true
+    },
+    {
+      "file": "assets/legal-CZcSDKtv.js",
+      "url": "https://reader-sideload-library.sociobot.in/assets/legal-CZcSDKtv.js",
+      "status": 200,
+      "localSha256": "0b5046a2cfedf9faf00efafee1404be596d1780db6e2aa04368f3ee92a725739",
+      "liveSha256": "0b5046a2cfedf9faf00efafee1404be596d1780db6e2aa04368f3ee92a725739",
+      "match": true
+    },
+    {
+      "file": "assets/main-BZpY0_HU.css",
+      "url": "https://reader-sideload-library.sociobot.in/assets/main-BZpY0_HU.css",
+      "status": 200,
+      "localSha256": "f07c015140b9c8aec1b29ed1641cca942270316008a45521c2cdb54bd55fd284",
+      "liveSha256": "f07c015140b9c8aec1b29ed1641cca942270316008a45521c2cdb54bd55fd284",
+      "match": true
+    },
+    {
+      "file": "assets/main-Btp8bS9Y.js",
+      "url": "https://reader-sideload-library.sociobot.in/assets/main-Btp8bS9Y.js",
+      "status": 200,
+      "localSha256": "c5d7e8e73170dade9f6ff4fd8ab15c9e02a3c3b647eb7c56d34e9a392102052d",
+      "liveSha256": "c5d7e8e73170dade9f6ff4fd8ab15c9e02a3c3b647eb7c56d34e9a392102052d",
+      "match": true
+    },
+    {
+      "file": "assets/reader-handoff-1440.webp",
+      "url": "https://reader-sideload-library.sociobot.in/assets/reader-handoff-1440.webp",
+      "status": 200,
+      "localSha256": "4f8d1afd0f6c2183500773abb51fef8c0f381a322c9ff0353b10b32546a12923",
+      "liveSha256": "4f8d1afd0f6c2183500773abb51fef8c0f381a322c9ff0353b10b32546a12923",
+      "match": true
+    },
+    {
+      "file": "assets/reader-handoff-768.webp",
+      "url": "https://reader-sideload-library.sociobot.in/assets/reader-handoff-768.webp",
+      "status": 200,
+      "localSha256": "ec5af6a51cc946b2cb1adf310efa892a023084e64b670bf2209ec80c2817cf4f",
+      "liveSha256": "ec5af6a51cc946b2cb1adf310efa892a023084e64b670bf2209ec80c2817cf4f",
+      "match": true
+    },
+    {
+      "file": "assets/social-card.jpg",
+      "url": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg",
+      "status": 200,
+      "localSha256": "ce1bab6a7138836ababab217bf08f9872af9e6be7a2279c537a6e4c8f1639db6",
+      "liveSha256": "ce1bab6a7138836ababab217bf08f9872af9e6be7a2279c537a6e4c8f1639db6",
+      "match": true
+    },
+    {
+      "file": "assets/style-CrOrUZgw.css",
+      "url": "https://reader-sideload-library.sociobot.in/assets/style-CrOrUZgw.css",
+      "status": 200,
+      "localSha256": "f2b09e51620ba7b544740ea224db5c77dd78f5f50a221dd652bdd76605a7374c",
+      "liveSha256": "f2b09e51620ba7b544740ea224db5c77dd78f5f50a221dd652bdd76605a7374c",
+      "match": true
+    },
+    {
+      "file": "assets/style-hAa4UzoP.js",
+      "url": "https://reader-sideload-library.sociobot.in/assets/style-hAa4UzoP.js",
+      "status": 200,
+      "localSha256": "d2a32840421496e872ade591618d2fa5c33797605d1aec04301717e5a90757d0",
+      "liveSha256": "d2a32840421496e872ade591618d2fa5c33797605d1aec04301717e5a90757d0",
+      "match": true
+    },
+    {
+      "file": "demo/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "status": 200,
+      "localSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "liveSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "match": true
+    },
+    {
+      "file": "demo/assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "status": 200,
+      "localSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "liveSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "match": true
+    },
+    {
+      "file": "demo/assets/core-DV6XEvTN.js",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/core-DV6XEvTN.js",
+      "status": 200,
+      "localSha256": "92aba296947485454c97f9e6a3f88d59b9af6252eb50db4c5201dedd19a61281",
+      "liveSha256": "92aba296947485454c97f9e6a3f88d59b9af6252eb50db4c5201dedd19a61281",
+      "match": true
+    },
+    {
+      "file": "demo/assets/core-DV6XEvTN.js.map",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/core-DV6XEvTN.js.map",
+      "status": 200,
+      "localSha256": "765f87d71d84d10b1c11d65b8106e91280d46326f34bc021af73e3a04e59da7d",
+      "liveSha256": "765f87d71d84d10b1c11d65b8106e91280d46326f34bc021af73e3a04e59da7d",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "status": 200,
+      "localSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "liveSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "status": 200,
+      "localSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "liveSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "status": 200,
+      "localSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "liveSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "status": 200,
+      "localSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "liveSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "status": 200,
+      "localSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "liveSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "match": true
+    },
+    {
+      "file": "demo/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "status": 200,
+      "localSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "liveSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "match": true
+    },
+    {
+      "file": "demo/assets/index-CoEaNoas.js",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/index-CoEaNoas.js",
+      "status": 200,
+      "localSha256": "74a14b04f554847b2e91cac131fba04f5d4bc768db47e25c1c5ce77c8f20a202",
+      "liveSha256": "74a14b04f554847b2e91cac131fba04f5d4bc768db47e25c1c5ce77c8f20a202",
+      "match": true
+    },
+    {
+      "file": "demo/assets/index-CoEaNoas.js.map",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/index-CoEaNoas.js.map",
+      "status": 200,
+      "localSha256": "61c7157046917210597c257292994f095ef45897b2e5b271e15eeb87887e067a",
+      "liveSha256": "61c7157046917210597c257292994f095ef45897b2e5b271e15eeb87887e067a",
+      "match": true
+    },
+    {
+      "file": "demo/assets/index-DTIMSVft.js",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/index-DTIMSVft.js",
+      "status": 200,
+      "localSha256": "f1157e2ddeeff6eadb05ba503d7bf8c21e4a10b9673375b801e1427461f862ca",
+      "liveSha256": "f1157e2ddeeff6eadb05ba503d7bf8c21e4a10b9673375b801e1427461f862ca",
+      "match": true
+    },
+    {
+      "file": "demo/assets/index-DTIMSVft.js.map",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/index-DTIMSVft.js.map",
+      "status": 200,
+      "localSha256": "8826cf2c65c0597d89857b4bc6f53a15eb7a1550c61423896aa8af764bfaead0",
+      "liveSha256": "8826cf2c65c0597d89857b4bc6f53a15eb7a1550c61423896aa8af764bfaead0",
+      "match": true
+    },
+    {
+      "file": "demo/assets/index-XRjckR5E.css",
+      "url": "https://reader-sideload-library.sociobot.in/demo/assets/index-XRjckR5E.css",
+      "status": 200,
+      "localSha256": "6a1e6b60932743764240f735a0b9878d551325e21e117fd6ad2cbcaac10faf60",
+      "liveSha256": "6a1e6b60932743764240f735a0b9878d551325e21e117fd6ad2cbcaac10faf60",
+      "match": true
+    },
+    {
+      "file": "demo/index.html",
+      "url": "https://reader-sideload-library.sociobot.in/demo/index.html",
+      "status": 200,
+      "localSha256": "3b2998285a3352c21e727a69d4e3df3b086110d0d8bad977e92cbaf25a4b90cd",
+      "liveSha256": "3b2998285a3352c21e727a69d4e3df3b086110d0d8bad977e92cbaf25a4b90cd",
+      "match": true
+    },
+    {
+      "file": "favicon.svg",
+      "url": "https://reader-sideload-library.sociobot.in/favicon.svg",
+      "status": 200,
+      "localSha256": "10f0d190ae8e715efd32bf08305c021588560cc510ba85b15131d556db7f3d25",
+      "liveSha256": "10f0d190ae8e715efd32bf08305c021588560cc510ba85b15131d556db7f3d25",
+      "match": true
+    },
+    {
+      "file": "index.html",
+      "url": "https://reader-sideload-library.sociobot.in/",
+      "status": 200,
+      "localSha256": "d865dda3fc737fca32a28e8bd1bb9b00f79f2abd202836b627a374634e25a145",
+      "liveSha256": "d865dda3fc737fca32a28e8bd1bb9b00f79f2abd202836b627a374634e25a145",
+      "match": true
+    },
+    {
+      "file": "install.ps1",
+      "url": "https://reader-sideload-library.sociobot.in/install.ps1",
+      "status": 200,
+      "localSha256": "05a6f24e2863a6f0d65ba6371eb4c0afc5ebd8a7ba3a0112e522ac71f1ac07c1",
+      "liveSha256": "05a6f24e2863a6f0d65ba6371eb4c0afc5ebd8a7ba3a0112e522ac71f1ac07c1",
+      "match": true
+    },
+    {
+      "file": "install.sh",
+      "url": "https://reader-sideload-library.sociobot.in/install.sh",
+      "status": 200,
+      "localSha256": "7f0b1a0855f325ad10b035cb758da1bb27386bfbfa41a9682ca24600cd581801",
+      "liveSha256": "7f0b1a0855f325ad10b035cb758da1bb27386bfbfa41a9682ca24600cd581801",
+      "match": true
+    },
+    {
+      "file": "privacy/index.html",
+      "url": "https://reader-sideload-library.sociobot.in/privacy/index.html",
+      "status": 200,
+      "localSha256": "5c860eea7b6b2956bdb84ed8d7a4e2291621b55c6d3d2b143f5a6a2cb485dccc",
+      "liveSha256": "5c860eea7b6b2956bdb84ed8d7a4e2291621b55c6d3d2b143f5a6a2cb485dccc",
+      "match": true
+    },
+    {
+      "file": "robots.txt",
+      "url": "https://reader-sideload-library.sociobot.in/robots.txt",
+      "status": 200,
+      "localSha256": "2f7ee2afb3b91abaed7c9ca588f0fb7d8ed2c177cf94657c2c0b0a8f198a8c8b",
+      "liveSha256": "2f7ee2afb3b91abaed7c9ca588f0fb7d8ed2c177cf94657c2c0b0a8f198a8c8b",
+      "match": true
+    },
+    {
+      "file": "sitemap.xml",
+      "url": "https://reader-sideload-library.sociobot.in/sitemap.xml",
+      "status": 200,
+      "localSha256": "bcb85468b3dfa5e91b2d014c4ffbdb446528ec77bd641e09503aef521d5c1aee",
+      "liveSha256": "bcb85468b3dfa5e91b2d014c4ffbdb446528ec77bd641e09503aef521d5c1aee",
+      "match": true
+    },
+    {
+      "file": "sw.js",
+      "url": "https://reader-sideload-library.sociobot.in/sw.js",
+      "status": 200,
+      "localSha256": "8db883474ed9dd78dd6796c62df14e2b780cf3e693786e4396a913a1dd7f7a8b",
+      "liveSha256": "8db883474ed9dd78dd6796c62df14e2b780cf3e693786e4396a913a1dd7f7a8b",
+      "match": true
+    },
+    {
+      "file": "terms/index.html",
+      "url": "https://reader-sideload-library.sociobot.in/terms/index.html",
+      "status": 200,
+      "localSha256": "3ca63d3777603e9704d95d16a4ec165985b1ab4f07356759e165e902c0d8056f",
+      "liveSha256": "3ca63d3777603e9704d95d16a4ec165985b1ab4f07356759e165e902c0d8056f",
+      "match": true
+    }
+  ]
+}

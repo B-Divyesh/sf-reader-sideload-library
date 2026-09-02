@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-09-02T00:21:33.393Z",
+  "tag": "v0.1.4",
+  "publishedAt": "2026-09-01T21:57:57Z",
+  "assets": [
+    {
+      "name": "latest.json",
+      "size": 1131
+    },
+    {
+      "name": "Reader.Sideload.Library-0.1.4-1.x86_64.rpm",
+      "size": 5008112
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_aarch64.dmg",
+      "size": 4598835
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_amd64.AppImage",
+      "size": 79829496
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_amd64.deb",
+      "size": 5007780
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_x64-setup.exe",
+      "size": 3293165
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_x64.dmg",
+      "size": 4731695
+    },
+    {
+      "name": "Reader.Sideload.Library_0.1.4_x64_en-US.msi",
+      "size": 4657152
+    },
+    {
+      "name": "SHA256SUMS",
+      "size": 758
+    }
+  ],
+  "latest": {
+    "version": "0.1.4",
+    "platforms": {
+      "macos_arm64": {
+        "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.4/Reader.Sideload.Library_0.1.4_aarch64.dmg",
+        "sha256": "391fdbed9656f4cffe9f56198c990335937037f6dc99be225d67253a1c50ee24",
+        "label": "Reader.Sideload.Library_0.1.4_aarch64.dmg"
+      },
+      "macos_x64": {
+        "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.4/Reader.Sideload.Library_0.1.4_x64.dmg",
+        "sha256": "be261257845ac09356b38afed85def06d1c539f467f5ed68167a654a51319168",
+        "label": "Reader.Sideload.Library_0.1.4_x64.dmg"
+      },
+      "windows_x64": {
+        "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.4/Reader.Sideload.Library_0.1.4_x64_en-US.msi",
+        "sha256": "71af81519d51bfa78efd984050e712571bafdfc0fe4e86e05752990335b11ee1",
+        "label": "Reader.Sideload.Library_0.1.4_x64_en-US.msi"
+      },
+      "linux_x64": {
+        "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.4/Reader.Sideload.Library_0.1.4_amd64.AppImage",
+        "sha256": "00e28376574bd1136734eabd42e313923ad4897401a8c7bae493eb5fe628c21f",
+        "label": "Reader.Sideload.Library_0.1.4_amd64.AppImage"
+      }
+    }
+  },
+  "deb": {
+    "name": "Reader.Sideload.Library_0.1.4_amd64.deb",
+    "actualSha256": "b7c674caf395e1cba34ea2c106fc882b131b4f2467bfd21bad135c99cb8785a9",
+    "expectedSha256": "b7c674caf395e1cba34ea2c106fc882b131b4f2467bfd21bad135c99cb8785a9",
+    "match": true,
+    "package": "reader-sideload-library",
+    "version": "0.1.4",
+    "architecture": "amd64",
+    "depends": [
+      "libwebkit2gtk-4.1-0",
+      "libgtk-3-0"
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "checkedAt": "2026-09-02T00:17:21.018Z",
+  "live": "https://reader-sideload-library.sociobot.in",
+  "failures": [],
+  "firstRead": {
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "h1": "Organize and sideload your e-ink library.",
+    "audience": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+    "action": "Try it with sample data",
+    "actionHelp": "Open a ready sample catalogue.",
+    "h1Rect": {
+      "top": 193.78125,
+      "bottom": 377.34375,
+      "left": 54.625,
+      "right": 627.375
+    },
+    "audienceRect": {
+      "top": 397.34375,
+      "bottom": 456.71875,
+      "left": 54.625,
+      "right": 627.375
+    },
+    "actionRect": {
+      "top": 497.203125,
+      "bottom": 545.203125,
+      "left": 54.625,
+      "right": 265.625
+    },
+    "h1Count": 1,
+    "mainCount": 1,
+    "imagesMissingAlt": 0,
+    "status": 200,
+    "headers": {
+      "cache-control": "public, must-revalidate, max-age=30",
+      "content-encoding": "br",
+      "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+      "content-type": "text/html",
+      "date": "Wed, 02 Sep 2026 00:17:20 GMT",
+      "etag": "\"43109316\"",
+      "last-modified": "Tue, 01 Sep 2026 23:30:22 GMT",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "strict-transport-security": "max-age=10886400; includeSubDomains; preload",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-dns-prefetch-control": "off",
+      "x-xss-protection": "1; mode=block"
+    },
+    "axeSerious": [],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(63, 91, 50) solid 3px",
+      "top": 8
+    }
+  },
+  "mobile": {
+    "audienceBottom": 464.984375,
+    "actionBottom": 558.984375,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "undersized": [],
+    "axeSerious": [],
+    "errors": []
+  },
+  "reducedDark": {
+    "matches": true,
+    "transitionDuration": "1e-05s",
+    "animationDuration": "1e-05s",
+    "scrollBehavior": "auto",
+    "axeSerious": [],
+    "errors": []
+  },
+  "demo": {
+    "unicodeRows": 1,
+    "boundaryText": "No books match this filter.",
+    "issueRows": 2,
+    "endTab": "tab-transfer",
+    "homeTab": "tab-catalogue",
+    "originalPaths": [
+      "001 - The Moss Archive.epub",
+      "002 - Field Notes 03 — 秋.pdf",
+      "003 - Concrete Gardens.epub"
+    ],
+    "movedPaths": [
+      "001 - Field Notes 03 — 秋.pdf",
+      "002 - The Moss Archive.epub",
+      "003 - Concrete Gardens.epub"
+    ],
+    "persistedPaths": [
+      "001 - Field Notes 03 — 秋.pdf",
+      "002 - The Moss Archive.epub",
+      "003 - Concrete Gardens.epub"
+    ],
+    "resetPaths": [
+      "001 - The Moss Archive.epub",
+      "002 - Field Notes 03 — 秋.pdf",
+      "003 - Concrete Gardens.epub"
+    ],
+    "requiredMessage": "Please fill out this field.",
+    "noBookFeedback": "Sample data and catalogue view reset.Choose at least one book for this collection.",
+    "safeCollection": "A-B-C-",
+    "usbFeedback": "Sample data and catalogue view reset.Choose at least one book for this collection.Created A-B-C- with 1 books.USB transfer is available in the installed desktop app.",
+    "invalidUrlMessage": "Please enter a URL.",
+    "invalidPasswordCleared": "",
+    "webdavStatus": "Demo mode does not contact servers. Choose Start for real before checking WebDAV.",
+    "validPasswordCleared": "",
+    "downloadFilename": "reader-highlights.md",
+    "markdownLength": 313,
+    "badJsonFeedback": "Sample data and catalogue view reset.Choose at least one book for this collection.Created A-B-C- with 1 books.USB transfer is available in the installed desktop app.This JSON file could not be read. Export it again or choose Markdown.",
+    "emptyHighlightFeedback": "Sample data and catalogue view reset.Choose at least one book for this collection.Created A-B-C- with 1 books.USB transfer is available in the installed desktop app.This JSON file could not be read. Export it again or choose Markdown.No quoted highlights were found in this file.",
+    "highlightCount": 3,
+    "origins": [
+      "https://reader-sideload-library.sociobot.in"
+    ],
+    "cookies": [],
+    "axeSerious": [],
+    "errors": [],
+    "isolation": {
+      "real": "{\"sentinel\":\"real-library\"}",
+      "demo": null
+    }
+  },
+  "offline": {
+    "active": "https://reader-sideload-library.sociobot.in/sw.js",
+    "caches": [
+      "rsl-shell-v5"
+    ],
+    "bookCount": "4",
+    "banner": true
+  },
+  "appPreview": {
+    "indexed": "50",
+    "plannedCount": 50,
+    "uniquePlans": 50,
+    "firstPlan": "001 - Book 32.epub",
+    "lastPlan": "050 - Book 38.epub",
+    "storedBooks": 50,
+    "unsupportedCount": "0",
+    "recoveredCount": "1",
+    "appBadJson": "Indexed 50 files. Install the desktop app for embedded metadata and transfer.Created Fifty Book Queue with 50 books.Indexed 0 files. Install the desktop app for embedded metadata and transfer.Indexed 1 file. Install the desktop app for embedded metadata and transfer.This JSON file could not be read. Export it again or choose Markdown.",
+    "appHighlightCount": 1,
+    "origins": [
+      "http://127.0.0.1:4174"
+    ],
+    "axeSerious": [],
+    "errors": []
+  }
+}

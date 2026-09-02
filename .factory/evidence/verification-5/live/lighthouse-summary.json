@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-09-02T00:21:38.594Z",
+  "url": "https://reader-sideload-library.sociobot.in/",
+  "scores": {
+    "performance": 98,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "fcp": 1376.8110000000001,
+    "lcp": 1831.9350000000002,
+    "cls": 0.07438974257028468,
+    "tbt": 0,
+    "totalBytes": 182091
+  }
+}
