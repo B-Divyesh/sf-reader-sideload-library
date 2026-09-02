@@ -1,0 +1,44 @@
+{
+  "viewport": {
+    "width": 1536,
+    "height": 864
+  },
+  "bounds": [
+    {
+      "text": "Organize and sideload your e-ink library.",
+      "top": 236.515625,
+      "bottom": 641.28125,
+      "fullyInViewport": true
+    },
+    {
+      "text": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+      "top": 673.28125,
+      "bottom": 773.3125,
+      "fullyInViewport": true
+    },
+    {
+      "text": "Try it with sample data",
+      "top": 824.3125,
+      "bottom": 872.3125,
+      "fullyInViewport": false
+    },
+    {
+      "text": "No account or background network requests",
+      "top": 899.3125,
+      "bottom": 924.203125,
+      "fullyInViewport": false
+    },
+    {
+      "text": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+      "top": 924.203125,
+      "bottom": 965.984375,
+      "fullyInViewport": false
+    },
+    {
+      "text": "USB and WebDAV tools are free",
+      "top": 965.984375,
+      "bottom": 990.875,
+      "fullyInViewport": false
+    }
+  ]
+}
