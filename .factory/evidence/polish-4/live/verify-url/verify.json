@@ -1,0 +1,14 @@
+{
+  "url": "https://reader-sideload-library.sociobot.in",
+  "loadMs": 983,
+  "errors": [],
+  "a11y": {
+    "title": "Reader Sideload Library — organize e-ink libraries",
+    "lang": "en",
+    "h1": 1,
+    "main": true,
+    "imgsMissingAlt": 0,
+    "buttonsUnlabeled": 0,
+    "textLength": 3201
+  }
+}
