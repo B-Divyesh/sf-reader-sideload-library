@@ -1,9 +1,10 @@
 import { chromium } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 const baseUrl = process.argv[2] ?? "https://reader-sideload-library.sociobot.in";
-const evidenceDir = process.argv[3] ?? ".factory/evidence/polish-1/live";
+const evidenceDir = process.argv[3] ?? ".factory/evidence/polish-2/live";
+const { version } = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
 const failures = [];
 const results = { baseUrl, checkedAt: new Date().toISOString(), routes: [], demo: {}, offline: {} };
 const check = (condition, message) => {
@@ -52,8 +53,8 @@ try {
     check(consoleErrors.length === 0, `${route}: console errors: ${consoleErrors.join(" | ")}`);
     check(["Demo", "Privacy", "Terms"].every((label) => state.footerLinks.includes(label)), `${route}: shared footer links missing`);
     if (route === "/") {
-      check(state.releaseStatus?.includes("Release 0.1.4 found"), `home did not resolve release 0.1.4: ${state.releaseStatus}`);
-      check(state.downloadHref?.includes("/releases/download/v0.1.4/"), `home download is not a v0.1.4 asset: ${state.downloadHref}`);
+      check(state.releaseStatus?.includes(`Release ${version} found`), `home did not resolve release ${version}: ${state.releaseStatus}`);
+      check(state.downloadHref?.includes(`/releases/download/v${version}/`), `home download is not a v${version} asset: ${state.downloadHref}`);
     }
     results.routes.push({ route, status: response?.status(), ...state, seriousAxe: serious.length, consoleErrors });
     page.off("console", onConsole);
@@ -100,7 +101,28 @@ try {
   await page.waitForTimeout(350);
   await page.screenshot({ path: `${evidenceDir}/demo-desktop.png`, fullPage: true });
 
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  const firstScreen = await page.locator(".hero-facts li, .hero-lede, .hero-actions .button-primary").evaluateAll((elements) => elements.map((element) => {
+    const bounds = element.getBoundingClientRect();
+    return { text: element.textContent?.trim(), top: bounds.top, bottom: bounds.bottom };
+  }));
+  check(firstScreen.length === 5, `home first screen exposed ${firstScreen.length} required items instead of 5`);
+  check(firstScreen.every((item) => item.top >= 0 && item.bottom <= 768), `home first-screen content falls below 768px: ${JSON.stringify(firstScreen)}`);
+  results.firstScreen = firstScreen;
+  await page.screenshot({ path: `${evidenceDir}/home-1366x768.png` });
+
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  const mobileFirstScreen = await page.locator(".hero-facts li, .hero-lede, .hero-actions .button-primary").evaluateAll((elements) => elements.map((element) => {
+    const bounds = element.getBoundingClientRect();
+    return { text: element.textContent?.trim(), top: bounds.top, bottom: bounds.bottom };
+  }));
+  check(mobileFirstScreen.length === 5, `mobile home first screen exposed ${mobileFirstScreen.length} required items instead of 5`);
+  check(mobileFirstScreen.every((item) => item.top >= 0 && item.bottom <= 844), `mobile first-screen content falls below 844px: ${JSON.stringify(mobileFirstScreen)}`);
+  results.mobileFirstScreen = mobileFirstScreen;
+  await page.screenshot({ path: `${evidenceDir}/home-390x844.png` });
+
   await page.goto(`${baseUrl}/demo/?demo=1`, { waitUntil: "networkidle" });
   const mobile = await page.evaluate(() => ({
     scrollWidth: document.documentElement.scrollWidth,
@@ -117,12 +139,15 @@ try {
   const offlinePage = await offlineContext.newPage();
   await offlinePage.goto(`${baseUrl}/demo/?demo=1`);
   await offlinePage.evaluate(() => navigator.serviceWorker.ready);
-  await offlinePage.reload();
   await offlineContext.setOffline(true);
   await offlinePage.reload({ waitUntil: "domcontentloaded" });
   const offlineBookCount = await offlinePage.locator("#book-count").textContent();
+  const offlineBanner = await offlinePage.locator("#demo-banner").isVisible();
+  const offlineTitle = await offlinePage.title();
   check(offlineBookCount === "4", `offline demo showed ${offlineBookCount} books instead of 4`);
-  results.offline = { bookCount: offlineBookCount };
+  check(offlineBanner, "offline advertised demo URL did not show the demo banner");
+  check(offlineTitle === "Demo — Reader Sideload Library", `offline advertised demo URL showed the wrong title: ${offlineTitle}`);
+  results.offline = { url: offlinePage.url(), title: offlineTitle, bannerVisible: offlineBanner, bookCount: offlineBookCount };
   await offlineContext.close();
 } finally {
   await browser.close();
