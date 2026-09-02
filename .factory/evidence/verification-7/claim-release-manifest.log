@@ -1,0 +1,14 @@
+
+> reader-sideload-library@0.1.7 test:release
+> vitest run tests/release.test.ts
+
+
+ RUN  v3.2.7 /work/repo
+
+ ✓ tests/release.test.ts (2 tests) 99ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  04:22:50
+   Duration  1.13s (transform 83ms, setup 0ms, collect 47ms, tests 99ms, environment 0ms, prepare 165ms)
+

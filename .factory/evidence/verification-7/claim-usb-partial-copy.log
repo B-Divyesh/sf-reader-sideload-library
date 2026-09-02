@@ -1,0 +1,13 @@
+
+> reader-sideload-library@0.1.7 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_usb_partial_copy_keeps_existing_file
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-70ba12383b0663d9)
+
+running 1 test
+test tests::claim_usb_partial_copy_keeps_existing_file ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+

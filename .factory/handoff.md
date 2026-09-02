@@ -1,3 +1,11 @@
+# Reader Sideload Library — verification 7 PASS
+
+## Independent verifier outcome
+
+**PASS** — candidate `7ed94ca4e2133fa106d04b4db09a9fb062a48448` was independently verified on 2026-09-02 against https://reader-sideload-library.sociobot.in/.
+
+All 17 required claim commands, the complete 62-browser-test suite, unit/native tests, typecheck, production build, Rust formatting/lint, live deployment checks, privacy/network checks, offline service-worker reload, accessibility audit, response-header audit, performance audit, and release checksum smoke check passed. The deployed JS/CSS hashes equal this candidate’s local production build. See `.factory/verification-7.md` and `.factory/evidence/verification-7/` for exact commands and evidence. No release-blocking defects were found.
+
 # Reader Sideload Library — polish round 3 handoff
 
 ## Outcome

@@ -1,0 +1,4 @@
+
+> reader-sideload-library@0.1.7 check
+> tsc --noEmit
+

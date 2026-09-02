@@ -1,0 +1,149 @@
+
+> reader-sideload-library@0.1.7 test
+> npm run test:claim-inventory && npm run test:unit && npm run test:rust-core && playwright test
+
+
+> reader-sideload-library@0.1.7 test:claim-inventory
+> node scripts/check-claims.mjs
+
+Claim inventory is one-to-one: 17 claims, 17 unique test markers.
+
+> reader-sideload-library@0.1.7 test:unit
+> vitest run tests/*.test.ts
+
+
+ RUN  v3.2.7 /work/repo
+
+ ✓ tests/library.test.ts (4 tests) 7ms
+ ✓ tests/release.test.ts (2 tests) 207ms
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  04:23:46
+   Duration  1.42s (transform 357ms, setup 0ms, collect 383ms, tests 214ms, environment 0ms, prepare 632ms)
+
+
+> reader-sideload-library@0.1.7 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-70ba12383b0663d9)
+
+running 10 tests
+test tests::claim_nested_library_scan_reads_metadata_and_flags_protection ... ok
+test tests::claim_pdf_metadata_survives_scan ... ok
+test tests::claim_source_scan_preserves_file_bytes ... ok
+test tests::claim_supported_highlight_formats_import ... ok
+test tests::claim_usb_partial_copy_keeps_existing_file ... ok
+test tests::claim_verified_usb_copy_is_idempotent ... ok
+test tests::claim_webdav_checks_and_uploads_with_recovery_errors ... ok
+test tests::parses_markdown_and_koreader_style_notes ... ok
+test tests::pdf_metadata_decodes_utf16_and_pdfdocencoding ... ok
+test tests::rejects_parent_and_absolute_device_paths ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+[1A[2K[WebServer] (node:8689) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8738) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8751) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8821) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 62 tests using 1 worker
+
+[1A[2K(node:8839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:8839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/62] [desktop-chromium] › tests/e2e/app.spec.ts:6:1 › desktop shell is keyboard navigable and accessible
+[1A[2K[2/62] [desktop-chromium] › tests/e2e/app.spec.ts:18:1 › working sections use direct task labels
+[1A[2K[3/62] [desktop-chromium] › tests/e2e/app.spec.ts:28:1 › desktop shell fits a 390px viewport
+[1A[2K[4/62] [desktop-chromium] › tests/e2e/app.spec.ts:35:1 › desktop dark treatment has no serious accessibility violations
+[1A[2K[5/62] [desktop-chromium] › tests/e2e/app.spec.ts:42:1 › first-run sample project opens the isolated working catalogue
+[1A[2K[6/62] [desktop-chromium] › tests/e2e/app.spec.ts:51:1 › @claim:local-catalogue catalogue changes stay in app storage without background requests
+[1A[2K[7/62] [desktop-chromium] › tests/e2e/app.spec.ts:71:1 › @claim:webdav-credentials WebDAV setup is free, guided, and never persists credentials
+[1A[2K[8/62] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › / has accessible structure and no serious axe findings
+[1A[2K[9/62] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /demo/ has accessible structure and no serious axe findings
+[1A[2K[10/62] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /privacy/ has accessible structure and no serious axe findings
+[1A[2K[11/62] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /terms/ has accessible structure and no serious axe findings
+[1A[2K[12/62] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /404.html has accessible structure and no serious axe findings
+[1A[2K[13/62] [desktop-chromium] › tests/e2e/site.spec.ts:22:1 › landing states the job, audience, sample action, and three facts
+[1A[2K[14/62] [desktop-chromium] › tests/e2e/site.spec.ts:39:3 › landing first read fits the desktop 1366x768 viewport
+[1A[2K[15/62] [desktop-chromium] › tests/e2e/site.spec.ts:39:3 › landing first read fits the mobile 390x844 viewport
+[1A[2K[16/62] [desktop-chromium] › tests/e2e/site.spec.ts:53:1 › every route ships complete route-specific social metadata
+[1A[2K[17/62] [desktop-chromium] › tests/e2e/site.spec.ts:81:1 › required hosting policy is shipped
+[1A[2K[18/62] [desktop-chromium] › tests/e2e/site.spec.ts:88:1 › non-download external links name their destination
+[1A[2K[19/62] [desktop-chromium] › tests/e2e/site.spec.ts:97:1 › download action and copy controls work without release metadata
+[1A[2K[20/62] [desktop-chromium] › tests/e2e/site.spec.ts:106:1 › landing fits 390px and visible controls meet the 44px height baseline
+[1A[2K[21/62] [desktop-chromium] › tests/e2e/site.spec.ts:115:1 › dark and reduced-motion treatment remains accessible
+[1A[2K[22/62] [desktop-chromium] › tests/e2e/site.spec.ts:124:1 › @claim:demo-isolated sample work never changes real library storage
+[1A[2K[23/62] [desktop-chromium] › tests/e2e/site.spec.ts:145:1 › demo primary action starts an available sample task
+[1A[2K[24/62] [desktop-chromium] › tests/e2e/site.spec.ts:156:1 › root demo shortcut enters the isolated sample without a release request
+[1A[2K[25/62] [desktop-chromium] › tests/e2e/site.spec.ts:168:1 › demo and content routes share navigation and legal links
+[1A[2K[26/62] [desktop-chromium] › tests/e2e/site.spec.ts:183:1 › demo fits a 390px viewport with working navigation
+[1A[2K[27/62] [desktop-chromium] › tests/e2e/site.spec.ts:191:1 › @claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames
+[1A[2K[28/62] [desktop-chromium] › tests/e2e/site.spec.ts:206:1 › @claim:markdown-export exports sample highlights as Markdown
+[1A[2K[29/62] [desktop-chromium] › tests/e2e/site.spec.ts:220:1 › @claim:privacy-requests uses only the disclosed GitHub release request
+[1A[2K[30/62] [desktop-chromium] › tests/e2e/site.spec.ts:261:1 › @claim:core-free exposes core tools without a license or checkout
+[1A[2K[31/62] [desktop-chromium] › tests/e2e/site.spec.ts:271:1 › @claim:offline-demo reloads the sample catalogue offline
+[1A[2K(node:9360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:9360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[32/62] [mobile-chromium] › tests/e2e/app.spec.ts:6:1 › desktop shell is keyboard navigable and accessible
+[1A[2K[33/62] [mobile-chromium] › tests/e2e/app.spec.ts:18:1 › working sections use direct task labels
+[1A[2K[34/62] [mobile-chromium] › tests/e2e/app.spec.ts:28:1 › desktop shell fits a 390px viewport
+[1A[2K[35/62] [mobile-chromium] › tests/e2e/app.spec.ts:35:1 › desktop dark treatment has no serious accessibility violations
+[1A[2K[36/62] [mobile-chromium] › tests/e2e/app.spec.ts:42:1 › first-run sample project opens the isolated working catalogue
+[1A[2K[37/62] [mobile-chromium] › tests/e2e/app.spec.ts:51:1 › @claim:local-catalogue catalogue changes stay in app storage without background requests
+[1A[2K[38/62] [mobile-chromium] › tests/e2e/app.spec.ts:71:1 › @claim:webdav-credentials WebDAV setup is free, guided, and never persists credentials
+[1A[2K[39/62] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › / has accessible structure and no serious axe findings
+[1A[2K[40/62] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /demo/ has accessible structure and no serious axe findings
+[1A[2K[41/62] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /privacy/ has accessible structure and no serious axe findings
+[1A[2K[42/62] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /terms/ has accessible structure and no serious axe findings
+[1A[2K[43/62] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /404.html has accessible structure and no serious axe findings
+[1A[2K[44/62] [mobile-chromium] › tests/e2e/site.spec.ts:22:1 › landing states the job, audience, sample action, and three facts
+[1A[2K[45/62] [mobile-chromium] › tests/e2e/site.spec.ts:39:3 › landing first read fits the desktop 1366x768 viewport
+[1A[2K[46/62] [mobile-chromium] › tests/e2e/site.spec.ts:39:3 › landing first read fits the mobile 390x844 viewport
+[1A[2K[47/62] [mobile-chromium] › tests/e2e/site.spec.ts:53:1 › every route ships complete route-specific social metadata
+[1A[2K[48/62] [mobile-chromium] › tests/e2e/site.spec.ts:81:1 › required hosting policy is shipped
+[1A[2K[49/62] [mobile-chromium] › tests/e2e/site.spec.ts:88:1 › non-download external links name their destination
+[1A[2K[50/62] [mobile-chromium] › tests/e2e/site.spec.ts:97:1 › download action and copy controls work without release metadata
+[1A[2K[51/62] [mobile-chromium] › tests/e2e/site.spec.ts:106:1 › landing fits 390px and visible controls meet the 44px height baseline
+[1A[2K[52/62] [mobile-chromium] › tests/e2e/site.spec.ts:115:1 › dark and reduced-motion treatment remains accessible
+[1A[2K[53/62] [mobile-chromium] › tests/e2e/site.spec.ts:124:1 › @claim:demo-isolated sample work never changes real library storage
+[1A[2K[54/62] [mobile-chromium] › tests/e2e/site.spec.ts:145:1 › demo primary action starts an available sample task
+[1A[2K[55/62] [mobile-chromium] › tests/e2e/site.spec.ts:156:1 › root demo shortcut enters the isolated sample without a release request
+[1A[2K[56/62] [mobile-chromium] › tests/e2e/site.spec.ts:168:1 › demo and content routes share navigation and legal links
+[1A[2K[57/62] [mobile-chromium] › tests/e2e/site.spec.ts:183:1 › demo fits a 390px viewport with working navigation
+[1A[2K[58/62] [mobile-chromium] › tests/e2e/site.spec.ts:191:1 › @claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames
+[1A[2K[59/62] [mobile-chromium] › tests/e2e/site.spec.ts:206:1 › @claim:markdown-export exports sample highlights as Markdown
+[1A[2K[60/62] [mobile-chromium] › tests/e2e/site.spec.ts:220:1 › @claim:privacy-requests uses only the disclosed GitHub release request
+[1A[2K[61/62] [mobile-chromium] › tests/e2e/site.spec.ts:261:1 › @claim:core-free exposes core tools without a license or checkout
+[1A[2K[62/62] [mobile-chromium] › tests/e2e/site.spec.ts:271:1 › @claim:offline-demo reloads the sample catalogue offline
+[1A[2K  62 passed (1.4m)
