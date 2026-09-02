@@ -1,28 +1,61 @@
-# Review 2 handoff — FAIL
+# Reader Sideload Library — polish round 2 handoff
 
 ## Outcome
 
-Completed the adversarial first-read review against repository commit `0135230c66b9806bf5c09ee8aff0c135193899fd` and the live product on 2 September 2026. The result is **FAIL** with one blocking and six minor findings. Full detail, exact quotes, reproduction steps, copy counts, and fixes are in `.factory/review-2.md`.
+All findings in `.factory/review-1.md` and `.factory/review-2.md` are resolved. The repaired static site is deployed at <https://reader-sideload-library.sociobot.in>, and desktop version `0.1.6` is published from tag `v0.1.6`. The finding-by-finding change and evidence map is in `.factory/polish-2.md`.
 
-## Blocking issue
+## What changed
 
-The advertised `/demo/?demo=1` URL does not reopen the demo on its first offline reload. After service-worker installation in a fresh context, the offline reload receives the cached landing page because `sw.js` has no query-normalized demo match and falls back to `/`. The existing `offline-demo` test passes by using `/demo/` and an extra online reload, so it misses the public path.
+- Made `/demo/?demo=1` a one-click, isolated sample catalogue with a persistent demo banner, complete reset, and a clear route back to real data.
+- Rebuilt offline navigation around a generated, route-aware precache. The advertised demo URL now reopens the demo on its first offline reload.
+- Put the job, audience, sample action, next-step text, and three required facts inside the first desktop and mobile viewport.
+- Preserved the paper-ledger visual system while correcting mobile layout, route titles, metadata, h1 focus, announcements, shared navigation/footer, legal links, and the styled 404.
+- Standardized **highlights**, clarified install-command labels and privacy language, and corrected the README's inclusion behavior and audience statement.
+- Bumped the desktop app to `0.1.6` so the corrected terminology ships in every installer.
+- Added a one-to-one 17-entry claims inventory and observable browser/native tests for every listed claim.
 
-## Verification performed
+## Verification
 
-- Cold live review at 390×844, 1366×768, and 1440×900.
-- Live demo search/reset and localStorage isolation with a real-state sentinel.
-- Every command in `.factory/claims.json` from a fresh clone; all declared commands exited 0.
-- `npm test`: passed 17 claim mappings, 6 unit tests, 10 Rust tests, and 56 browser tests.
-- `npm run build`: passed and produced `dist/`.
-- Live offline replay from the exact advertised demo URL: failed as documented.
-- Live metadata, route focus, back navigation, headers, 404, mobile overflow, request log, and link crawl.
-- `npx @axe-core/cli` on home, demo, privacy, terms, and 404: zero violations.
-- `/opt/fleet/lib/verify-url.sh`: passed.
-- Every earlier review and polish finding was checked live and in source; all five round-one findings remain fixed.
+From a clean clone of commit `51bb6eb`:
 
-## Remaining work
+- Every command in `.factory/claims.json` passed individually.
+- `npm test` passed: 17 claim mappings, 6 Vitest tests, 10 Rust tests, and 56 Playwright tests.
+- `npm run check`, `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, and `npm audit --audit-level=high` passed.
+- `npm run build` produced `dist/site` and the app bundle.
+- `CI=true npm run tauri build` produced version 0.1.6 AppImage, DEB, and RPM bundles.
+- Local mobile Lighthouse: performance 98, accessibility 100, best practices 100, SEO 100; LCP 2.0 s, CLS 0.073, TBT 0 ms, 177 KiB transferred.
+- Live mobile Lighthouse: performance 96, accessibility 100, best practices 100, SEO 100; LCP 2.3 s, CLS 0.073, TBT 60 ms, 178 KiB transferred.
+- The deployed home page and service worker were byte-identical to `dist/site`; home, demo, privacy, terms, robots, and sitemap returned 200, while an unknown route returned the designed 404.
+- `/opt/fleet/lib/verify-url.sh` passed title, language, landmark, image, and console checks.
+- Final live browser evidence covers cold desktop/mobile first screens, exact-path offline reload, demo reset/isolation, route focus/announcements, axe scans, privacy requests, release metadata, and installer links.
+- GitHub Actions passed quality, macOS Intel, macOS Apple silicon, Windows, Linux, and publish jobs. The release includes all required bundles, `SHA256SUMS`, and `latest.json`; a downloaded DEB matched its published checksum.
 
-Repair the blocking service-worker route handling and strengthen its claim test. The six minor findings cover first-viewport fact placement, generic command-copy labels, notes/highlights terminology, one inaccurate README default, and two unclear copy choices. No product code was modified during this review.
+Evidence: `.factory/evidence/polish-2/`
 
-No infrastructure, DNS, billing, secrets, or out-of-scope resources were read or changed.
+Release workflow: <https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/33579845575>
+
+Release: <https://github.com/B-Divyesh/sf-reader-sideload-library/releases/tag/v0.1.6>
+
+## Run and verify
+
+```sh
+npm ci
+npm test
+npm run check
+npm run build
+npm run preview:site
+```
+
+Run the live acceptance audit with:
+
+```sh
+node scripts/verify-live.mjs https://reader-sideload-library.sociobot.in .factory/evidence/polish-2/live
+```
+
+## Known gaps
+
+None within the work order. The application is deliberately local-first and does not import DRM-protected books.
+
+## Needs operator action
+
+The published desktop installers are unsigned, and the site states this before download. Signing would require configuring workflow use of `APPLE_CERTIFICATE` for macOS and `WINDOWS_CERT_PFX` for Windows; no signing secrets were read or changed in this work order.
