@@ -48,3 +48,5 @@ The selected image is generated with the factory Azure image deployment on 2026-
 The 1200×630 social card added on 2026-08-30 is a centered crop of that same original `hero.png`; no new third-party asset was introduced. The 180px touch icon is resized from the hand-authored application icon.
 
 Demo mode keeps the same field-tool surface rather than presenting a separate marketing mockup. Its graphite banner sits above the workbench, names the isolated state, and keeps reset and exit controls visible. This preserves the product’s physical archive grammar while making the sandbox boundary unmistakable.
+
+The landing walkthrough uses four screenshots captured from this repository’s desktop UI at 1280×800 on 2 September 2026. They show the real empty, catalogue, collection, and transfer states with the bundled sample data. The images are first-party product captures, not generated capability mockups, and ship as optimized WebP files.

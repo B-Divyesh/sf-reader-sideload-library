@@ -10,6 +10,12 @@ One-click sample: <https://reader-sideload-library.sociobot.in/demo/?demo=1>
 
 It is for people who own book files and use e-ink readers. It is for people who want folder order and highlight export without a full library manager. It is not an ebook store, DRM-removal tool, reader, or firmware project.
 
+## Product model
+
+Version 0.1 ships as a free MIT-licensed release. Catalogue, collection, USB, WebDAV, and Markdown tools need no purchase or product account.
+
+The researched brief proposed a one-time purchase. This release deliberately uses the controller-approved free-model deviation because no paid feature is withheld and no working checkout is registered. A later paid edition must add a real Sociobot checkout, license restore, and verification flow before any purchase offer appears.
+
 ## What works in v0.1
 
 - Recursive EPUB/PDF scan with embedded title, author, series, cover, encryption, and file validation

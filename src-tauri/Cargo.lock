@@ -2754,7 +2754,7 @@ dependencies = [
 
 [[package]]
 name = "reader-sideload-library"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "hex",
  "lopdf",

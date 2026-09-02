@@ -22,10 +22,17 @@
   },
   {
     "id": "core-free",
-    "claim": "Catalogue, collection, USB, WebDAV, and Markdown tools require no purchase or product account.",
-    "where": "landing facts and privacy section, desktop WebDAV panel, terms, README",
+    "claim": "Version 0.1 is a free release; catalogue, collection, USB, WebDAV, and Markdown tools require no purchase or product account.",
+    "where": "landing facts and privacy section, desktop WebDAV panel, terms, README product model",
     "test": "npm run test:claims -- --grep @claim:core-free --project=desktop-chromium",
     "sandbox": "fresh demo without a license; assert catalogue, collections, highlights, and WebDAV controls are enabled and no checkout link exists"
+  },
+  {
+    "id": "desktop-walkthrough",
+    "claim": "The landing page shows four captioned screenshots of the bundled desktop sample workflow.",
+    "where": "landing desktop walkthrough",
+    "test": "npm run test:claims -- --grep @claim:desktop-walkthrough --project=desktop-chromium",
+    "sandbox": "fresh landing page; assert four captions and four complete 1280 by 800 first-party app screenshots"
   },
   {
     "id": "offline-demo",

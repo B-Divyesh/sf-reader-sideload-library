@@ -44,6 +44,8 @@ test("workflow labels name a concrete action or result", async ({ page }) => {
 
 for (const viewport of [
   { name: "desktop", width: 1366, height: 768 },
+  { name: "wide desktop", width: 1536, height: 864 },
+  { name: "standard desktop", width: 1440, height: 900 },
   { name: "mobile", width: 390, height: 844 }
 ]) {
   test(`landing first read fits the ${viewport.name} ${viewport.width}x${viewport.height} viewport`, async ({ page }) => {
@@ -59,6 +61,25 @@ for (const viewport of [
     }
   });
 }
+
+test("@claim:desktop-walkthrough landing includes a captioned four-frame desktop app walkthrough", async ({ page }) => {
+  await page.goto("/");
+  const frames = page.locator(".walkthrough-frame");
+  await expect(frames).toHaveCount(4);
+  await expect(frames.locator("figcaption strong")).toHaveText([
+    "Load the included sample",
+    "Review the catalogue",
+    "Check the reading order",
+    "Choose a transfer"
+  ]);
+  for (const image of await frames.locator("img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toHaveAttribute("loading", "lazy");
+    await expect(image).toHaveAttribute("width", "1280");
+    await expect(image).toHaveAttribute("height", "800");
+    await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth === 1280 && element.naturalHeight === 800)).toBe(true);
+  }
+});
 
 test("every route ships complete route-specific social metadata", async ({ page }) => {
   const routes = [
@@ -196,6 +217,9 @@ test("demo fits a 390px viewport with working navigation", async ({ page }) => {
   const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
   expect(widths.scroll).toBeLessThanOrEqual(widths.client);
   await expect(page.locator("header").getByRole("link", { name: "Privacy" })).toBeVisible();
+  const wordmark = await page.getByRole("link", { name: "Reader Sideload Library home" }).boundingBox();
+  expect(wordmark, "demo wordmark must have layout bounds").not.toBeNull();
+  expect(wordmark!.height, "demo wordmark must meet the mobile touch baseline").toBeGreaterThanOrEqual(44);
 });
 
 test("@claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames", async ({ page }) => {
@@ -239,10 +263,10 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          tag_name: "v0.1.7",
+          tag_name: "v0.1.8",
           assets: [
             { name: "latest.json", browser_download_url: "https://github.com/example/latest.json" },
-            { name: "Reader.Sideload.Library_0.1.7_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
+            { name: "Reader.Sideload.Library_0.1.8_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
           ]
         })
       });
@@ -256,7 +280,7 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
     await route.continue();
   });
   await page.goto(`${productionOrigin}/`);
-  await expect(page.locator("#release-status")).toContainText("Release 0.1.7 found");
+  await expect(page.locator("#release-status")).toContainText("Release 0.1.8 found");
   await page.goto(`${productionOrigin}/demo/`);
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();
@@ -268,7 +292,7 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
   expect(await context.cookies()).toEqual([]);
 });
 
-test("@claim:core-free exposes core tools without a license or checkout", async ({ page }) => {
+test("@claim:core-free exposes the documented free release without a license or checkout", async ({ page }) => {
   await page.goto("/demo/");
   await expect(page.locator('a[href*="/checkout"]')).toHaveCount(0);
   await expect(page.locator("#search")).toBeEnabled();
@@ -276,6 +300,11 @@ test("@claim:core-free exposes core tools without a license or checkout", async 
   await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
   await expect(page.getByRole("button", { name: "Sync with WebDAV" })).toBeEnabled();
   await expect(page.getByText("No license or account with us is needed.")).toBeVisible();
+  const readme = await readFile("README.md", "utf8");
+  const brief = JSON.parse(await readFile(".factory/brief.json", "utf8"));
+  expect(brief.monetization).toBe("one-time");
+  expect(readme).toContain("The researched brief proposed a one-time purchase");
+  expect(readme).toContain("Version 0.1 ships as a free MIT-licensed release");
 });
 
 test("@claim:offline-demo reloads the sample catalogue offline", async ({ browser }) => {
@@ -288,7 +317,7 @@ test("@claim:offline-demo reloads the sample catalogue offline", async ({ browse
   });
   await page.goto("http://127.0.0.1:4173/demo/?demo=1");
   await page.evaluate(() => navigator.serviceWorker.ready);
-  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v7"]);
+  await expect.poll(() => page.evaluate(() => caches.keys())).toEqual(["rsl-shell-v8"]);
   await context.setOffline(true);
   await page.reload();
   await expect(page).toHaveURL(/\/demo\/\?demo=1$/);

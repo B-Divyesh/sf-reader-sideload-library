@@ -18,7 +18,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .demo-actions { display: flex; align-items: center; gap: 12px; }
 .demo-actions button, .demo-actions a { min-height: 44px; display: inline-flex; align-items: center; border: 1px solid currentColor; padding: 8px 12px; background: transparent; color: var(--paper); font: inherit; font-weight: 700; cursor: pointer; }
 .demo-site-header { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px clamp(16px, 4vw, 56px); border-bottom: 1px solid var(--graphite); background: var(--paper); }
-.demo-wordmark { display: flex; align-items: center; gap: 10px; color: inherit; font-family: "Archivo Black", "Arial Black", sans-serif; font-size: 13px; line-height: 1.05; text-decoration: none; text-transform: uppercase; }
+.demo-wordmark { min-height: 44px; display: flex; align-items: center; gap: 10px; color: inherit; font-family: "Archivo Black", "Arial Black", sans-serif; font-size: 13px; line-height: 1.05; text-decoration: none; text-transform: uppercase; }
 .demo-wordmark svg { width: 34px; fill: none; stroke: currentColor; stroke-width: 2; }
 .demo-site-header nav, .demo-footer nav { display: flex; align-items: center; gap: 12px; }
 .demo-site-header nav a, .demo-footer nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 4px; color: inherit; font-weight: 700; text-underline-offset: 3px; }

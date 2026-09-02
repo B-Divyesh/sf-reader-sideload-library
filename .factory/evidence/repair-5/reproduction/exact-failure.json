@@ -1,0 +1,126 @@
+[
+  {
+    "viewport": {
+      "width": 1536,
+      "height": 864
+    },
+    "bounds": [
+      {
+        "selector": "h1",
+        "x": 88,
+        "y": 236.515625,
+        "width": 475.796875,
+        "height": 404.765625,
+        "fullyVisible": true
+      },
+      {
+        "selector": ".hero-lede",
+        "x": 88,
+        "y": 673.28125,
+        "width": 475.796875,
+        "height": 100.03125,
+        "fullyVisible": true
+      },
+      {
+        "selector": ".hero-actions .button-primary",
+        "x": 88,
+        "y": 824.3125,
+        "width": 211,
+        "height": 48,
+        "fullyVisible": false
+      },
+      {
+        "selector": ".hero-facts li:nth-child(1)",
+        "x": 88,
+        "y": 899.3125,
+        "width": 475.796875,
+        "height": 24.890625,
+        "fullyVisible": false
+      },
+      {
+        "selector": ".hero-facts li:nth-child(2)",
+        "x": 88,
+        "y": 924.203125,
+        "width": 475.796875,
+        "height": 41.78125,
+        "fullyVisible": false
+      },
+      {
+        "selector": ".hero-facts li:nth-child(3)",
+        "x": 88,
+        "y": 965.984375,
+        "width": 475.796875,
+        "height": 24.890625,
+        "fullyVisible": false
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "bounds": [
+      {
+        "selector": "h1",
+        "x": 86.390625,
+        "y": 229.796875,
+        "width": 438.21875,
+        "height": 404.765625,
+        "fullyVisible": true
+      },
+      {
+        "selector": ".hero-lede",
+        "x": 86.390625,
+        "y": 666.5625,
+        "width": 438.21875,
+        "height": 100.03125,
+        "fullyVisible": true
+      },
+      {
+        "selector": ".hero-actions .button-primary",
+        "x": 86.390625,
+        "y": 817.59375,
+        "width": 211,
+        "height": 48,
+        "fullyVisible": true
+      },
+      {
+        "selector": ".hero-facts li:nth-child(1)",
+        "x": 86.390625,
+        "y": 892.59375,
+        "width": 438.21875,
+        "height": 24.890625,
+        "fullyVisible": false
+      },
+      {
+        "selector": ".hero-facts li:nth-child(2)",
+        "x": 86.390625,
+        "y": 917.484375,
+        "width": 438.21875,
+        "height": 41.78125,
+        "fullyVisible": false
+      },
+      {
+        "selector": ".hero-facts li:nth-child(3)",
+        "x": 86.390625,
+        "y": 959.265625,
+        "width": 438.21875,
+        "height": 24.890625,
+        "fullyVisible": false
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "wordmark": {
+      "x": 16,
+      "y": 160,
+      "width": 179,
+      "height": 34
+    }
+  }
+]

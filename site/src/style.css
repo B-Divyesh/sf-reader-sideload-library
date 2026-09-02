@@ -22,7 +22,7 @@
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 h1:focus{outline:3px solid var(--moss);outline-offset:4px}
 @media(max-width:850px){.site-header{height:auto;min-height:88px;flex-wrap:wrap}.site-header nav{display:flex;max-width:100%;overflow-x:auto}}
-@media(min-width:851px) and (max-height:820px){.hero{grid-template-columns:minmax(430px,1fr) minmax(400px,1fr)}.hero-copy{padding:28px clamp(32px,4vw,56px)}h1{font-size:clamp(48px,5vw,68px);line-height:.9;margin:16px 0 20px}.hero-lede{font-size:clamp(18px,1.5vw,21px)}.hero-actions{margin-top:20px}.download-block{margin-top:16px}.quiet-link{margin-top:12px}}
+@media(min-width:851px) and (max-height:1000px){.hero{grid-template-columns:minmax(430px,1fr) minmax(400px,1fr)}.hero-copy{padding:28px clamp(32px,4vw,56px)}h1{font-size:clamp(48px,5vw,68px);line-height:.9;margin:16px 0 20px}.hero-lede{font-size:clamp(18px,1.5vw,21px)}.hero-actions{margin-top:20px}.download-block{margin-top:16px}.quiet-link{margin-top:12px}}
 
 /* The three decision facts belong to the first screen, inside the ledger. */
 .hero-facts{list-style:none;display:grid;gap:0;max-width:590px;margin:18px 0 0;padding:8px 0;border-top:1px solid var(--graphite);border-bottom:1px solid var(--graphite)}
@@ -31,3 +31,16 @@ h1:focus{outline:3px solid var(--moss);outline-offset:4px}
 .hero-facts+.download-block{margin-top:14px}
 .hero-facts~.quiet-link{margin-top:8px}
 @media(max-width:540px){.hero-facts{margin-top:16px}.hero-facts li{font-size:12px;line-height:1.25}.hero-facts+.download-block{margin-top:12px}.hero-facts~.quiet-link{margin-top:6px}}
+
+/* Four real app frames explain the desktop workflow without turning it into a generic feature grid. */
+.walkthrough{background:var(--paper)}
+.walkthrough .section-intro{margin-bottom:40px}
+.walkthrough-list{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:0;padding:0}
+.walkthrough-frame{height:100%;margin:0;border:3px solid var(--graphite);background:var(--concrete);box-shadow:8px 8px 0 var(--moss)}
+.walkthrough-frame img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;object-position:top left;border-bottom:1px solid var(--graphite);background:var(--surface)}
+.walkthrough-frame figcaption{display:grid;grid-template-columns:42px 1fr;gap:12px;min-height:92px;padding:16px;background:var(--surface);line-height:1.45}
+.walkthrough-frame figcaption>span:first-child{color:var(--moss);font-weight:800;font-variant-numeric:tabular-nums}
+.walkthrough-frame strong{display:block;margin-bottom:4px;font-family:"Archivo Black","Arial Black",sans-serif;font-weight:400}
+.walkthrough-frame figcaption span span{display:block;color:var(--ash)}
+@media(max-width:850px){.walkthrough-list{grid-template-columns:1fr}}
+@media(max-width:540px){.walkthrough-list{gap:24px}.walkthrough-frame{box-shadow:5px 5px 0 var(--moss)}.walkthrough-frame figcaption{min-height:0}}

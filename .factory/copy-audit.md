@@ -35,6 +35,17 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Copy selected books by USB or WebDAV. | 7 | — |
 | Import highlights and export them as Markdown. | 7 | — |
 | Review first / Preview names / Choose USB or WebDAV | 2 / 2 / 4 | — Each label names a concrete review, result, or transfer method. |
+| Desktop walkthrough | 2 | — |
+| See each step before you install. | 6 | — |
+| Follow the bundled sample from catalogue review to transfer. | 9 | — |
+| Load the included sample | 4 | — |
+| Open four sample books without choosing a real folder. | 9 | — |
+| Review the catalogue | 3 | — |
+| Check titles, formats, covers, and protected-file warnings. | 7 | — |
+| Check the reading order | 4 | — |
+| Preview the numbered folder and filenames before transfer. | 8 | — |
+| Choose a transfer | 3 | — |
+| Copy by USB or WebDAV, or export highlights as Markdown. | 10 | — |
 | Find metadata problems before copying. | 5 | — |
 | Search titles, authors, and series. | 6 | — |
 | Missing covers and protected files stay visible before transfer. | 8 | — |
@@ -56,7 +67,7 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Check the connection first to get specific help for address, sign-in, permission, and storage errors. | 15 | — |
 | Install the desktop app | 4 | — |
 | Download it for your computer. | 5 | — |
-| Version 0.1.7. | 2 | — |
+| Version 0.1.8. | 2 | — |
 | Installers are not code-signed. | 5 | — |
 | Each release includes SHA-256 checksums. | 5 | — |
 | Apple silicon and Intel disk images. | 6 | — |
@@ -76,14 +87,14 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Release downloads open on GitHub. | 5 | — |
 | The release manifest could not be reached. | 7 | — |
 | GitHub’s latest-release page remains available. | 5 | — |
-| Release 0.1.7 found. | 3 | — |
+| Release 0.1.8 found. | 3 | — |
 | SHA-256 checksums are published beside every installer. | 7 | — |
 | Organize DRM-free books for an e-ink reader. | 7 | — |
 | Built by Param Factory | 4 | — |
 | Hero imagery generated for this product with the factory image model. | 11 | — |
 | Source on GitHub (external) | 4 | — |
 
-No line exceeds 22 words or contains a banned marketing word. The first screen states the job, audience, next action, privacy, offline behavior, and price before either tested viewport ends.
+No line exceeds 22 words or contains a banned marketing word. The first screen fits at 1366×768, 1536×864, 1440×900, and 390×844.
 
 ## Demo first screen
 
@@ -116,6 +127,7 @@ These labels name the product and each panel’s work. The vague labels “Local
 - “background network requests” replaces the ambiguous “passive traffic.”
 - “folder order and highlight export” replaces the subjective “focused alternative.”
 - “Transfer & highlights” matches the app and the rest of the product copy.
+- “Free release” names the approved v0.1 product model without suggesting a checkout exists.
 
 ## Terminology
 
@@ -128,3 +140,4 @@ These labels name the product and each panel’s work. The vague labels “Local
 | KOReader import file | sidecar |
 | Example workspace | sample demo |
 | Network folder protocol | WebDAV |
+| Current product model | free release |
