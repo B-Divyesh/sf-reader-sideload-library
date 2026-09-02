@@ -40,6 +40,18 @@ try {
       headerLinks: [...document.querySelectorAll("header a")].map((link) => link.textContent?.trim()),
       footerLinks: [...document.querySelectorAll("footer a")].map((link) => link.textContent?.trim()),
       builtBy: document.querySelector("footer")?.textContent?.includes("Built by Param Factory"),
+      description: document.querySelector('meta[name="description"]')?.getAttribute("content"),
+      openGraph: {
+        title: document.querySelector('meta[property="og:title"]')?.getAttribute("content"),
+        description: document.querySelector('meta[property="og:description"]')?.getAttribute("content"),
+        image: document.querySelector('meta[property="og:image"]')?.getAttribute("content")
+      },
+      twitter: {
+        card: document.querySelector('meta[name="twitter:card"]')?.getAttribute("content"),
+        title: document.querySelector('meta[name="twitter:title"]')?.getAttribute("content"),
+        description: document.querySelector('meta[name="twitter:description"]')?.getAttribute("content"),
+        image: document.querySelector('meta[name="twitter:image"]')?.getAttribute("content")
+      },
       releaseStatus: document.querySelector("#release-status")?.textContent?.trim(),
       downloadHref: document.querySelector("#primary-download")?.href
     }));
@@ -52,9 +64,18 @@ try {
     check(serious.length === 0, `${route}: serious axe findings: ${serious.map((item) => item.id).join(", ")}`);
     check(consoleErrors.length === 0, `${route}: console errors: ${consoleErrors.join(" | ")}`);
     check(["Demo", "Privacy", "Terms"].every((label) => state.footerLinks.includes(label)), `${route}: shared footer links missing`);
+    check(state.openGraph.title === state.title, `${route}: Open Graph title does not match the route title`);
+    check(Boolean(state.description), `${route}: route description is missing`);
+    check(Boolean(state.openGraph.description), `${route}: Open Graph description is missing`);
+    check(state.openGraph.image?.endsWith("/assets/social-card.jpg"), `${route}: Open Graph image is missing`);
+    check(state.twitter.card === "summary_large_image", `${route}: Twitter card type is missing`);
+    check(state.twitter.title === state.title, `${route}: Twitter title does not match the route title`);
+    check(state.twitter.description === state.openGraph.description, `${route}: Twitter description does not match the Open Graph description`);
+    check(state.twitter.image === state.openGraph.image, `${route}: Twitter image does not match the Open Graph image`);
     if (route === "/") {
       check(state.releaseStatus?.includes(`Release ${version} found`), `home did not resolve release ${version}: ${state.releaseStatus}`);
       check(state.downloadHref?.includes(`/releases/download/v${version}/`), `home download is not a v${version} asset: ${state.downloadHref}`);
+      check(state.footerLinks.includes("Source on GitHub (external)"), "home source link does not name GitHub as an external destination");
     }
     results.routes.push({ route, status: response?.status(), ...state, seriousAxe: serious.length, consoleErrors });
     page.off("console", onConsole);
@@ -75,6 +96,10 @@ try {
   check(await page.locator("#search").evaluate((element) => element === document.activeElement), "sample primary action did not focus search");
   await page.locator("#search").fill("Zoë");
   await page.locator("#format-filter").selectOption("PDF");
+  await page.getByRole("tab", { name: /Collections/ }).click();
+  check(await page.getByText("Ordered device folders", { exact: true }).isVisible(), "Collections panel does not use its direct task label");
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
+  check(await page.getByText("USB, WebDAV, and Markdown export", { exact: true }).isVisible(), "Transfer panel does not use its direct task label");
   await page.getByRole("tab", { name: /Collections/ }).click();
   await page.getByRole("button", { name: "Reset demo" }).click();
   const reset = await page.evaluate(() => ({

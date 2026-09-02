@@ -15,6 +15,16 @@ test("desktop shell is keyboard navigable and accessible", async ({ page }) => {
   expect(results.violations.filter((violation) => ["serious", "critical"].includes(violation.impact || ""))).toEqual([]);
 });
 
+test("working sections use direct task labels", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("Desktop app for DRM-free books", { exact: true })).toBeVisible();
+  await page.getByRole("tab", { name: /Collections/ }).click();
+  await expect(page.getByText("Ordered device folders", { exact: true })).toBeVisible();
+  await page.getByRole("tab", { name: /Transfer & highlights/ }).click();
+  await expect(page.getByText("USB, WebDAV, and Markdown export", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Local field tool|Order survives the cable|A deliberate handoff/)).toHaveCount(0);
+});
+
 test("desktop shell fits a 390px viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");

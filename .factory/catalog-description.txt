@@ -1,1 +1,1 @@
-Organize DRM-free books into ordered collections and sideload them to your e-ink reader.
+Organize DRM-free books, set reader order, and sideload by USB or WebDAV.

@@ -50,16 +50,48 @@ for (const viewport of [
   });
 }
 
-test("required metadata and hosting policy are shipped", async ({ page, request }) => {
-  await page.goto("/");
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://reader-sideload-library.sociobot.in/");
-  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /social-card\.jpg$/);
-  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
-  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", "/apple-touch-icon.png");
+test("every route ships complete route-specific social metadata", async ({ page }) => {
+  const routes = [
+    { path: "/", title: "Reader Sideload Library — organize e-ink libraries", canonical: "https://reader-sideload-library.sociobot.in/" },
+    { path: "/demo/", title: "Demo — Reader Sideload Library", canonical: "https://reader-sideload-library.sociobot.in/demo/" },
+    { path: "/privacy/", title: "Privacy — Reader Sideload Library", canonical: "https://reader-sideload-library.sociobot.in/privacy/" },
+    { path: "/terms/", title: "Terms — Reader Sideload Library", canonical: "https://reader-sideload-library.sociobot.in/terms/" },
+    { path: "/404.html", title: "Page not found — Reader Sideload Library", canonical: "https://reader-sideload-library.sociobot.in/404.html" }
+  ];
+
+  for (const route of routes) {
+    await page.goto(route.path);
+    const description = await page.locator('meta[name="description"]').getAttribute("content");
+    expect(description, `${route.path} needs a description`).toBeTruthy();
+    const socialDescription = await page.locator('meta[property="og:description"]').getAttribute("content");
+    expect(socialDescription, `${route.path} needs a social description`).toBeTruthy();
+    await expect(page).toHaveTitle(route.title);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", route.canonical);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", route.title);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", route.canonical);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", "https://reader-sideload-library.sociobot.in/assets/social-card.jpg");
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", route.title);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute("content", socialDescription!);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", "https://reader-sideload-library.sociobot.in/assets/social-card.jpg");
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", "/apple-touch-icon.png");
+  }
+});
+
+test("required hosting policy is shipped", async ({ request }) => {
   const config = await (await request.get("/staticwebapp.config.json")).json();
   expect(config.responseOverrides["404"].rewrite).toBe("/404.html");
   expect(config.globalHeaders["Content-Security-Policy"]).toContain("frame-ancestors 'none'");
   expect(config.routes[0].headers["Cache-Control"]).toContain("immutable");
+});
+
+test("non-download external links name their destination", async ({ page }) => {
+  await page.goto("/");
+  const links = await page.locator('a[href^="http"]:not(#primary-download):not([data-platform])').evaluateAll((elements) => elements.map((element) => ({
+    href: (element as HTMLAnchorElement).href,
+    label: element.textContent?.trim() || element.getAttribute("aria-label") || ""
+  })));
+  expect(links).toEqual([{ href: "https://github.com/B-Divyesh/sf-reader-sideload-library", label: "Source on GitHub (external)" }]);
 });
 
 test("download action and copy controls work without release metadata", async ({ page, context }) => {

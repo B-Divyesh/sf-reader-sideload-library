@@ -80,6 +80,7 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Organize DRM-free books for an e-ink reader. | 7 | — |
 | Built by Param Factory | 4 | — |
 | Hero imagery generated for this product with the factory image model. | 11 | — |
+| Source on GitHub (external) | 4 | — |
 
 No line exceeds 22 words or contains a banned marketing word. The first screen states the job, audience, next action, privacy, offline behavior, and price before either tested viewport ends.
 
@@ -97,6 +98,16 @@ No line exceeds 22 words or contains a banned marketing word. The first screen s
 | Search the sample catalogue | 4 | — |
 
 The primary demo action starts a sample search. It does not ask for a real folder.
+
+## Desktop app working interface
+
+| Copy | Words | Flag |
+| --- | ---: | --- |
+| Desktop app for DRM-free books | 5 | — |
+| Ordered device folders | 3 | — |
+| USB, WebDAV, and Markdown export | 5 | — |
+
+These labels name the product and each panel’s work. The vague labels “Local field tool,” “Order survives the cable,” and “A deliberate handoff” are removed.
 
 ## README corrections checked
 
