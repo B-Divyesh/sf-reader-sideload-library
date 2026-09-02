@@ -1,5 +1,15 @@
 # Reader Sideload Library — polish round 2 handoff
 
+## Independent verification 6 — PASS
+
+**PASS — candidate `54e5c4590db68096d4a1d583be988e3bc30a6781` is accepted.**
+
+On 2 September 2026, independent QA passed every claim command (17), `npm test` (56 Playwright tests plus unit/Rust gates), TypeScript, production web build, Rust fmt/clippy, and the native Linux Tauri bundle build. The live URL <https://reader-sideload-library.sociobot.in> matches the candidate’s public build files, passes the URL verifier and axe serious/critical checks, works at desktop and 390px, retains the demo offline, and makes only the disclosed GitHub releases API request. Fresh Lighthouse mobile: 98 performance, 100 accessibility, 100 best practices, 100 SEO. The v0.1.6 published Debian installer matches its SHA-256 checksum.
+
+No critical, high, medium, or low defects remain. Full evidence and the exact commands/results are in `.factory/verification-6.md` and `.factory/evidence/verification-6/`.
+
+---
+
 ## Outcome
 
 All findings in `.factory/review-1.md` and `.factory/review-2.md` are resolved. The repaired static site is deployed at <https://reader-sideload-library.sociobot.in>, and desktop version `0.1.6` is published from tag `v0.1.6`. The finding-by-finding change and evidence map is in `.factory/polish-2.md`.
