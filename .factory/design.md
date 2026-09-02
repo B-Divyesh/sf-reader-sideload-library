@@ -26,10 +26,10 @@ Spacing follows a strict 4px field-grid: 4, 8, 12, 16, 24, 32, 48, 72. One-pixel
 ## Layout and interaction grammar
 
 - Landing: copy and download action occupy a left ledger; an original device-transfer still life occupies the right. A narrow status rail makes platform detection visible.
-- App: a persistent top workbench names the current library, followed by three task stages — Catalogue, Collections, Transfer & notes. On phones these become a single horizontal, scrollable tab strip and the data table turns into labelled book rows.
+- App: a persistent top workbench names the current library, followed by three task stages — Catalogue, Collections, Transfer & highlights. On phones these become a single horizontal, scrollable tab strip and the data table turns into labelled book rows.
 - Primary actions are moss blocks with a 3px graphite offset shadow. Pressing physically collapses the offset. Secondary actions look like stamped paper labels.
 - Transfer progress is a finite ruled track. Disconnects keep the completed item count and offer a precise retry.
-- Empty states explain the next physical action (choose a folder, connect a reader, or import notes) instead of decorating the absence.
+- Empty states explain the next physical action (choose a folder, connect a reader, or import highlights) instead of decorating the absence.
 
 ## Motion
 

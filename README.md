@@ -18,7 +18,7 @@ It is for people who own book files and use e-ink readers. It is for people who 
 - USB sync preserves source bytes, verifies copied bytes, and skips an unchanged repeat copy
 - WebDAV sync checks HTTPS, tests the connection, and explains what to fix
 - Import Markdown, text, JSON, KOReader sidecars, and PDF highlights. Export plain Markdown.
-- Catalogue, collection, and Markdown tools reopen offline after the first demo visit
+- Catalogue, collection, and Markdown tools reopen offline after the first sample visit
 
 ## Try the sample
 

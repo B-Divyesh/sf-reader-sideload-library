@@ -197,10 +197,10 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          tag_name: "v0.1.5",
+          tag_name: "v0.1.6",
           assets: [
             { name: "latest.json", browser_download_url: "https://github.com/example/latest.json" },
-            { name: "Reader.Sideload.Library_0.1.5_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
+            { name: "Reader.Sideload.Library_0.1.6_amd64.AppImage", browser_download_url: "https://github.com/example/app.AppImage" }
           ]
         })
       });
@@ -214,7 +214,7 @@ test("@claim:privacy-requests uses only the disclosed GitHub release request", a
     await route.continue();
   });
   await page.goto(`${productionOrigin}/`);
-  await expect(page.locator("#release-status")).toContainText("Release 0.1.5 found");
+  await expect(page.locator("#release-status")).toContainText("Release 0.1.6 found");
   await page.goto(`${productionOrigin}/demo/`);
   await page.locator("#search").fill("Field");
   await page.getByRole("tab", { name: /Collections/ }).click();

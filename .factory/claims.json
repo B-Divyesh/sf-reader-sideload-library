@@ -29,7 +29,7 @@
   },
   {
     "id": "offline-demo",
-    "claim": "Catalogue, collection, and Markdown tools reopen offline after the first demo visit.",
+    "claim": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit.",
     "where": "landing facts, README",
     "test": "npm run test:claims -- --grep @claim:offline-demo --project=desktop-chromium",
     "sandbox": "fresh browser context; load the advertised /demo/?demo=1 URL once, await service-worker installation, go offline without another online reload, then reload and assert the demo banner and four-book catalogue"

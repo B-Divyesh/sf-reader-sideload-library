@@ -14,9 +14,11 @@ Demo state uses only `localStorage` key `demo:rsl:library-state:v1`. Real catalo
 
 Use **Reset demo** in the persistent banner to restore the bundled sample, clear filters, and return to Catalogue. Use **Start for real** to delete the demo key and leave the demo. Opening `/demo/` from a fresh browser seeds the same sample automatically.
 
+After the first online visit, the service worker keeps the demo shell and its built assets. The exact advertised `/demo/?demo=1` URL reopens the four-book sample on its first offline reload; no extra online refresh is required.
+
 ## What to verify
 
 - Choose **Search the sample catalogue**, then search for `Zoë` to find the Unicode PDF metadata regression sample.
 - Open **Collections** to inspect numbered device filenames.
-- Open **Transfer & notes** and choose **Export Markdown**.
+- Open **Transfer & highlights** and choose **Export Markdown**.
 - Follow the commands in `.factory/claims.json` from a fresh browser context.

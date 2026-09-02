@@ -55,7 +55,7 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Check the connection first to get specific help for address, sign-in, permission, and storage errors. | 15 | — |
 | Install the desktop app | 4 | — |
 | Download it for your computer. | 5 | — |
-| Version 0.1.5. | 2 | — |
+| Version 0.1.6. | 2 | — |
 | Installers are not code-signed. | 5 | — |
 | Each release includes SHA-256 checksums. | 5 | — |
 | Apple silicon and Intel disk images. | 6 | — |
@@ -75,7 +75,7 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Release downloads open on GitHub. | 5 | — |
 | The release manifest could not be reached. | 7 | — |
 | GitHub’s latest-release page remains available. | 5 | — |
-| Release 0.1.5 found. | 3 | — |
+| Release 0.1.6 found. | 3 | — |
 | SHA-256 checksums are published beside every installer. | 7 | — |
 | Organize DRM-free books for an e-ink reader. | 7 | — |
 | Built by Param Factory | 4 | — |

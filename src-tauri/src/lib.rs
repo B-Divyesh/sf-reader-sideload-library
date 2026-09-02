@@ -628,7 +628,7 @@ fn import_highlights(path: String) -> Result<Vec<Highlight>, String> {
     let fallback = source
         .file_stem()
         .and_then(|value| value.to_str())
-        .unwrap_or("Imported notes");
+        .unwrap_or("Imported highlights");
     if extension == "pdf" {
         return import_pdf_highlights(source, fallback);
     }
@@ -786,7 +786,7 @@ fn import_pdf_highlights(path: &Path, fallback: &str) -> Result<Vec<Highlight>, 
         }
     }
     if output.is_empty() {
-        return Err("No embedded PDF highlight annotations were found. Some readers keep notes in a separate sidecar file; import that Markdown, JSON, or KOReader file instead.".into());
+        return Err("No embedded PDF highlights were found. Some readers keep highlights in a separate sidecar file; import that Markdown, JSON, or KOReader file instead.".into());
     }
     Ok(output)
 }
