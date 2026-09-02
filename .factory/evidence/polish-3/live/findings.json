@@ -1,0 +1,277 @@
+{
+  "baseUrl": "https://reader-sideload-library.sociobot.in",
+  "checkedAt": "2026-09-02T03:58:13.481Z",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Reader Sideload Library — organize e-ink libraries",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Organize and sideload your e-ink library.",
+      "announcement": "Reader Sideload Library — organize e-ink libraries. Organize and sideload your e-ink library.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Demo",
+        "How it works",
+        "Download",
+        "Privacy"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms",
+        "Source on GitHub (external)"
+      ],
+      "builtBy": true,
+      "description": "Organize DRM-free EPUB and PDF files, make ordered e-ink reader collections, copy by USB, and export highlights as Markdown.",
+      "openGraph": {
+        "title": "Reader Sideload Library — organize e-ink libraries",
+        "description": "Organize DRM-free EPUB and PDF files, make ordered e-ink reader collections, copy by USB, and export highlights as Markdown.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Reader Sideload Library — organize e-ink libraries",
+        "description": "Organize DRM-free EPUB and PDF files, make ordered e-ink reader collections, copy by USB, and export highlights as Markdown.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "releaseStatus": "Release 0.1.7 found. SHA-256 checksums are published beside every installer.",
+      "downloadHref": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.7/Reader.Sideload.Library_0.1.7_amd64.AppImage",
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/demo/?demo=1",
+      "status": 200,
+      "title": "Demo — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Manage a sample e-ink library",
+      "announcement": "Demo — Reader Sideload Library. Manage a sample e-ink library",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "description": "Try Reader Sideload Library with an isolated sample catalogue, collection, and highlights.",
+      "openGraph": {
+        "title": "Demo — Reader Sideload Library",
+        "description": "Try an isolated sample catalogue, collection, and highlights.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Demo — Reader Sideload Library",
+        "description": "Try an isolated sample catalogue, collection, and highlights.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/privacy/",
+      "status": 200,
+      "title": "Privacy — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "How the app handles your data.",
+      "announcement": "Privacy — Reader Sideload Library. How the app handles your data.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "description": "How Reader Sideload Library handles book files, catalogue data, credentials, and website requests.",
+      "openGraph": {
+        "title": "Privacy — Reader Sideload Library",
+        "description": "How Reader Sideload Library handles book files, catalogue data, credentials, and website requests.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Privacy — Reader Sideload Library",
+        "description": "How Reader Sideload Library handles book files, catalogue data, credentials, and website requests.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/terms/",
+      "status": 200,
+      "title": "Terms — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "Use it for files you own.",
+      "announcement": "Terms — Reader Sideload Library. Use it for files you own.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "description": "Terms for using Reader Sideload Library with DRM-free books and e-ink readers.",
+      "openGraph": {
+        "title": "Terms — Reader Sideload Library",
+        "description": "Terms for using Reader Sideload Library with DRM-free books and e-ink readers.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Terms — Reader Sideload Library",
+        "description": "Terms for using Reader Sideload Library with DRM-free books and e-ink readers.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "seriousAxe": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/route-that-does-not-exist",
+      "status": 404,
+      "title": "Page not found — Reader Sideload Library",
+      "h1Count": 1,
+      "mainCount": 1,
+      "activeTag": "H1",
+      "activeText": "This page is not in the catalogue.",
+      "announcement": "Page not found — Reader Sideload Library. This page is not in the catalogue.",
+      "headerLinks": [
+        "Reader SideloadLibrary",
+        "Home",
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "footerLinks": [
+        "Demo",
+        "Privacy",
+        "Terms"
+      ],
+      "builtBy": true,
+      "description": "This Reader Sideload Library page could not be found.",
+      "openGraph": {
+        "title": "Page not found — Reader Sideload Library",
+        "description": "This Reader Sideload Library page could not be found.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Page not found — Reader Sideload Library",
+        "description": "This Reader Sideload Library page could not be found.",
+        "image": "https://reader-sideload-library.sociobot.in/assets/social-card.jpg"
+      },
+      "seriousAxe": 0,
+      "consoleErrors": []
+    }
+  ],
+  "demo": {
+    "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "thirdParty": [],
+    "labels": {
+      "collection": "Ordered device folders",
+      "transfer": "USB, WebDAV, and Markdown export"
+    },
+    "reset": {
+      "search": "",
+      "filter": "all",
+      "rows": 4,
+      "catalogueActive": "true",
+      "focus": "catalogue-heading",
+      "real": "{\"sentinel\":\"real-library\"}",
+      "demoSeeded": true
+    },
+    "mobile": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "privacyVisible": true
+    }
+  },
+  "offline": {
+    "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+    "title": "Demo — Reader Sideload Library",
+    "bannerVisible": true,
+    "bookCount": "4"
+  },
+  "firstScreen": [
+    {
+      "text": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+      "top": 350.5625,
+      "bottom": 409.9375
+    },
+    {
+      "text": "Try it with sample data",
+      "top": 450.421875,
+      "bottom": 498.421875
+    },
+    {
+      "text": "No account or background network requests",
+      "top": 525.421875,
+      "bottom": 550.3125
+    },
+    {
+      "text": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+      "top": 550.3125,
+      "bottom": 575.203125
+    },
+    {
+      "text": "USB and WebDAV tools are free",
+      "top": 575.203125,
+      "bottom": 600.09375
+    }
+  ],
+  "mobileFirstScreen": [
+    {
+      "text": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+      "top": 386.703125,
+      "bottom": 464.984375
+    },
+    {
+      "text": "Try it with sample data",
+      "top": 510.984375,
+      "bottom": 558.984375
+    },
+    {
+      "text": "No account or background network requests",
+      "top": 615.984375,
+      "bottom": 638.984375
+    },
+    {
+      "text": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+      "top": 638.984375,
+      "bottom": 676.984375
+    },
+    {
+      "text": "USB and WebDAV tools are free",
+      "top": 676.984375,
+      "bottom": 699.984375
+    }
+  ],
+  "failures": []
+}
