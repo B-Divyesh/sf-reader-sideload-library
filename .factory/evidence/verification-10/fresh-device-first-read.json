@@ -1,0 +1,128 @@
+{
+  "checkedAt": "2026-09-06T04:53:29.766Z",
+  "contexts": {
+    "desktop": {
+      "first": {
+        "scrollY": 0,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "title": "Reader Sideload Library — organize e-ink libraries",
+        "job": {
+          "text": "Organize and sideload your e-ink library.",
+          "top": 206.4375,
+          "bottom": 390,
+          "visible": true
+        },
+        "audience": {
+          "text": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+          "top": 410,
+          "bottom": 470.875,
+          "visible": true
+        },
+        "action": {
+          "text": "Try it with sample data",
+          "top": 511.875,
+          "bottom": 559.875,
+          "visible": true
+        },
+        "actionHelp": {
+          "text": "Open a ready sample catalogue.",
+          "top": 526.875,
+          "bottom": 544.875,
+          "visible": true
+        },
+        "facts": [
+          {
+            "text": "No account or background network requests",
+            "top": 586.875,
+            "bottom": 611.765625,
+            "visible": true
+          },
+          {
+            "text": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+            "top": 611.765625,
+            "bottom": 636.65625,
+            "visible": true
+          },
+          {
+            "text": "USB and WebDAV tools are free",
+            "top": 636.65625,
+            "bottom": 661.546875,
+            "visible": true
+          }
+        ]
+      },
+      "errors": []
+    },
+    "phone": {
+      "first": {
+        "scrollY": 0,
+        "viewport": {
+          "width": 393,
+          "height": 727
+        },
+        "title": "Reader Sideload Library — organize e-ink libraries",
+        "job": {
+          "text": "Organize and sideload your e-ink library.",
+          "top": 228,
+          "bottom": 354.703125,
+          "visible": true
+        },
+        "audience": {
+          "text": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+          "top": 386.703125,
+          "bottom": 464.984375,
+          "visible": true
+        },
+        "action": {
+          "text": "Try it with sample data",
+          "top": 510.984375,
+          "bottom": 558.984375,
+          "visible": true
+        },
+        "actionHelp": {
+          "text": "Open a ready sample catalogue.",
+          "top": 572.984375,
+          "bottom": 590.984375,
+          "visible": true
+        },
+        "facts": [
+          {
+            "text": "No account or background network requests",
+            "top": 615.984375,
+            "bottom": 638.984375,
+            "visible": true
+          },
+          {
+            "text": "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+            "top": 638.984375,
+            "bottom": 676.984375,
+            "visible": true
+          },
+          {
+            "text": "USB and WebDAV tools are free",
+            "top": 676.984375,
+            "bottom": 699.984375,
+            "visible": true
+          }
+        ]
+      },
+      "errors": []
+    }
+  },
+  "focusedRegressions": {
+    "fileDetail": {
+      "text": "EPUB\nCover found",
+      "formatBottom": 705,
+      "detailTop": 705,
+      "separateLines": true
+    },
+    "notFound": {
+      "status": 404,
+      "heading": "Page not found.",
+      "homeHref": "/"
+    }
+  }
+}

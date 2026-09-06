@@ -1,0 +1,431 @@
+{
+  "checkedAt": "2026-09-06T04:57:13.262Z",
+  "candidate": "9fc7213ef5e3231c73a0da7bfb23ea65bcaccf78",
+  "documentation": "b5790a60da5376cce6a0240bf37250ad141913be",
+  "files": [
+    {
+      "path": "404.html",
+      "status": 200,
+      "localBytes": 2875,
+      "liveBytes": 2875,
+      "match": true,
+      "localSha256": "732a7e384d0ef9e273588cbf12f2e6dd222d8d6afa4343c7761de2e25352afb2",
+      "liveSha256": "732a7e384d0ef9e273588cbf12f2e6dd222d8d6afa4343c7761de2e25352afb2"
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "status": 200,
+      "localBytes": 3560,
+      "liveBytes": 3560,
+      "match": true,
+      "localSha256": "da34fdb2541fab9e80a56c46c16a4f06c6a85d3bdf897dbc71ef36b4e46d045b",
+      "liveSha256": "da34fdb2541fab9e80a56c46c16a4f06c6a85d3bdf897dbc71ef36b4e46d045b"
+    },
+    {
+      "path": "assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "status": 200,
+      "localBytes": 18604,
+      "liveBytes": 18604,
+      "match": true,
+      "localSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "liveSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30"
+    },
+    {
+      "path": "assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "status": 200,
+      "localBytes": 13004,
+      "liveBytes": 13004,
+      "match": true,
+      "localSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "liveSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "status": 200,
+      "localBytes": 22588,
+      "liveBytes": 22588,
+      "match": true,
+      "localSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "liveSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "status": 200,
+      "localBytes": 22104,
+      "liveBytes": 22104,
+      "match": true,
+      "localSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "liveSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "status": 200,
+      "localBytes": 23876,
+      "liveBytes": 23876,
+      "match": true,
+      "localSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "liveSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "status": 200,
+      "localBytes": 24252,
+      "liveBytes": 24252,
+      "match": true,
+      "localSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "liveSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "status": 200,
+      "localBytes": 22280,
+      "liveBytes": 22280,
+      "match": true,
+      "localSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "liveSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516"
+    },
+    {
+      "path": "assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "status": 200,
+      "localBytes": 22832,
+      "liveBytes": 22832,
+      "match": true,
+      "localSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "liveSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7"
+    },
+    {
+      "path": "assets/legal-DAXH_8rn.js",
+      "status": 200,
+      "localBytes": 237,
+      "liveBytes": 237,
+      "match": true,
+      "localSha256": "30860d4003be2a4a311f55ad9090bf3cc9b901b55e0f3969b721543cd93bf8a7",
+      "liveSha256": "30860d4003be2a4a311f55ad9090bf3cc9b901b55e0f3969b721543cd93bf8a7"
+    },
+    {
+      "path": "assets/main-BZpY0_HU.css",
+      "status": 200,
+      "localBytes": 242,
+      "liveBytes": 242,
+      "match": true,
+      "localSha256": "f07c015140b9c8aec1b29ed1641cca942270316008a45521c2cdb54bd55fd284",
+      "liveSha256": "f07c015140b9c8aec1b29ed1641cca942270316008a45521c2cdb54bd55fd284"
+    },
+    {
+      "path": "assets/main-CwY1Coh7.js",
+      "status": 200,
+      "localBytes": 3311,
+      "liveBytes": 3311,
+      "match": true,
+      "localSha256": "88053d46d46d4c5798665ca0c1b9f41306366d959dccb61ef204b700d991c50c",
+      "liveSha256": "88053d46d46d4c5798665ca0c1b9f41306366d959dccb61ef204b700d991c50c"
+    },
+    {
+      "path": "assets/reader-handoff-1440.webp",
+      "status": 200,
+      "localBytes": 269022,
+      "liveBytes": 269022,
+      "match": true,
+      "localSha256": "4f8d1afd0f6c2183500773abb51fef8c0f381a322c9ff0353b10b32546a12923",
+      "liveSha256": "4f8d1afd0f6c2183500773abb51fef8c0f381a322c9ff0353b10b32546a12923"
+    },
+    {
+      "path": "assets/reader-handoff-768.webp",
+      "status": 200,
+      "localBytes": 79982,
+      "liveBytes": 79982,
+      "match": true,
+      "localSha256": "ec5af6a51cc946b2cb1adf310efa892a023084e64b670bf2209ec80c2817cf4f",
+      "liveSha256": "ec5af6a51cc946b2cb1adf310efa892a023084e64b670bf2209ec80c2817cf4f"
+    },
+    {
+      "path": "assets/social-card.jpg",
+      "status": 200,
+      "localBytes": 192902,
+      "liveBytes": 192902,
+      "match": true,
+      "localSha256": "ce1bab6a7138836ababab217bf08f9872af9e6be7a2279c537a6e4c8f1639db6",
+      "liveSha256": "ce1bab6a7138836ababab217bf08f9872af9e6be7a2279c537a6e4c8f1639db6"
+    },
+    {
+      "path": "assets/style-BYidun-V.js",
+      "status": 200,
+      "localBytes": 711,
+      "liveBytes": 711,
+      "match": true,
+      "localSha256": "d2a32840421496e872ade591618d2fa5c33797605d1aec04301717e5a90757d0",
+      "liveSha256": "d2a32840421496e872ade591618d2fa5c33797605d1aec04301717e5a90757d0"
+    },
+    {
+      "path": "assets/style-wKBCToNd.css",
+      "status": 200,
+      "localBytes": 14813,
+      "liveBytes": 14813,
+      "match": true,
+      "localSha256": "e8602b403779ea6dee462ce9b24d81adf937815676997baf976831839958e148",
+      "liveSha256": "e8602b403779ea6dee462ce9b24d81adf937815676997baf976831839958e148"
+    },
+    {
+      "path": "assets/walkthrough-01-start.webp",
+      "status": 200,
+      "localBytes": 24090,
+      "liveBytes": 24090,
+      "match": true,
+      "localSha256": "c6be28a638565e2207ee6ba3ee7bc2bcb318b784cd87d557c18c468e108879cd",
+      "liveSha256": "c6be28a638565e2207ee6ba3ee7bc2bcb318b784cd87d557c18c468e108879cd"
+    },
+    {
+      "path": "assets/walkthrough-02-catalogue.webp",
+      "status": 200,
+      "localBytes": 30482,
+      "liveBytes": 30482,
+      "match": true,
+      "localSha256": "3c3eecabdc05aad299a0a4d176f2658d7be56d68bdfe7dd74d01aaec29d38871",
+      "liveSha256": "3c3eecabdc05aad299a0a4d176f2658d7be56d68bdfe7dd74d01aaec29d38871"
+    },
+    {
+      "path": "assets/walkthrough-03-collections.webp",
+      "status": 200,
+      "localBytes": 32400,
+      "liveBytes": 32400,
+      "match": true,
+      "localSha256": "0b915f04fa13d91b509ba7953467ed905f5e2d01473099cb239842125992bc73",
+      "liveSha256": "0b915f04fa13d91b509ba7953467ed905f5e2d01473099cb239842125992bc73"
+    },
+    {
+      "path": "assets/walkthrough-04-transfer.webp",
+      "status": 200,
+      "localBytes": 32416,
+      "liveBytes": 32416,
+      "match": true,
+      "localSha256": "9e4eeabae7befa855e445ef04414ceedc6222e6c436097044ac7d75c96b9c030",
+      "liveSha256": "9e4eeabae7befa855e445ef04414ceedc6222e6c436097044ac7d75c96b9c030"
+    },
+    {
+      "path": "demo/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2",
+      "status": 200,
+      "localBytes": 18604,
+      "liveBytes": 18604,
+      "match": true,
+      "localSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30",
+      "liveSha256": "25f33e61cf995abd6be62931cf03bf427286259177b43618cc410ee0157cfd30"
+    },
+    {
+      "path": "demo/assets/archivo-black-latin-400-normal-HW9MwEcM.woff",
+      "status": 200,
+      "localBytes": 13004,
+      "liveBytes": 13004,
+      "match": true,
+      "localSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e",
+      "liveSha256": "d02e2312fd11842ead4e6de49733501d34f6980dbebf5807798eafe7dc3d648e"
+    },
+    {
+      "path": "demo/assets/core-DV6XEvTN.js",
+      "status": 200,
+      "localBytes": 138,
+      "liveBytes": 138,
+      "match": true,
+      "localSha256": "92aba296947485454c97f9e6a3f88d59b9af6252eb50db4c5201dedd19a61281",
+      "liveSha256": "92aba296947485454c97f9e6a3f88d59b9af6252eb50db4c5201dedd19a61281"
+    },
+    {
+      "path": "demo/assets/core-DV6XEvTN.js.map",
+      "status": 200,
+      "localBytes": 11351,
+      "liveBytes": 11351,
+      "match": true,
+      "localSha256": "765f87d71d84d10b1c11d65b8106e91280d46326f34bc021af73e3a04e59da7d",
+      "liveSha256": "765f87d71d84d10b1c11d65b8106e91280d46326f34bc021af73e3a04e59da7d"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2",
+      "status": 200,
+      "localBytes": 22588,
+      "liveBytes": 22588,
+      "match": true,
+      "localSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "liveSha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff",
+      "status": 200,
+      "localBytes": 22104,
+      "liveBytes": 22104,
+      "match": true,
+      "localSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901",
+      "liveSha256": "828907bfd14855c880789878bd2b38ffd284a6c27c8b80f6069900f70dae3901"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff",
+      "status": 200,
+      "localBytes": 23876,
+      "liveBytes": 23876,
+      "match": true,
+      "localSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21",
+      "liveSha256": "7861a349af1e925a80d56547c2c9e0b1e9f6a9002a9a6867351da2f05122ad21"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2",
+      "status": 200,
+      "localBytes": 24252,
+      "liveBytes": 24252,
+      "match": true,
+      "localSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "liveSha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff",
+      "status": 200,
+      "localBytes": 22280,
+      "liveBytes": 22280,
+      "match": true,
+      "localSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516",
+      "liveSha256": "973b42f17d4dbb83000847469e7777abe95c303f547d7503c934227e697a0516"
+    },
+    {
+      "path": "demo/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2",
+      "status": 200,
+      "localBytes": 22832,
+      "liveBytes": 22832,
+      "match": true,
+      "localSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7",
+      "liveSha256": "42e7b0c143c19df9d99fd896e76b48f846edf0902d200bc29796b34d12c33aa7"
+    },
+    {
+      "path": "demo/assets/index-15peLFl2.css",
+      "status": 200,
+      "localBytes": 13745,
+      "liveBytes": 13745,
+      "match": true,
+      "localSha256": "a25125c95eecd6a236f7bcba6b518f07509e846fa5716df191cd902fd5aa0924",
+      "liveSha256": "a25125c95eecd6a236f7bcba6b518f07509e846fa5716df191cd902fd5aa0924"
+    },
+    {
+      "path": "demo/assets/index-CeU81E27.js",
+      "status": 200,
+      "localBytes": 21205,
+      "liveBytes": 21205,
+      "match": true,
+      "localSha256": "0189e2d18e43d3b6dfc5be76b08f4bf1a31347e31213bd3f380277bb07813f5a",
+      "liveSha256": "0189e2d18e43d3b6dfc5be76b08f4bf1a31347e31213bd3f380277bb07813f5a"
+    },
+    {
+      "path": "demo/assets/index-CeU81E27.js.map",
+      "status": 200,
+      "localBytes": 50733,
+      "liveBytes": 50733,
+      "match": true,
+      "localSha256": "2ac34a4aaac6b5a59e03682c5b93f77ac86a0e62a4d4272034a3a31f6e55dd7f",
+      "liveSha256": "2ac34a4aaac6b5a59e03682c5b93f77ac86a0e62a4d4272034a3a31f6e55dd7f"
+    },
+    {
+      "path": "demo/assets/index-CoEaNoas.js",
+      "status": 200,
+      "localBytes": 334,
+      "liveBytes": 334,
+      "match": true,
+      "localSha256": "74a14b04f554847b2e91cac131fba04f5d4bc768db47e25c1c5ce77c8f20a202",
+      "liveSha256": "74a14b04f554847b2e91cac131fba04f5d4bc768db47e25c1c5ce77c8f20a202"
+    },
+    {
+      "path": "demo/assets/index-CoEaNoas.js.map",
+      "status": 200,
+      "localBytes": 7489,
+      "liveBytes": 7489,
+      "match": true,
+      "localSha256": "61c7157046917210597c257292994f095ef45897b2e5b271e15eeb87887e067a",
+      "liveSha256": "61c7157046917210597c257292994f095ef45897b2e5b271e15eeb87887e067a"
+    },
+    {
+      "path": "demo/index.html",
+      "status": 200,
+      "localBytes": 12132,
+      "liveBytes": 12132,
+      "match": true,
+      "localSha256": "2befbe0cf73d1cbf3806e8b26007e03fa7c6e6bcbe521f730e2f4919a9c3a671",
+      "liveSha256": "2befbe0cf73d1cbf3806e8b26007e03fa7c6e6bcbe521f730e2f4919a9c3a671"
+    },
+    {
+      "path": "favicon.svg",
+      "status": 200,
+      "localBytes": 226,
+      "liveBytes": 226,
+      "match": true,
+      "localSha256": "10f0d190ae8e715efd32bf08305c021588560cc510ba85b15131d556db7f3d25",
+      "liveSha256": "10f0d190ae8e715efd32bf08305c021588560cc510ba85b15131d556db7f3d25"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "localBytes": 13000,
+      "liveBytes": 13000,
+      "match": true,
+      "localSha256": "6d817060ad80413ea7126f5c92ccf543742bb3eb4247c57f16c8b1142b139dbc",
+      "liveSha256": "6d817060ad80413ea7126f5c92ccf543742bb3eb4247c57f16c8b1142b139dbc"
+    },
+    {
+      "path": "install.ps1",
+      "status": 200,
+      "localBytes": 1131,
+      "liveBytes": 1131,
+      "match": true,
+      "localSha256": "05a6f24e2863a6f0d65ba6371eb4c0afc5ebd8a7ba3a0112e522ac71f1ac07c1",
+      "liveSha256": "05a6f24e2863a6f0d65ba6371eb4c0afc5ebd8a7ba3a0112e522ac71f1ac07c1"
+    },
+    {
+      "path": "install.sh",
+      "status": 200,
+      "localBytes": 2171,
+      "liveBytes": 2171,
+      "match": true,
+      "localSha256": "7f0b1a0855f325ad10b035cb758da1bb27386bfbfa41a9682ca24600cd581801",
+      "liveSha256": "7f0b1a0855f325ad10b035cb758da1bb27386bfbfa41a9682ca24600cd581801"
+    },
+    {
+      "path": "privacy/index.html",
+      "status": 200,
+      "localBytes": 4392,
+      "liveBytes": 4392,
+      "match": true,
+      "localSha256": "3e4d088a42d6582f0f16a1ce0d2ad50ef23210b67de67e1a48086e8215b7f6bd",
+      "liveSha256": "3e4d088a42d6582f0f16a1ce0d2ad50ef23210b67de67e1a48086e8215b7f6bd"
+    },
+    {
+      "path": "robots.txt",
+      "status": 200,
+      "localBytes": 89,
+      "liveBytes": 89,
+      "match": true,
+      "localSha256": "2f7ee2afb3b91abaed7c9ca588f0fb7d8ed2c177cf94657c2c0b0a8f198a8c8b",
+      "liveSha256": "2f7ee2afb3b91abaed7c9ca588f0fb7d8ed2c177cf94657c2c0b0a8f198a8c8b"
+    },
+    {
+      "path": "sitemap.xml",
+      "status": 200,
+      "localBytes": 405,
+      "liveBytes": 405,
+      "match": true,
+      "localSha256": "bcb85468b3dfa5e91b2d014c4ffbdb446528ec77bd641e09503aef521d5c1aee",
+      "liveSha256": "bcb85468b3dfa5e91b2d014c4ffbdb446528ec77bd641e09503aef521d5c1aee"
+    },
+    {
+      "path": "sw.js",
+      "status": 200,
+      "localBytes": 2786,
+      "liveBytes": 2786,
+      "match": true,
+      "localSha256": "16e214e695f4a2dba3c4ac1b90be5549729de5e08f854c56ceeac850763a1f20",
+      "liveSha256": "16e214e695f4a2dba3c4ac1b90be5549729de5e08f854c56ceeac850763a1f20"
+    },
+    {
+      "path": "terms/index.html",
+      "status": 200,
+      "localBytes": 3975,
+      "liveBytes": 3975,
+      "match": true,
+      "localSha256": "73b92f9a9a17ec7bfba8e03a31b68f3341fc4c3ed08ec9e0f52986563c3c3097",
+      "liveSha256": "73b92f9a9a17ec7bfba8e03a31b68f3341fc4c3ed08ec9e0f52986563c3c3097"
+    }
+  ],
+  "failures": []
+}

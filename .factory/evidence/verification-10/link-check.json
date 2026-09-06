@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-09-06T04:53:48.881Z",
+  "checked": [
+    {
+      "url": "https://reader-sideload-library.sociobot.in/#main",
+      "text": "Skip to main content",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/",
+      "text": "Return to the home page",
+      "status": 200,
+      "finalUrl": "https://reader-sideload-library.sociobot.in/"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/demo/",
+      "text": "Demo",
+      "status": 200,
+      "finalUrl": "https://reader-sideload-library.sociobot.in/demo/"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/#workflow",
+      "text": "How it works",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/#download",
+      "text": "Download",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/privacy/",
+      "text": "Privacy",
+      "status": 200,
+      "finalUrl": "https://reader-sideload-library.sociobot.in/privacy/"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1",
+      "text": "Open the sample catalogue",
+      "status": 200,
+      "finalUrl": "https://reader-sideload-library.sociobot.in/demo/?demo=1"
+    },
+    {
+      "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.9/Reader.Sideload.Library_0.1.9_amd64.AppImage",
+      "text": "Download AppImage",
+      "status": 200,
+      "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1349364840/a8770f95-36bb-4bf8-986b-b9291b812dd4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-06T05%3A43%3A38Z&rscd=attachment%3B+filename%3DReader.Sideload.Library_0.1.9_amd64.AppImage&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-06T04%3A42%3A47Z&ske=2026-09-06T05%3A43%3A38Z&sks=b&skv=2018-11-09&sig=Zdy1Xbh6%2Blvv3AXzRaohFc7ySNliHEVYx1OhuaDID8A%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODY3MjIyNywibmJmIjoxNzg4NjcwNDI3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.2vtyTNfOpGaufCj7_bzKWHLVJYKN-kSotfT3woT71EQ&response-content-disposition=attachment%3B%20filename%3DReader.Sideload.Library_0.1.9_amd64.AppImage&response-content-type=application%2Foctet-stream"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/#all-downloads",
+      "text": "See other platforms and install methods",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.9/Reader.Sideload.Library_0.1.9_aarch64.dmg",
+      "text": "Download .dmg",
+      "status": 200,
+      "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1349364840/49408097-46b0-49e0-b8c3-801c2fbec59b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-06T05%3A45%3A44Z&rscd=attachment%3B+filename%3DReader.Sideload.Library_0.1.9_aarch64.dmg&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-06T04%3A45%3A11Z&ske=2026-09-06T05%3A45%3A44Z&sks=b&skv=2018-11-09&sig=NcQr4j6msP9AdwTeCZqjGGu49INvN1tIJDGDJZLkxQ8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODY3MDcyNywibmJmIjoxNzg4NjcwNDI3LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.D4PEXeuf3_4rFrdRda_8bHj4w1UD4WE9A3LkU_9BRqI&response-content-disposition=attachment%3B%20filename%3DReader.Sideload.Library_0.1.9_aarch64.dmg&response-content-type=application%2Foctet-stream"
+    },
+    {
+      "url": "https://github.com/B-Divyesh/sf-reader-sideload-library/releases/download/v0.1.9/Reader.Sideload.Library_0.1.9_x64_en-US.msi",
+      "text": "Download .msi",
+      "status": 200,
+      "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1349364840/bd55ed0b-9bd2-4819-a619-c4b13a03f28d?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-09-06T05%3A39%3A19Z&rscd=attachment%3B+filename%3DReader.Sideload.Library_0.1.9_x64_en-US.msi&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-09-06T04%3A38%3A41Z&ske=2026-09-06T05%3A39%3A19Z&sks=b&skv=2018-11-09&sig=Nv1ZhYOS8cpPpvCAX6%2FP4NpkdaDfKEPxYs4D3X7Hu8o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4ODY3MDcyOCwibmJmIjoxNzg4NjcwNDI4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.b68XmepmwMumfdE7cgBtNYVNwboqUKd127pMFHmhPoI&response-content-disposition=attachment%3B%20filename%3DReader.Sideload.Library_0.1.9_x64_en-US.msi&response-content-type=application%2Foctet-stream"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/terms/",
+      "text": "Terms",
+      "status": 200,
+      "finalUrl": "https://reader-sideload-library.sociobot.in/terms/"
+    },
+    {
+      "url": "https://github.com/B-Divyesh/sf-reader-sideload-library",
+      "text": "Source on GitHub (external)",
+      "status": 200,
+      "finalUrl": "https://github.com/B-Divyesh/sf-reader-sideload-library"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/demo/?demo=1#main",
+      "text": "Skip to library",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/privacy/#main",
+      "text": "Skip to main content",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "mailto:privacy@sociobot.in",
+      "text": "privacy@sociobot.in",
+      "status": "allowed-mailto"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/terms/#main",
+      "text": "Skip to main content",
+      "status": "same-page-anchor"
+    },
+    {
+      "url": "mailto:support@sociobot.in",
+      "text": "support@sociobot.in",
+      "status": "allowed-mailto"
+    },
+    {
+      "url": "https://reader-sideload-library.sociobot.in/missing-verification-10#main",
+      "text": "Skip to main content",
+      "status": "same-page-anchor"
+    }
+  ],
+  "failures": []
+}

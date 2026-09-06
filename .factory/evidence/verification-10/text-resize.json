@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-09-06T04:55:37.038Z",
+  "method": "Root text size set to 200% at 390x844 with CSP bypassed only for the injected test rule; horizontal navigation regions may scroll.",
+  "results": [
+    {
+      "name": "home",
+      "path": "/",
+      "title": "Reader Sideload Library — organize e-ink libraries",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "h1Visible": true,
+      "mainVisible": true,
+      "horizontalRegions": [
+        {
+          "className": "",
+          "scrollWidth": 505,
+          "clientWidth": 358,
+          "overflowX": "auto"
+        }
+      ]
+    },
+    {
+      "name": "demo",
+      "path": "/demo/?demo=1",
+      "title": "Demo — Reader Sideload Library",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "h1Visible": true,
+      "mainVisible": true,
+      "horizontalRegions": [
+        {
+          "className": "",
+          "scrollWidth": 448,
+          "clientWidth": 358,
+          "overflowX": "auto"
+        },
+        {
+          "className": "task-tabs",
+          "scrollWidth": 540,
+          "clientWidth": 390,
+          "overflowX": "auto"
+        }
+      ]
+    },
+    {
+      "name": "privacy",
+      "path": "/privacy/",
+      "title": "Privacy — Reader Sideload Library",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "h1Visible": true,
+      "mainVisible": true,
+      "horizontalRegions": [
+        {
+          "className": "",
+          "scrollWidth": 444,
+          "clientWidth": 358,
+          "overflowX": "auto"
+        }
+      ]
+    },
+    {
+      "name": "terms",
+      "path": "/terms/",
+      "title": "Terms — Reader Sideload Library",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "h1Visible": true,
+      "mainVisible": true,
+      "horizontalRegions": [
+        {
+          "className": "",
+          "scrollWidth": 444,
+          "clientWidth": 358,
+          "overflowX": "auto"
+        }
+      ]
+    },
+    {
+      "name": "404",
+      "path": "/missing-verification-10",
+      "title": "Page not found — Reader Sideload Library",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "h1Visible": true,
+      "mainVisible": true,
+      "horizontalRegions": [
+        {
+          "className": "",
+          "scrollWidth": 444,
+          "clientWidth": 358,
+          "overflowX": "auto"
+        }
+      ]
+    }
+  ],
+  "failures": []
+}
