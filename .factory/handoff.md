@@ -1,45 +1,87 @@
-# Reader Sideload Library — review 5 handoff
+# Reader Sideload Library — repair 6 handoff
 
 ## Result
 
-**FAIL — 2 low-severity findings and 0 untested claims.**
+**PASS — the two review-5 findings are repaired.**
 
-Reviewed implementation:
-`d13b19677dfa9b01d626a7c65905783c047d5d88` (`v0.1.8`).
-Reviewed documentation base:
-`cf8da6390c93896074ecf5b27ab5a6440bdd918a`.
+- Implementation SHA: `9fc7213ef5e3231c73a0da7bfb23ea65bcaccf78`
+- Release: `v0.1.9`
+- Release workflow: [run 34009394937](https://github.com/B-Divyesh/sf-reader-sideload-library/actions/runs/34009394937)
+- Live origin: `https://reader-sideload-library.sociobot.in`
 
-Product code was not changed. The review is `.factory/review-5.md`.
+The job is to organize DRM-free EPUB/PDF libraries, preserve reading order, and
+sideload them to an e-ink reader. It is for e-ink reader owners with local
+book files. The first action is **Try it with sample data**, which opens a
+ready sample catalogue.
 
-## Findings to fix
+## Repairs
 
-1. Replace the 404 `h1` **This page is not in the catalogue.** with direct, non-metaphorical error text such as **Page not found.**
-2. Separate the desktop catalogue’s file type and detail. Current rendered text includes **EPUBCover found** and **PDFEmbedded pages**.
+1. The real 404 document now uses the direct heading **Page not found.** and
+   retains an accessible home action. Its focused browser regression asserts
+   the rendered heading and recovery link, not a source-string match.
+2. Desktop catalogue File cells now include semantic whitespace and stack the
+   file type over the cover/detail text. The regression opens the actual sample
+   at a desktop viewport, asserts whitespace in rendered text, and verifies
+   that the detail is below the format. The published DEB screen shows `EPUB`
+   over `Cover found`, and `PDF` over `Embedded pages`.
 
-After repair, add focused regressions for the direct 404 heading and separated
-desktop File-cell text, then rerun the full review gates.
+## Verification
 
-## Verification completed
+- From the documented clean setup, `npm ci` passed; every one of the 18
+  declared claim commands was run individually and passed. `npm test` passed
+  with 74 tests.
+- `npm run check`, `npm run build`, `cargo fmt --check`, all-target
+  `cargo clippy -- -D warnings`, `npm audit --audit-level=high`, and
+  `CI=true npm run tauri build` all passed. The README-listed GTK/WebKit
+  prerequisites were installed before the native checks.
+- The native build produced DEB, RPM, and AppImage bundles. The public
+  `v0.1.9` release includes Apple-silicon and Intel DMGs, Windows MSI/EXE,
+  Linux AppImage/DEB/RPM, `SHA256SUMS`, and `latest.json`.
+- A newly downloaded public DEB matched `SHA256SUMS`, reported
+  `reader-sideload-library 0.1.9 amd64`, resolved its dynamic libraries, and
+  ran in a clean XDG consumer profile under Xvfb. Its bundled sample loaded
+  four books and two issues. The only stderr was the expected Xvfb DRI3
+  acceleration warning.
+- Static deployment completed with existing durable Static Web App settings
+  preserved (deployment `57424555-0eeb-4c53-b2ec-dd22a7144975`).
+- Fresh desktop and phone browser checks passed. The first screen exposes the
+  job, audience, sample action, and its outcome before scrolling. One click
+  loads the realistic four-book sandbox, shows the persistent sample label,
+  resets filters and order, and leaves the real storage sentinel unchanged.
+- Live `verify-live.mjs` covered home, demo, privacy, terms, and an expected
+  HTTP 404. All routes had one title, h1, and main; zero console errors; and
+  zero serious/critical axe findings. `verify-url.sh` also passed.
+- Current manual live checks passed normal, invalid, boundary, recovery,
+  keyboard Home/End, focus, dark/reduced-motion, privacy/no-cookie, offline,
+  sample exit, highlight export/import, USB guidance, and WebDAV demo
+  credential-clearing paths.
+- Fresh mobile Lighthouse: performance 98, accessibility 100, best practices
+  100, SEO 100; LCP 1.66 s, CLS 0.077, and TBT 0 ms.
 
-- Every one of the 18 claim commands passed independently from a clean clone.
-- `npm test` passed: 18 claim mappings, 6 unit tests, 10 Rust tests, and 70 browser tests.
-- TypeScript check, production build, Rust format, all-target Clippy with warnings denied, audit, and `CI=true npm run tauri build` passed.
-- The documented GTK/WebKit prerequisites were installed before the successful Clippy and native-build runs.
-- Fresh desktop and phone checks covered first read, demo isolation/reset/exit, realistic output, normal/invalid/boundary/recovery paths, keyboard, focus, 200% text, dark/reduced motion, privacy requests, offline reload, links, legal routes, and the expected HTTP 404.
-- Fresh Lighthouse scored 99 performance, 100 accessibility, 100 best practices, and 100 SEO; LCP was 1.21 s, CLS 0.073, and TBT 0 ms.
-- The fresh site build and live home page matched at SHA-256 `390647649434c366daa82cfc9d824966c4353e3d0055c09f32d1d3bb4fc9f45f`.
-- The published `v0.1.8` DEB matched `SHA256SUMS`, installed, opened in a clean XDG consumer profile, and loaded its bundled four-book sample.
+## Earlier finding disposition
+
+All findings in the complete review and verification history remain resolved:
+
+| Finding group | Current proof |
+| --- | --- |
+| Claims, sample sandbox, privacy, free-release copy | 18 individually passing claims; current live isolation/reset, request, cookie, offline, and exit checks passed. |
+| Library scan, PDF metadata, source preservation, USB, WebDAV, highlights | Rust/native claims passed in the full suite; live demo exercised user-facing recovery paths. |
+| First-read, responsive layout, keyboard, focus, motion, metadata, legal routes, 404 | Fresh desktop/phone checks, live route/Axe checks, `verify-url.sh`, and the 404 regression passed. |
+| Release/installers and native builds | CI release matrix succeeded; public manifest/checksum and clean consumer DEB exercise passed. |
+| Review-5 low findings | Direct 404 heading and separate desktop file details are covered by new outcome regressions and live/public-artifact checks. |
 
 ## Evidence
 
-- Repository report: `.factory/review-5.md`
-- External evidence: `/work/.evidence/review-5/`
-- Required report copy: `/work/.evidence/qa-report.md`
-- Required result: `/work/.evidence/qa-result.json`
+- Live and accessibility evidence: `.factory/evidence/repair-6/live/`
+- Full manual live-path evidence: `.factory/evidence/repair-6/manual-live.json`
+- Public release and clean-consumer evidence: `.factory/evidence/repair-6/release/`
+- Required catalogue description: `.factory/catalog-description.txt`, copied
+  unchanged to `/work/.evidence/catalog-description.txt`.
 
-## Known external limits
+## Known limits
 
 No physical e-ink reader or third-party WebDAV provider was available. Native
-filesystem and local HTTP fixtures cover the promised transfer behavior. The
-macOS and Windows installers remain intentionally unsigned and disclose that
-status.
+filesystem and local HTTP fixtures cover the promised transfer behaviour. The
+macOS and Windows installers are intentionally unsigned and disclose that
+status. Version 0.1 remains an explicitly free release; no billing offer is
+advertised or registered.
