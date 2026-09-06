@@ -48,6 +48,18 @@ test("first-run sample project opens the isolated working catalogue", async ({ p
   await expect(page.locator("#catalogue-body")).toContainText("Field Notes 03 — 秋");
 });
 
+test("desktop catalogue keeps the file format and file detail on separate readable lines", async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto("/?demo=1");
+  const fileCell = page.locator('#catalogue-body tr:has-text("The Moss Archive") td[data-label="File"]');
+  await expect(fileCell).toHaveText(/EPUB\s+Cover found/);
+  const lines = fileCell.locator("strong, small");
+  const [format, detail] = await Promise.all([lines.nth(0).boundingBox(), lines.nth(1).boundingBox()]);
+  expect(format).not.toBeNull();
+  expect(detail).not.toBeNull();
+  expect(detail!.y).toBeGreaterThanOrEqual(format!.y + format!.height);
+});
+
 test("@claim:local-catalogue catalogue changes stay in app storage without background requests", async ({ page }) => {
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));

@@ -67,7 +67,7 @@ Audited 2 September 2026 against the landing page, its runtime states, and the d
 | Check the connection first to get specific help for address, sign-in, permission, and storage errors. | 15 | — |
 | Install the desktop app | 4 | — |
 | Download it for your computer. | 5 | — |
-| Version 0.1.8. | 2 | — |
+| Version 0.1.9. | 2 | — |
 | Installers are not code-signed. | 5 | — |
 | Each release includes SHA-256 checksums. | 5 | — |
 | Apple silicon and Intel disk images. | 6 | — |

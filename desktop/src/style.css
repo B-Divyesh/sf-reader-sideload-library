@@ -64,7 +64,7 @@ table { width: 100%; border-collapse: collapse; min-width: 800px; }
 th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ash); text-align: left; }
 th, td { padding: 13px 12px; border-bottom: var(--rule); vertical-align: middle; }
 tbody tr { animation: settle 220ms ease both; }
-td:first-child strong { display: block; } td small { color: var(--ash); }
+td:first-child strong, td[data-label="File"] strong, td[data-label="File"] small { display: block; } td small { color: var(--ash); }
 .status { display: inline-flex; min-height: 30px; align-items: center; gap: 6px; padding: 4px 8px; font-size: 13px; border: 1px solid currentColor; }
 .status.good { color: var(--status-good-text); background: var(--lichen); }.status.warn { color: var(--amber); }.status.error { color: var(--rust); }
 .toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }.toggle input { min-height: 20px; width: 20px; }

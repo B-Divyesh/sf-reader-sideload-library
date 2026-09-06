@@ -109,6 +109,13 @@ test("every route ships complete route-specific social metadata", async ({ page 
   }
 });
 
+test("a missing page names the error directly and offers a way home", async ({ page }) => {
+  await page.goto("/404.html");
+  await expect(page).toHaveTitle("Page not found — Reader Sideload Library");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Page not found.");
+  await expect(page.getByRole("link", { name: "Return to the home page" })).toHaveAttribute("href", "/");
+});
+
 test("required hosting policy is shipped", async ({ request }) => {
   const config = await (await request.get("/staticwebapp.config.json")).json();
   expect(config.responseOverrides["404"].rewrite).toBe("/404.html");

@@ -155,7 +155,7 @@ function renderCatalogue() {
       <td data-label="Book"><strong>${escapeHtml(book.title)}</strong><small>${formatBytes(book.sizeBytes)}</small></td>
       <td data-label="Author">${escapeHtml(book.authors.join(", ") || "Unknown")}</td>
       <td data-label="Series">${escapeHtml(book.series ? `${book.series}${book.seriesIndex ? ` · ${book.seriesIndex}` : ""}` : "—")}</td>
-      <td data-label="File"><strong>${book.format}</strong><small>${book.coverStatus === "missing" ? "No cover found" : book.coverStatus === "found" ? "Cover found" : "Embedded pages"}</small></td>
+      <td data-label="File"><strong>${book.format}</strong> <small>${book.coverStatus === "missing" ? "No cover found" : book.coverStatus === "found" ? "Cover found" : "Embedded pages"}</small></td>
       <td data-label="Status"><span class="status ${statusClass}" title="${escapeHtml(warnings || "Metadata and file checks passed")}">${statusText === "Ready" ? "✓" : "!"} ${statusText}</span></td>
       <td data-label="Use"><label class="toggle"><input type="checkbox" data-book-toggle="${book.id}" ${book.selected && book.eligible ? "checked" : ""} ${book.eligible ? "" : "disabled"}/><span>${book.selected ? "Included" : "Skipped"}</span></label></td>
     </tr>`;
