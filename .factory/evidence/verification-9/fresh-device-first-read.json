@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-06T01:12:25.840Z",
+  "results": [
+    {
+      "device": "desktop",
+      "status": 200,
+      "title": "Reader Sideload Library — organize e-ink libraries",
+      "h1": "Organize and sideload your e-ink library.",
+      "audience": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+      "action": "Try it with sample data",
+      "facts": [
+        "No account or background network requests",
+        "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+        "USB and WebDAV tools are free"
+      ],
+      "scrollWidth": 1536,
+      "clientWidth": 1536
+    },
+    {
+      "device": "phone",
+      "status": 200,
+      "title": "Reader Sideload Library — organize e-ink libraries",
+      "h1": "Organize and sideload your e-ink library.",
+      "audience": "For e-ink reader owners who keep EPUB and PDF files, collections and highlights stay under your control.",
+      "action": "Try it with sample data",
+      "facts": [
+        "No account or background network requests",
+        "Catalogue, collection, and Markdown tools reopen offline after the first sample visit",
+        "USB and WebDAV tools are free"
+      ],
+      "scrollWidth": 390,
+      "clientWidth": 390
+    }
+  ],
+  "failures": []
+}

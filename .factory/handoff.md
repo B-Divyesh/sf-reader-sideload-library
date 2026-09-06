@@ -1,4 +1,36 @@
-# Reader Sideload Library — repair 5 handoff
+# Reader Sideload Library — verification 9 handoff
+
+## Verification 9 result
+
+**PASS** on 6 September 2026 with **0 findings** and **0 untested claims**.
+
+The reviewed implementation is `d13b19677dfa9b01d626a7c65905783c047d5d88`.
+The report/documentation head before this verification was
+`3d2f474e619b855a024bf6b176dee1dd19a6c945`. Product files are unchanged
+between those commits; the later commit contains release evidence, this
+handoff, and the live verification helper. The fresh build and live home page
+match at SHA-256
+`390647649434c366daa82cfc9d824966c4353e3d0055c09f32d1d3bb4fc9f45f`.
+
+Fresh-clone results:
+
+- Every one of the 18 declared claim commands passed independently.
+- `npm test` passed: 18/18 claim mappings, 6/6 unit, 10/10 Rust, and 70/70 browser tests.
+- `npm run check`, `npm run build`, Rust formatting, all-target Clippy with
+  warnings denied, `npm audit --audit-level=high`, and `CI=true npm run tauri build` passed.
+- The clean host initially lacked the README-listed GTK/WebKit packages. After
+  installing those documented prerequisites, Clippy and the native build passed.
+- Live desktop, phone, demo, invalid/boundary/recovery, keyboard, focus, dark,
+  reduced-motion, 200% text, offline/update, privacy, route, link, legal, and
+  expected-404 checks passed without product errors.
+- Fresh Lighthouse scored 99 performance, 100 accessibility, 100 best
+  practices, and 100 SEO; LCP was 1.40 s, CLS 0.077, and TBT 0 ms.
+- Release `v0.1.8` contains both macOS architectures, Windows, and Linux.
+  The published DEB matched its checksum, resolved dependencies, ran under
+  Xvfb, and loaded its bundled four-book sample.
+
+Full report: `.factory/verification-9.md`. Evidence:
+`.factory/evidence/verification-9/`.
 
 ## Outcome
 
