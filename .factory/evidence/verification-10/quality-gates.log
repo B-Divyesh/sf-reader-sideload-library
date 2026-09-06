@@ -1,0 +1,1070 @@
+
+COMMAND npm test
+
+> reader-sideload-library@0.1.9 test
+> npm run test:claim-inventory && npm run test:unit && npm run test:rust-core && playwright test
+
+
+> reader-sideload-library@0.1.9 test:claim-inventory
+> node scripts/check-claims.mjs
+
+Claim inventory is one-to-one: 18 claims, 18 unique test markers.
+
+> reader-sideload-library@0.1.9 test:unit
+> vitest run tests/*.test.ts
+
+
+ RUN  v3.2.7 /work/reader-sideload-library-verify10-clean
+
+ ✓ tests/library.test.ts (4 tests) 7ms
+ ✓ tests/release.test.ts (2 tests) 114ms
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  04:41:11
+   Duration  896ms (transform 149ms, setup 0ms, collect 189ms, tests 122ms, environment 0ms, prepare 381ms)
+
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 10 tests
+test tests::claim_pdf_metadata_survives_scan ... ok
+test tests::claim_source_scan_preserves_file_bytes ... ok
+test tests::claim_nested_library_scan_reads_metadata_and_flags_protection ... ok
+test tests::claim_usb_partial_copy_keeps_existing_file ... ok
+test tests::claim_supported_highlight_formats_import ... ok
+test tests::claim_verified_usb_copy_is_idempotent ... ok
+test tests::parses_markdown_and_koreader_style_notes ... ok
+test tests::pdf_metadata_decodes_utf16_and_pdfdocencoding ... ok
+test tests::rejects_parent_and_absolute_device_paths ... ok
+test tests::claim_webdav_checks_and_uploads_with_recovery_errors ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+[1A[2K[WebServer] (node:9357) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:9505) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 74 tests using 1 worker
+
+[1A[2K(node:9524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:9524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/74] [desktop-chromium] › tests/e2e/app.spec.ts:6:1 › desktop shell is keyboard navigable and accessible
+[1A[2K[2/74] [desktop-chromium] › tests/e2e/app.spec.ts:18:1 › working sections use direct task labels
+[1A[2K[3/74] [desktop-chromium] › tests/e2e/app.spec.ts:28:1 › desktop shell fits a 390px viewport
+[1A[2K[4/74] [desktop-chromium] › tests/e2e/app.spec.ts:35:1 › desktop dark treatment has no serious accessibility violations
+[1A[2K[5/74] [desktop-chromium] › tests/e2e/app.spec.ts:42:1 › first-run sample project opens the isolated working catalogue
+[1A[2K[6/74] [desktop-chromium] › tests/e2e/app.spec.ts:51:1 › desktop catalogue keeps the file format and file detail on separate readable lines
+[1A[2K[7/74] [desktop-chromium] › tests/e2e/app.spec.ts:63:1 › @claim:local-catalogue catalogue changes stay in app storage without background requests
+[1A[2K[8/74] [desktop-chromium] › tests/e2e/app.spec.ts:83:1 › @claim:webdav-credentials WebDAV setup is free, guided, and never persists credentials
+[1A[2K[9/74] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › / has accessible structure and no serious axe findings
+[1A[2K[10/74] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /demo/ has accessible structure and no serious axe findings
+[1A[2K[11/74] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /privacy/ has accessible structure and no serious axe findings
+[1A[2K[12/74] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /terms/ has accessible structure and no serious axe findings
+[1A[2K[13/74] [desktop-chromium] › tests/e2e/site.spec.ts:6:3 › /404.html has accessible structure and no serious axe findings
+[1A[2K[14/74] [desktop-chromium] › tests/e2e/site.spec.ts:22:1 › landing states the job, audience, sample action, and three facts
+[1A[2K[15/74] [desktop-chromium] › tests/e2e/site.spec.ts:35:1 › workflow labels name a concrete action or result
+[1A[2K[16/74] [desktop-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the desktop 1366x768 viewport
+[1A[2K[17/74] [desktop-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the wide desktop 1536x864 viewport
+[1A[2K[18/74] [desktop-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the standard desktop 1440x900 viewport
+[1A[2K[19/74] [desktop-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the mobile 390x844 viewport
+[1A[2K[20/74] [desktop-chromium] › tests/e2e/site.spec.ts:65:1 › @claim:desktop-walkthrough landing includes a captioned four-frame desktop app walkthrough
+[1A[2K[21/74] [desktop-chromium] › tests/e2e/site.spec.ts:84:1 › every route ships complete route-specific social metadata
+[1A[2K[22/74] [desktop-chromium] › tests/e2e/site.spec.ts:112:1 › a missing page names the error directly and offers a way home
+[1A[2K[23/74] [desktop-chromium] › tests/e2e/site.spec.ts:119:1 › required hosting policy is shipped
+[1A[2K[24/74] [desktop-chromium] › tests/e2e/site.spec.ts:126:1 › non-download external links name their destination
+[1A[2K[25/74] [desktop-chromium] › tests/e2e/site.spec.ts:135:1 › download action and copy controls work without release metadata
+[1A[2K[26/74] [desktop-chromium] › tests/e2e/site.spec.ts:144:1 › landing fits 390px and visible controls meet the 44px height baseline
+[1A[2K[27/74] [desktop-chromium] › tests/e2e/site.spec.ts:153:1 › dark and reduced-motion treatment remains accessible
+[1A[2K[28/74] [desktop-chromium] › tests/e2e/site.spec.ts:162:1 › @claim:demo-isolated sample work never changes real library storage
+[1A[2K[29/74] [desktop-chromium] › tests/e2e/site.spec.ts:183:1 › demo primary action starts an available sample task
+[1A[2K[30/74] [desktop-chromium] › tests/e2e/site.spec.ts:194:1 › root demo shortcut enters the isolated sample without a release request
+[1A[2K[31/74] [desktop-chromium] › tests/e2e/site.spec.ts:206:1 › demo and content routes share navigation and legal links
+[1A[2K[32/74] [desktop-chromium] › tests/e2e/site.spec.ts:221:1 › demo fits a 390px viewport with working navigation
+[1A[2K[33/74] [desktop-chromium] › tests/e2e/site.spec.ts:232:1 › @claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames
+[1A[2K[34/74] [desktop-chromium] › tests/e2e/site.spec.ts:247:1 › @claim:markdown-export exports sample highlights as Markdown
+[1A[2K[35/74] [desktop-chromium] › tests/e2e/site.spec.ts:261:1 › @claim:privacy-requests uses only the disclosed GitHub release request
+[1A[2K[36/74] [desktop-chromium] › tests/e2e/site.spec.ts:302:1 › @claim:core-free exposes the documented free release without a license or checkout
+[1A[2K[37/74] [desktop-chromium] › tests/e2e/site.spec.ts:317:1 › @claim:offline-demo reloads the sample catalogue offline
+[1A[2K(node:10509) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:10509) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[38/74] [mobile-chromium] › tests/e2e/app.spec.ts:6:1 › desktop shell is keyboard navigable and accessible
+[1A[2K[39/74] [mobile-chromium] › tests/e2e/app.spec.ts:18:1 › working sections use direct task labels
+[1A[2K[40/74] [mobile-chromium] › tests/e2e/app.spec.ts:28:1 › desktop shell fits a 390px viewport
+[1A[2K[41/74] [mobile-chromium] › tests/e2e/app.spec.ts:35:1 › desktop dark treatment has no serious accessibility violations
+[1A[2K[42/74] [mobile-chromium] › tests/e2e/app.spec.ts:42:1 › first-run sample project opens the isolated working catalogue
+[1A[2K[43/74] [mobile-chromium] › tests/e2e/app.spec.ts:51:1 › desktop catalogue keeps the file format and file detail on separate readable lines
+[1A[2K[44/74] [mobile-chromium] › tests/e2e/app.spec.ts:63:1 › @claim:local-catalogue catalogue changes stay in app storage without background requests
+[1A[2K[45/74] [mobile-chromium] › tests/e2e/app.spec.ts:83:1 › @claim:webdav-credentials WebDAV setup is free, guided, and never persists credentials
+[1A[2K[46/74] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › / has accessible structure and no serious axe findings
+[1A[2K[47/74] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /demo/ has accessible structure and no serious axe findings
+[1A[2K[48/74] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /privacy/ has accessible structure and no serious axe findings
+[1A[2K[49/74] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /terms/ has accessible structure and no serious axe findings
+[1A[2K[50/74] [mobile-chromium] › tests/e2e/site.spec.ts:6:3 › /404.html has accessible structure and no serious axe findings
+[1A[2K[51/74] [mobile-chromium] › tests/e2e/site.spec.ts:22:1 › landing states the job, audience, sample action, and three facts
+[1A[2K[52/74] [mobile-chromium] › tests/e2e/site.spec.ts:35:1 › workflow labels name a concrete action or result
+[1A[2K[53/74] [mobile-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the desktop 1366x768 viewport
+[1A[2K[54/74] [mobile-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the wide desktop 1536x864 viewport
+[1A[2K[55/74] [mobile-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the standard desktop 1440x900 viewport
+[1A[2K[56/74] [mobile-chromium] › tests/e2e/site.spec.ts:51:3 › landing first read fits the mobile 390x844 viewport
+[1A[2K[57/74] [mobile-chromium] › tests/e2e/site.spec.ts:65:1 › @claim:desktop-walkthrough landing includes a captioned four-frame desktop app walkthrough
+[1A[2K[58/74] [mobile-chromium] › tests/e2e/site.spec.ts:84:1 › every route ships complete route-specific social metadata
+[1A[2K[59/74] [mobile-chromium] › tests/e2e/site.spec.ts:112:1 › a missing page names the error directly and offers a way home
+[1A[2K[60/74] [mobile-chromium] › tests/e2e/site.spec.ts:119:1 › required hosting policy is shipped
+[1A[2K[61/74] [mobile-chromium] › tests/e2e/site.spec.ts:126:1 › non-download external links name their destination
+[1A[2K[62/74] [mobile-chromium] › tests/e2e/site.spec.ts:135:1 › download action and copy controls work without release metadata
+[1A[2K[63/74] [mobile-chromium] › tests/e2e/site.spec.ts:144:1 › landing fits 390px and visible controls meet the 44px height baseline
+[1A[2K[64/74] [mobile-chromium] › tests/e2e/site.spec.ts:153:1 › dark and reduced-motion treatment remains accessible
+[1A[2K[65/74] [mobile-chromium] › tests/e2e/site.spec.ts:162:1 › @claim:demo-isolated sample work never changes real library storage
+[1A[2K[66/74] [mobile-chromium] › tests/e2e/site.spec.ts:183:1 › demo primary action starts an available sample task
+[1A[2K[67/74] [mobile-chromium] › tests/e2e/site.spec.ts:194:1 › root demo shortcut enters the isolated sample without a release request
+[1A[2K[68/74] [mobile-chromium] › tests/e2e/site.spec.ts:206:1 › demo and content routes share navigation and legal links
+[1A[2K[69/74] [mobile-chromium] › tests/e2e/site.spec.ts:221:1 › demo fits a 390px viewport with working navigation
+[1A[2K[70/74] [mobile-chromium] › tests/e2e/site.spec.ts:232:1 › @claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames
+[1A[2K[71/74] [mobile-chromium] › tests/e2e/site.spec.ts:247:1 › @claim:markdown-export exports sample highlights as Markdown
+[1A[2K[72/74] [mobile-chromium] › tests/e2e/site.spec.ts:261:1 › @claim:privacy-requests uses only the disclosed GitHub release request
+[1A[2K[73/74] [mobile-chromium] › tests/e2e/site.spec.ts:302:1 › @claim:core-free exposes the documented free release without a license or checkout
+[1A[2K[74/74] [mobile-chromium] › tests/e2e/site.spec.ts:317:1 › @claim:offline-demo reloads the sample catalogue offline
+[1A[2K  74 passed (1.1m)
+
+COMMAND npm run check
+
+> reader-sideload-library@0.1.9 check
+> tsc --noEmit
+
+
+COMMAND npm run build
+
+> reader-sideload-library@0.1.9 build
+> npm run build:site && node scripts/assemble-dist.mjs
+
+
+> reader-sideload-library@0.1.9 build:site
+> npm run build:app && vite build --config vite.site.config.ts && node scripts/assemble-site.mjs
+
+
+> reader-sideload-library@0.1.9 build:app
+> tsc --noEmit && vite build --config vite.app.config.ts
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 13 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/app/index.html                                            12.13 kB │ gzip: 3.62 kB
+../dist/app/assets/archivo-black-latin-400-normal-HW9MwEcM.woff   13.00 kB
+../dist/app/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2  18.60 kB
+../dist/app/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff   22.10 kB
+../dist/app/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff   22.28 kB
+../dist/app/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2  22.59 kB
+../dist/app/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2  22.83 kB
+../dist/app/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff   23.88 kB
+../dist/app/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2  24.25 kB
+../dist/app/assets/index-15peLFl2.css                             13.75 kB │ gzip: 3.81 kB
+../dist/app/assets/core-DV6XEvTN.js                                0.14 kB │ gzip: 0.15 kB │ map: 11.35 kB
+../dist/app/assets/index-CoEaNoas.js                               0.33 kB │ gzip: 0.22 kB │ map:  7.49 kB
+../dist/app/assets/index-CeU81E27.js                              21.21 kB │ gzip: 7.85 kB │ map: 50.73 kB
+✓ built in 354ms
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/site/404.html                                               2.88 kB │ gzip: 1.06 kB
+../dist/site/terms/index.html                                       3.98 kB │ gzip: 1.55 kB
+../dist/site/privacy/index.html                                     4.39 kB │ gzip: 1.70 kB
+../dist/site/index.html                                            13.00 kB │ gzip: 3.82 kB
+../dist/site/assets/archivo-black-latin-400-normal-HW9MwEcM.woff   13.00 kB
+../dist/site/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2  18.60 kB
+../dist/site/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff   22.10 kB
+../dist/site/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff   22.28 kB
+../dist/site/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2  22.59 kB
+../dist/site/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2  22.83 kB
+../dist/site/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff   23.88 kB
+../dist/site/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2  24.25 kB
+../dist/site/assets/main-BZpY0_HU.css                               0.24 kB │ gzip: 0.18 kB
+../dist/site/assets/style-wKBCToNd.css                             14.81 kB │ gzip: 3.87 kB
+../dist/site/assets/legal-DAXH_8rn.js                               0.24 kB │ gzip: 0.20 kB
+../dist/site/assets/style-BYidun-V.js                               0.71 kB │ gzip: 0.40 kB
+../dist/site/assets/main-CwY1Coh7.js                                3.31 kB │ gzip: 1.51 kB
+✓ built in 188ms
+
+COMMAND cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+
+COMMAND cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+ Downloading crates ...
+  Downloaded alloc-stdlib v0.2.4
+  Downloaded alloc-no-stdlib v2.0.4
+  Downloaded atk-sys v0.18.2
+  Downloaded atk v0.18.2
+  Downloaded gdk-pixbuf-sys v0.18.0
+  Downloaded field-offset v0.3.6
+  Downloaded futures-macro v0.3.34
+  Downloaded futures-io v0.3.34
+  Downloaded gdkwayland-sys v0.18.2
+  Downloaded futures-sink v0.3.34
+  Downloaded futures-executor v0.3.34
+  Downloaded proc-macro-error v1.0.4
+  Downloaded gdkx11-sys v0.18.2
+  Downloaded gdk-pixbuf v0.18.5
+  Downloaded soup3 v0.5.0
+  Downloaded glib-sys v0.18.1
+  Downloaded gio-sys v0.18.1
+  Downloaded gdk v0.18.2
+  Downloaded getrandom v0.3.4
+  Downloaded dbus v0.9.12
+  Downloaded proc-macro-crate v2.0.2
+  Downloaded gdk-sys v0.18.2
+  Downloaded gdkx11 v0.18.2
+  Downloaded cairo-sys-rs v0.18.2
+  Downloaded gio v0.18.4
+  Downloaded cairo-rs v0.18.5
+  Downloaded heck v0.4.1
+  Downloaded proc-macro-error-attr v1.0.4
+  Downloaded serialize-to-javascript-impl v0.1.2
+  Downloaded libappindicator-sys v0.9.0
+  Downloaded serialize-to-javascript v0.1.2
+  Downloaded tauri-macros v2.6.3
+  Downloaded dpi v0.1.2
+  Downloaded serde_repr v0.1.21
+  Downloaded toml_datetime v0.6.3
+  Downloaded gtk3-macros v0.18.2
+  Downloaded javascriptcore-rs-sys v1.1.1
+  Downloaded mime v0.3.17
+  Downloaded proc-macro-crate v1.3.1
+  Downloaded raw-window-handle v0.6.2
+  Downloaded system-deps v6.2.2
+  Downloaded version-compare v0.2.1
+  Downloaded dlopen2_derive v0.4.3
+  Downloaded memoffset v0.9.1
+  Downloaded gobject-sys v0.18.0
+  Downloaded libloading v0.7.4
+  Downloaded serde_spanned v0.6.9
+  Downloaded soup3-sys v0.5.0
+  Downloaded tauri-plugin v2.6.3
+  Downloaded tray-icon v0.24.2
+  Downloaded webkit2gtk-sys v2.0.2
+  Downloaded fdeflate v0.3.7
+  Downloaded pango v0.18.3
+  Downloaded pango-sys v0.18.0
+  Downloaded pkg-config v0.3.34
+  Downloaded target-lexicon v0.12.16
+  Downloaded toml v0.8.2
+  Downloaded x11 v2.21.0
+  Downloaded cfg-expr v0.15.8
+  Downloaded dlopen2 v0.8.2
+  Downloaded javascriptcore-rs v1.1.2
+  Downloaded cookie v0.18.2
+  Downloaded keyboard-types v0.7.0
+  Downloaded rfd v0.16.0
+  Downloaded tauri-codegen v2.6.3
+  Downloaded glib-macros v0.18.5
+  Downloaded miniz_oxide v0.8.9
+  Downloaded tauri-plugin-fs v2.5.1
+  Downloaded tauri-runtime v2.11.3
+  Downloaded tauri-runtime-wry v2.11.4
+  Downloaded x11-dl v2.21.0
+  Downloaded crossbeam-channel v0.5.16
+  Downloaded ico v0.5.0
+  Downloaded webkit2gtk v2.0.2
+  Downloaded libappindicator v0.9.0
+  Downloaded toml_edit v0.19.15
+  Downloaded unicode-segmentation v1.13.3
+  Downloaded muda v0.19.3
+  Downloaded toml_edit v0.20.2
+  Downloaded png v0.17.16
+  Downloaded brotli-decompressor v5.0.3
+  Downloaded png v0.18.1
+  Downloaded tauri-plugin-dialog v2.7.2
+  Downloaded winnow v0.5.40
+  Downloaded gtk-sys v0.18.2
+  Downloaded wry v0.55.1
+  Downloaded glib v0.18.5
+  Downloaded syn v1.0.109
+  Downloaded tauri v2.11.5
+  Downloaded tao v0.35.3
+  Downloaded gtk v0.18.2
+  Downloaded brotli v8.0.4
+  Downloaded libdbus-sys v0.2.7
+   Compiling proc-macro2 v1.0.107
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.2
+   Compiling indexmap v2.14.0
+   Compiling quote v1.0.47
+   Compiling syn v3.0.4
+   Compiling syn v2.0.119
+   Compiling serde_derive v1.0.229
+   Compiling pkg-config v0.3.34
+   Compiling winnow v0.5.40
+   Compiling target-lexicon v0.12.16
+   Compiling serde v1.0.229
+   Compiling cfg-expr v0.15.8
+   Compiling toml_datetime v0.6.3
+   Compiling serde_spanned v0.6.9
+   Compiling toml_edit v0.20.2
+   Compiling version-compare v0.2.1
+    Checking libc v0.2.189
+   Compiling synstructure v0.13.2
+   Compiling zerofrom-derive v0.1.7
+   Compiling toml v0.8.2
+   Compiling system-deps v6.2.2
+   Compiling yoke-derive v0.8.2
+   Compiling serde_core v1.0.229
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling thiserror v1.0.69
+   Compiling thiserror-impl v1.0.69
+   Compiling glib-sys v0.18.1
+    Checking memchr v2.8.3
+warning: glib-sys@0.18.1:
+error: failed to run custom build command for `glib-sys v0.18.1`
+
+Caused by:
+  process didn't exit successfully: `/work/reader-sideload-library-verify10-clean/src-tauri/target/debug/build/glib-sys-961d634f404ccaad/build-script-build` (exit status: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=GLIB_2.0_NO_PKG_CONFIG
+  cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-gnu
+  cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_gnu
+  cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+  cargo:rerun-if-env-changed=PKG_CONFIG
+  cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-gnu
+  cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_gnu
+  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+  cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-gnu
+  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_gnu
+  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+  cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-gnu
+  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_gnu
+  cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+  cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+  cargo:warning=
+  pkg-config exited with status code 1
+  > PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 pkg-config --libs --cflags glib-2.0 'glib-2.0 >= 2.70'
+
+  pkg-config output:
+    Package glib-2.0 was not found in the pkg-config search path.
+    Perhaps you should add the directory containing `glib-2.0.pc'
+    to the PKG_CONFIG_PATH environment variable
+    Package 'glib-2.0', required by 'virtual:world', not found
+    Package 'glib-2.0', required by 'virtual:world', not found
+
+  The system library `glib-2.0` required by crate `glib-sys` was not found.
+  The file `glib-2.0.pc` needs to be installed and the PKG_CONFIG_PATH environment variable must contain its parent directory.
+  The PKG_CONFIG_PATH environment variable is not set.
+
+  HINT: if you have installed the library, try setting PKG_CONFIG_PATH to the directory containing `glib-2.0.pc`.
+
+warning: build failed, waiting for other jobs to finish...
+
+COMMAND npm audit --audit-level=high
+found 0 vulnerabilities
+
+COMMAND cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings (after documented prerequisites)
+   Compiling glib-sys v0.18.1
+   Compiling gobject-sys v0.18.0
+   Compiling cfg-if v1.0.4
+    Checking smallvec v1.15.2
+    Checking pin-project-lite v0.2.17
+   Compiling zerofrom v0.1.8
+    Checking futures-core v0.3.34
+   Compiling yoke v0.8.3
+   Compiling gio-sys v0.18.1
+   Compiling libc v0.2.189
+    Checking once_cell v1.21.4
+   Compiling zerovec v0.11.8
+   Compiling parking_lot_core v0.9.12
+   Compiling phf_macros v0.13.1
+   Compiling futures-macro v0.3.34
+    Checking slab v0.4.12
+    Checking futures-task v0.3.34
+   Compiling num-conv v0.2.2
+   Compiling time-core v0.1.9
+   Compiling thiserror-impl v2.0.20
+    Checking futures-util v0.3.34
+   Compiling typeid v1.0.3
+   Compiling tinystr v0.8.4
+    Checking bitflags v2.13.1
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling gdk-sys v0.18.2
+   Compiling writeable v0.6.4
+   Compiling syn v1.0.109
+   Compiling itoa v1.0.18
+   Compiling litemap v0.8.3
+   Compiling darling_core v0.23.0
+   Compiling icu_locale_core v2.3.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+    Checking futures-channel v0.3.34
+   Compiling proc-macro-error v1.0.4
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling erased-serde v0.4.10
+   Compiling icu_provider v2.3.1
+   Compiling darling_macro v0.23.0
+    Checking stable_deref_trait v1.2.1
+   Compiling darling v0.23.0
+   Compiling phf v0.13.1
+   Compiling string_cache_codegen v0.6.1
+   Compiling icu_properties_data v2.3.0
+   Compiling icu_normalizer_data v2.3.0
+    Checking thiserror v1.0.69
+   Compiling serde v1.0.229
+   Compiling web_atoms v0.2.6
+   Compiling anyhow v1.0.104
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling parking_lot v0.12.5
+   Compiling serde_with_macros v3.22.0
+   Compiling zmij v1.0.23
+   Compiling pango-sys v0.18.0
+   Compiling cairo-sys-rs v0.18.2
+   Compiling atk-sys v0.18.2
+   Compiling gdk-pixbuf-sys v0.18.0
+   Compiling proc-macro-crate v2.0.2
+   Compiling heck v0.4.1
+   Compiling serde_json v1.0.151
+   Compiling glib-macros v0.18.5
+   Compiling idna_adapter v1.2.2
+   Compiling string_cache v0.9.0
+   Compiling getrandom v0.4.3
+    Checking futures-executor v0.3.34
+   Compiling log v0.4.34
+    Checking glib v0.18.5
+   Compiling uuid v1.26.0
+   Compiling idna v1.1.0
+   Compiling derive_more-impl v2.1.1
+   Compiling cssparser-macros v0.6.1
+   Compiling alloc-no-stdlib v2.0.4
+   Compiling alloc-stdlib v0.2.4
+   Compiling cssparser v0.36.0
+   Compiling derive_more v2.1.1
+   Compiling markup5ever v0.38.0
+   Compiling url v2.5.8
+   Compiling gtk-sys v0.18.2
+   Compiling serde_derive_internals v0.29.1
+   Compiling powerfmt v0.2.0
+    Checking bytes v1.12.1
+   Compiling deranged v0.5.8
+   Compiling indexmap v1.9.3
+   Compiling cfb v0.7.3
+   Compiling time v0.3.55
+   Compiling selectors v0.36.1
+   Compiling schemars_derive v0.8.22
+   Compiling html5ever v0.38.0
+   Compiling brotli-decompressor v5.0.3
+   Compiling jsonptr v0.6.3
+   Compiling thiserror v2.0.20
+   Compiling cargo-platform v0.1.9
+   Compiling base64 v0.22.1
+   Compiling same-file v1.0.6
+   Compiling gio v0.18.4
+   Compiling http v1.5.0
+   Compiling schemars v0.8.22
+   Compiling plist v1.10.0
+   Compiling walkdir v2.5.0
+   Compiling dom_query v0.27.0
+   Compiling json-patch v3.0.1
+   Compiling cargo_metadata v0.19.2
+   Compiling brotli v8.0.4
+   Compiling urlpattern v0.3.0
+   Compiling serde-untagged v0.1.9
+   Compiling infer v0.19.0
+   Compiling serde_with v3.22.0
+    Checking percent-encoding v2.3.2
+    Checking futures-io v0.3.34
+   Compiling tauri-utils v2.9.3
+   Compiling memoffset v0.9.1
+    Checking crossbeam-utils v0.8.22
+    Checking gdk-pixbuf v0.18.5
+    Checking pango v0.18.3
+    Checking form_urlencoded v1.2.2
+    Checking cairo-rs v0.18.5
+   Compiling field-offset v0.3.6
+   Compiling toml_edit v0.19.15
+    Checking typenum v1.20.1
+    Checking generic-array v0.14.7
+   Compiling proc-macro-crate v1.3.1
+   Compiling dirs-sys v0.5.0
+    Checking gdk v0.18.2
+   Compiling time-macros v0.2.32
+   Compiling soup3-sys v0.5.0
+   Compiling javascriptcore-rs-sys v1.1.1
+    Checking socket2 v0.6.5
+    Checking mio v1.2.2
+   Compiling gtk v0.18.2
+   Compiling tokio-macros v2.7.2
+   Compiling simd-adler32 v0.3.10
+    Checking tokio v1.53.1
+   Compiling gtk3-macros v0.18.2
+   Compiling dirs v6.0.0
+   Compiling cargo_toml v0.22.3
+    Checking atk v0.18.2
+   Compiling webkit2gtk-sys v2.0.2
+   Compiling x11 v2.21.0
+    Checking hashbrown v0.17.1
+    Checking equivalent v1.0.2
+   Compiling adler2 v2.0.1
+    Checking indexmap v2.14.0
+   Compiling tauri-build v2.6.3
+    Checking aho-corasick v1.1.5
+   Compiling gdkx11-sys v0.18.2
+    Checking unic-common v0.9.0
+    Checking unic-char-range v0.9.0
+    Checking regex-syntax v0.8.11
+    Checking bitflags v1.3.2
+    Checking regex-automata v0.4.18
+    Checking unic-char-property v0.9.0
+    Checking unic-ucd-version v0.9.0
+   Compiling miniz_oxide v0.9.1
+   Compiling crc32fast v1.5.1
+    Checking dpi v0.1.2
+   Compiling cookie v0.18.2
+   Compiling x11-dl v2.21.0
+   Compiling libdbus-sys v0.2.7
+    Checking raw-window-handle v0.6.2
+    Checking fnv v1.0.7
+    Checking winnow v1.0.4
+    Checking byteorder v1.5.0
+    Checking siphasher v1.0.3
+    Checking phf_shared v0.13.1
+    Checking toml_parser v1.1.3+spec-1.1.0
+   Compiling flate2 v1.1.10
+    Checking unic-ucd-ident v0.9.0
+    Checking regex v1.13.1
+    Checking javascriptcore-rs v1.1.2
+    Checking soup3 v0.5.0
+   Compiling tauri v2.11.5
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling tauri-plugin v2.6.3
+    Checking quick-xml v0.41.0
+    Checking toml_datetime v1.1.1+spec-1.1.0
+    Checking serde_spanned v1.1.1
+    Checking toml_writer v1.1.2+spec-1.1.0
+    Checking scopeguard v1.2.0
+    Checking option-ext v0.2.0
+    Checking zeroize v1.9.0
+    Checking lock_api v0.4.14
+    Checking rustls-pki-types v1.15.1
+    Checking toml v1.1.4+spec-1.1.0
+   Compiling png v0.17.16
+    Checking webkit2gtk v2.0.2
+   Compiling digest v0.10.7
+    Checking crossbeam-channel v0.5.16
+    Checking http-body v1.1.0
+    Checking ctor v0.8.0
+    Checking getrandom v0.2.17
+   Compiling dlopen2_derive v0.4.3
+   Compiling cpufeatures v0.2.17
+   Compiling tauri-runtime v2.11.3
+    Checking glob v0.3.4
+    Checking semver v1.0.28
+    Checking untrusted v0.9.0
+   Compiling wry v0.55.1
+    Checking dunce v1.0.5
+    Checking ring v0.17.14
+    Checking dlopen2 v0.8.2
+   Compiling sha2 v0.10.9
+    Checking dbus v0.9.12
+   Compiling ico v0.5.0
+   Compiling tauri-plugin-fs v2.5.1
+    Checking gdkx11 v0.18.2
+    Checking block-padding v0.3.3
+    Checking gdkwayland-sys v0.18.2
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling getrandom v0.3.4
+    Checking try-lock v0.2.5
+    Checking unicode-segmentation v1.13.3
+    Checking tower-service v0.3.3
+    Checking want v0.3.1
+    Checking keyboard-types v0.7.0
+    Checking tao v0.35.3
+    Checking inout v0.1.4
+   Compiling tauri-codegen v2.6.3
+    Checking crossbeam-epoch v0.9.20
+    Checking rustls-webpki v0.103.15
+    Checking httparse v1.10.1
+    Checking tracing-core v0.1.36
+   Compiling serialize-to-javascript-impl v0.1.2
+    Checking atomic-waker v1.1.2
+    Checking subtle v2.6.1
+    Checking rustls v0.23.43
+    Checking hyper v1.11.0
+   Compiling tauri-macros v2.6.3
+    Checking serialize-to-javascript v0.1.2
+    Checking tracing v0.1.44
+    Checking crossbeam-deque v0.8.7
+    Checking cipher v0.4.4
+    Checking muda v0.19.3
+   Compiling tauri-plugin-dialog v2.7.2
+    Checking sync_wrapper v1.0.2
+   Compiling serde_repr v0.1.21
+    Checking minimal-lexical v0.2.1
+    Checking mime v0.3.17
+   Compiling rfd v0.16.0
+    Checking heck v0.5.0
+    Checking ipnet v2.12.1
+    Checking tower-layer v0.3.3
+    Checking tower v0.5.3
+    Checking hyper-util v0.1.20
+    Checking nom v7.1.3
+    Checking tokio-rustls v0.26.4
+    Checking rayon-core v1.13.0
+    Checking num-traits v0.2.19
+    Checking webpki-roots v1.0.9
+    Checking either v1.18.0
+    Checking bumpalo v3.20.3
+    Checking bytecount v0.6.9
+    Checking iana-time-zone v0.1.65
+    Checking ryu v1.0.23
+    Checking serde_urlencoded v0.7.1
+    Checking chrono v0.4.45
+    Checking nom_locate v4.2.0
+    Checking zopfli v0.8.3
+    Checking rayon v1.12.0
+    Checking hyper-rustls v0.27.9
+    Checking tower-http v0.6.11
+    Checking aes v0.8.4
+    Checking cbc v0.1.2
+    Checking md-5 v0.10.6
+    Checking http-body-util v0.1.5
+   Compiling reader-sideload-library v0.1.9 (/work/reader-sideload-library-verify10-clean/src-tauri)
+    Checking encoding_rs v0.8.35
+    Checking rangemap v1.8.0
+    Checking weezl v0.1.12
+    Checking lopdf v0.35.0
+    Checking reqwest v0.12.28
+    Checking zip v2.4.2
+    Checking linux-raw-sys v0.12.1
+    Checking urlencoding v2.1.3
+    Checking roxmltree v0.20.0
+    Checking hex v0.4.3
+    Checking rustix v1.1.4
+    Checking fastrand v2.5.0
+    Checking tempfile v3.27.0
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 28s
+
+RESULT PASS clippy-after-prerequisites
+
+COMMAND CI=true npm run tauri build
+
+> reader-sideload-library@0.1.9 tauri
+> tauri build
+
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npm run build:app`
+
+> reader-sideload-library@0.1.9 build:app
+> tsc --noEmit && vite build --config vite.app.config.ts
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 13 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/app/index.html                                            12.13 kB │ gzip: 3.62 kB
+../dist/app/assets/archivo-black-latin-400-normal-HW9MwEcM.woff   13.00 kB
+../dist/app/assets/archivo-black-latin-400-normal-BTVu2TQR.woff2  18.60 kB
+../dist/app/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff   22.10 kB
+../dist/app/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff   22.28 kB
+../dist/app/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2  22.59 kB
+../dist/app/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2  22.83 kB
+../dist/app/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff   23.88 kB
+../dist/app/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2  24.25 kB
+../dist/app/assets/index-15peLFl2.css                             13.75 kB │ gzip: 3.81 kB
+../dist/app/assets/core-DV6XEvTN.js                                0.14 kB │ gzip: 0.15 kB │ map: 11.35 kB
+../dist/app/assets/index-CoEaNoas.js                               0.33 kB │ gzip: 0.22 kB │ map:  7.49 kB
+../dist/app/assets/index-CeU81E27.js                              21.21 kB │ gzip: 7.85 kB │ map: 50.73 kB
+✓ built in 337ms
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling syn v3.0.4
+   Compiling syn v2.0.119
+   Compiling serde_derive v1.0.229
+   Compiling serde v1.0.229
+   Compiling smallvec v1.15.2
+   Compiling libc v0.2.189
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling indexmap v2.14.0
+   Compiling pkg-config v0.3.34
+   Compiling heck v0.5.0
+   Compiling toml_datetime v0.6.3
+   Compiling winnow v0.5.40
+   Compiling serde_spanned v0.6.9
+   Compiling target-lexicon v0.12.16
+   Compiling cfg-expr v0.15.8
+   Compiling version-compare v0.2.1
+   Compiling toml_edit v0.20.2
+   Compiling synstructure v0.13.2
+   Compiling zerofrom-derive v0.1.7
+   Compiling toml v0.8.2
+   Compiling system-deps v6.2.2
+   Compiling version_check v0.9.5
+   Compiling yoke-derive v0.8.2
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling thiserror v1.0.69
+   Compiling thiserror-impl v1.0.69
+   Compiling icu_normalizer_data v2.3.0
+   Compiling icu_properties_data v2.3.0
+   Compiling siphasher v1.0.3
+   Compiling phf_shared v0.13.1
+   Compiling glib-sys v0.18.1
+   Compiling autocfg v1.5.1
+   Compiling memchr v2.8.3
+   Compiling fastrand v2.5.0
+   Compiling phf_generator v0.13.1
+   Compiling gobject-sys v0.18.0
+   Compiling stable_deref_trait v1.2.1
+   Compiling cfg-if v1.0.4
+   Compiling zmij v1.0.23
+   Compiling pin-project-lite v0.2.17
+   Compiling zerofrom v0.1.8
+   Compiling futures-core v0.3.34
+   Compiling yoke v0.8.3
+   Compiling gio-sys v0.18.1
+   Compiling semver v1.0.28
+   Compiling parking_lot_core v0.9.12
+   Compiling once_cell v1.21.4
+   Compiling zerovec v0.11.8
+   Compiling thiserror v2.0.20
+   Compiling phf_macros v0.13.1
+   Compiling futures-macro v0.3.34
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling time-core v0.1.9
+   Compiling typeid v1.0.3
+   Compiling num-conv v0.2.2
+   Compiling futures-util v0.3.34
+   Compiling thiserror-impl v2.0.20
+   Compiling tinystr v0.8.4
+   Compiling phf_codegen v0.13.1
+   Compiling gdk-sys v0.18.2
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling erased-serde v0.4.10
+   Compiling ident_case v1.0.1
+   Compiling litemap v0.8.3
+   Compiling strsim v0.11.1
+   Compiling writeable v0.6.4
+   Compiling itoa v1.0.18
+   Compiling syn v1.0.109
+   Compiling icu_locale_core v2.3.0
+   Compiling darling_core v0.23.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling futures-channel v0.3.34
+   Compiling generic-array v0.14.7
+   Compiling proc-macro-error v1.0.4
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling darling_macro v0.23.0
+   Compiling bitflags v2.13.1
+   Compiling scopeguard v1.2.0
+   Compiling anyhow v1.0.104
+   Compiling new_debug_unreachable v1.0.6
+   Compiling lock_api v0.4.14
+   Compiling darling v0.23.0
+   Compiling phf v0.13.1
+   Compiling rustc_version v0.4.1
+   Compiling string_cache_codegen v0.6.1
+   Compiling shlex v2.0.1
+   Compiling winnow v1.0.4
+   Compiling getrandom v0.4.3
+   Compiling serde_json v1.0.151
+   Compiling precomputed-hash v0.1.1
+   Compiling find-msvc-tools v0.1.11
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling cc v1.4.4
+   Compiling web_atoms v0.2.6
+   Compiling serde_with_macros v3.22.0
+   Compiling parking_lot v0.12.5
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling cairo-sys-rs v0.18.2
+   Compiling pango-sys v0.18.0
+   Compiling atk-sys v0.18.2
+   Compiling gdk-pixbuf-sys v0.18.0
+   Compiling proc-macro-crate v2.0.2
+   Compiling serde_spanned v1.1.1
+   Compiling toml_writer v1.1.2+spec-1.1.0
+   Compiling heck v0.4.1
+   Compiling ctor-proc-macro v0.0.7
+   Compiling glib-macros v0.18.5
+   Compiling idna_adapter v1.2.2
+   Compiling string_cache v0.9.0
+   Compiling futures-executor v0.3.34
+   Compiling log v0.4.34
+   Compiling dtoa v1.0.11
+   Compiling percent-encoding v2.3.2
+   Compiling dtoa-short v0.3.5
+   Compiling glib v0.18.5
+   Compiling form_urlencoded v1.2.2
+   Compiling uuid v1.26.0
+   Compiling idna v1.1.0
+   Compiling tendril v0.5.1
+   Compiling selectors v0.36.1
+   Compiling aho-corasick v1.1.5
+   Compiling indexmap v1.9.3
+   Compiling derive_more-impl v2.1.1
+   Compiling cssparser-macros v0.6.1
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling byteorder v1.5.0
+   Compiling unic-common v0.9.0
+   Compiling unic-char-range v0.9.0
+   Compiling camino v1.2.5
+   Compiling alloc-no-stdlib v2.0.4
+   Compiling regex-syntax v0.8.11
+   Compiling regex-automata v0.4.18
+   Compiling alloc-stdlib v0.2.4
+   Compiling unic-char-property v0.9.0
+   Compiling unic-ucd-version v0.9.0
+   Compiling toml v1.1.4+spec-1.1.0
+   Compiling cssparser v0.36.0
+   Compiling derive_more v2.1.1
+   Compiling markup5ever v0.38.0
+   Compiling url v2.5.8
+   Compiling servo_arc v0.4.3
+   Compiling gtk-sys v0.18.2
+   Compiling serde_derive_internals v0.29.1
+   Compiling deranged v0.5.8
+   Compiling hashbrown v0.12.3
+   Compiling bit-vec v0.8.0
+   Compiling rustc-hash v2.1.3
+   Compiling schemars v0.8.22
+   Compiling powerfmt v0.2.0
+   Compiling fnv v1.0.7
+   Compiling bytes v1.12.1
+   Compiling time v0.3.55
+   Compiling cfb v0.7.3
+   Compiling bit-set v0.8.0
+   Compiling schemars_derive v0.8.22
+   Compiling html5ever v0.38.0
+   Compiling unic-ucd-ident v0.9.0
+   Compiling brotli-decompressor v5.0.3
+   Compiling regex v1.13.1
+   Compiling jsonptr v0.6.3
+   Compiling quick-xml v0.41.0
+   Compiling cargo-platform v0.1.9
+   Compiling same-file v1.0.6
+   Compiling base64 v0.22.1
+   Compiling dyn-clone v1.0.20
+   Compiling dunce v1.0.5
+   Compiling foldhash v0.2.0
+   Compiling gio v0.18.4
+   Compiling dom_query v0.27.0
+   Compiling http v1.5.0
+   Compiling plist v1.10.0
+   Compiling walkdir v2.5.0
+   Compiling cargo_metadata v0.19.2
+   Compiling json-patch v3.0.1
+   Compiling brotli v8.0.4
+   Compiling urlpattern v0.3.0
+   Compiling serde-untagged v0.1.9
+   Compiling infer v0.19.0
+   Compiling ctor v0.8.0
+   Compiling serde_with v3.22.0
+   Compiling futures-io v0.3.34
+   Compiling glob v0.3.4
+   Compiling crc32fast v1.5.1
+   Compiling tauri-utils v2.9.3
+   Compiling crossbeam-utils v0.8.22
+   Compiling memoffset v0.9.1
+   Compiling pango v0.18.3
+   Compiling gdk-pixbuf v0.18.5
+   Compiling cairo-rs v0.18.5
+   Compiling field-offset v0.3.6
+   Compiling toml_edit v0.19.15
+   Compiling toml_datetime v0.7.5+spec-1.1.0
+   Compiling typenum v1.20.1
+   Compiling option-ext v0.2.0
+   Compiling winnow v0.7.15
+   Compiling proc-macro-crate v1.3.1
+   Compiling toml v0.9.12+spec-1.1.0
+   Compiling dirs-sys v0.5.0
+   Compiling gdk v0.18.2
+   Compiling embed-resource v3.0.11
+   Compiling time-macros v0.2.32
+   Compiling soup3-sys v0.5.0
+   Compiling javascriptcore-rs-sys v1.1.1
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.2
+   Compiling gtk v0.18.2
+   Compiling simd-adler32 v0.3.10
+   Compiling tokio v1.53.1
+   Compiling tauri-winres v0.3.6
+   Compiling cargo_toml v0.22.3
+   Compiling dirs v6.0.0
+   Compiling gtk3-macros v0.18.2
+   Compiling atk v0.18.2
+   Compiling webkit2gtk-sys v2.0.2
+   Compiling x11 v2.21.0
+   Compiling adler2 v2.0.1
+   Compiling tauri-build v2.6.3
+   Compiling gdkx11-sys v0.18.2
+   Compiling bitflags v1.3.2
+   Compiling miniz_oxide v0.9.1
+   Compiling dpi v0.1.2
+   Compiling ring v0.17.14
+   Compiling cookie v0.18.2
+   Compiling libdbus-sys v0.2.7
+   Compiling x11-dl v2.21.0
+   Compiling raw-window-handle v0.6.2
+   Compiling flate2 v1.1.10
+   Compiling javascriptcore-rs v1.1.2
+   Compiling soup3 v0.5.0
+   Compiling tauri v2.11.5
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling tauri-plugin v2.6.3
+   Compiling zeroize v1.9.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling png v0.17.16
+   Compiling digest v0.10.7
+   Compiling webkit2gtk v2.0.2
+   Compiling crossbeam-channel v0.5.16
+   Compiling http-body v1.1.0
+   Compiling getrandom v0.2.17
+   Compiling dlopen2_derive v0.4.3
+   Compiling cpufeatures v0.2.17
+   Compiling httparse v1.10.1
+   Compiling wry v0.55.1
+   Compiling tauri-runtime v2.11.3
+   Compiling untrusted v0.9.0
+   Compiling crossbeam-epoch v0.9.20
+   Compiling sha2 v0.10.9
+   Compiling dlopen2 v0.8.2
+   Compiling dbus v0.9.12
+   Compiling ico v0.5.0
+   Compiling tauri-plugin-fs v2.5.1
+   Compiling gdkx11 v0.18.2
+   Compiling block-padding v0.3.3
+   Compiling gdkwayland-sys v0.18.2
+   Compiling crossbeam-deque v0.8.7
+   Compiling rustls v0.23.43
+   Compiling getrandom v0.3.4
+   Compiling try-lock v0.2.5
+   Compiling unicode-segmentation v1.13.3
+   Compiling tauri-runtime-wry v2.11.4
+   Compiling tower-service v0.3.3
+   Compiling keyboard-types v0.7.0
+   Compiling want v0.3.1
+   Compiling tao v0.35.3
+   Compiling inout v0.1.4
+   Compiling tauri-codegen v2.6.3
+   Compiling rustls-webpki v0.103.15
+   Compiling tracing-core v0.1.36
+   Compiling num-traits v0.2.19
+   Compiling serialize-to-javascript-impl v0.1.2
+   Compiling atomic-waker v1.1.2
+   Compiling subtle v2.6.1
+   Compiling rayon-core v1.13.0
+   Compiling hyper v1.11.0
+   Compiling serialize-to-javascript v0.1.2
+   Compiling tracing v0.1.44
+   Compiling tauri-macros v2.6.3
+   Compiling cipher v0.4.4
+   Compiling muda v0.19.3
+   Compiling tauri-plugin-dialog v2.7.2
+   Compiling sync_wrapper v1.0.2
+   Compiling serde_repr v0.1.21
+   Compiling rfd v0.16.0
+   Compiling minimal-lexical v0.2.1
+   Compiling mime v0.3.17
+   Compiling tower-layer v0.3.3
+   Compiling ipnet v2.12.1
+   Compiling hyper-util v0.1.20
+   Compiling tower v0.5.3
+   Compiling nom v7.1.3
+   Compiling tokio-rustls v0.26.4
+   Compiling webpki-roots v1.0.9
+   Compiling bytecount v0.6.9
+   Compiling iana-time-zone v0.1.65
+   Compiling zip v2.4.2
+   Compiling ryu v1.0.23
+   Compiling either v1.18.0
+   Compiling bumpalo v3.20.3
+   Compiling zopfli v0.8.3
+   Compiling rayon v1.12.0
+   Compiling serde_urlencoded v0.7.1
+   Compiling chrono v0.4.45
+   Compiling nom_locate v4.2.0
+   Compiling hyper-rustls v0.27.9
+   Compiling tower-http v0.6.11
+   Compiling aes v0.8.4
+   Compiling cbc v0.1.2
+   Compiling md-5 v0.10.6
+   Compiling http-body-util v0.1.5
+   Compiling reader-sideload-library v0.1.9 (/work/reader-sideload-library-verify10-clean/src-tauri)
+   Compiling encoding_rs v0.8.35
+   Compiling rangemap v1.8.0
+   Compiling weezl v0.1.12
+   Compiling lopdf v0.35.0
+   Compiling reqwest v0.12.28
+   Compiling roxmltree v0.20.0
+   Compiling hex v0.4.3
+   Compiling urlencoding v2.1.3
+    Finished `release` profile [optimized] target(s) in 5m 04s
+       Built application at: /work/reader-sideload-library-verify10-clean/src-tauri/target/release/reader-sideload-library
+        Info Patching /work/reader-sideload-library-verify10-clean/src-tauri/target/release/reader-sideload-library with bundle type information: deb
+    Bundling Reader Sideload Library_0.1.9_amd64.deb (/work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/deb/Reader Sideload Library_0.1.9_amd64.deb)
+        Info Patching /work/reader-sideload-library-verify10-clean/src-tauri/target/release/reader-sideload-library with bundle type information: rpm
+    Bundling Reader Sideload Library-0.1.9-1.x86_64.rpm (/work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/rpm/Reader Sideload Library-0.1.9-1.x86_64.rpm)
+        Info Patching /work/reader-sideload-library-verify10-clean/src-tauri/target/release/reader-sideload-library with bundle type information: appimage
+ Downloading https://github.com/tauri-apps/binary-releases/releases/download/apprun-old/AppRun-x86_64
+ Downloading https://github.com/tauri-apps/binary-releases/releases/download/linuxdeploy/linuxdeploy-x86_64.AppImage
+ Downloading https://raw.githubusercontent.com/tauri-apps/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
+ Downloading https://raw.githubusercontent.com/tauri-apps/linuxdeploy-plugin-gstreamer/master/linuxdeploy-plugin-gstreamer.sh
+ Downloading https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
+    Bundling Reader Sideload Library_0.1.9_amd64.AppImage (/work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/appimage/Reader Sideload Library_0.1.9_amd64.AppImage)
+    Finished 3 bundles at:
+        /work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/deb/Reader Sideload Library_0.1.9_amd64.deb
+        /work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/rpm/Reader Sideload Library-0.1.9-1.x86_64.rpm
+        /work/reader-sideload-library-verify10-clean/src-tauri/target/release/bundle/appimage/Reader Sideload Library_0.1.9_amd64.AppImage
+
+
+RESULT PASS native-tauri-build

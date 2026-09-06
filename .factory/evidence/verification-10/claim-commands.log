@@ -1,0 +1,786 @@
+
+CLAIM demo-isolated
+COMMAND npm run test:claims -- --grep @claim:demo-isolated --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:demo-isolated --project=desktop-chromium
+
+[1A[2K[WebServer] (node:1344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1363) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1394) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1493) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:1511) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:1511) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:162:1 › @claim:demo-isolated sample work never changes real library storage
+[1A[2K  1 passed (12.5s)
+RESULT PASS demo-isolated
+
+CLAIM local-catalogue
+COMMAND npm run test:claims -- --grep @claim:local-catalogue --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:local-catalogue --project=desktop-chromium
+
+[1A[2K[WebServer] (node:1675) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1725) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1738) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:1808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:1842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:1842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/app.spec.ts:63:1 › @claim:local-catalogue catalogue changes stay in app storage without background requests
+[1A[2K  1 passed (10.4s)
+RESULT PASS local-catalogue
+
+CLAIM privacy-requests
+COMMAND npm run test:claims -- --grep @claim:privacy-requests --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:privacy-requests --project=desktop-chromium
+
+[1A[2K[WebServer] (node:2009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2127) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:2178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:2178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:261:1 › @claim:privacy-requests uses only the disclosed GitHub release request
+[1A[2K  1 passed (11.0s)
+RESULT PASS privacy-requests
+
+CLAIM core-free
+COMMAND npm run test:claims -- --grep @claim:core-free --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:core-free --project=desktop-chromium
+
+[1A[2K[WebServer] (node:2371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2390) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2421) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2509) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:2540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:2540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:302:1 › @claim:core-free exposes the documented free release without a license or checkout
+[1A[2K  1 passed (10.3s)
+RESULT PASS core-free
+
+CLAIM desktop-walkthrough
+COMMAND npm run test:claims -- --grep @claim:desktop-walkthrough --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:desktop-walkthrough --project=desktop-chromium
+
+[1A[2K[WebServer] (node:2723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2773) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2786) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:2873) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:2891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:2891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:65:1 › @claim:desktop-walkthrough landing includes a captioned four-frame desktop app walkthrough
+[1A[2K  1 passed (10.6s)
+RESULT PASS desktop-walkthrough
+
+CLAIM offline-demo
+COMMAND npm run test:claims -- --grep @claim:offline-demo --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:offline-demo --project=desktop-chromium
+
+[1A[2K[WebServer] (node:3075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3094) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3125) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3138) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3177) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:3209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:3243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:3243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:317:1 › @claim:offline-demo reloads the sample catalogue offline
+[1A[2K  1 passed (11.6s)
+RESULT PASS offline-demo
+
+CLAIM nested-library-scan
+COMMAND npm run test:rust-core -- claim_nested_library_scan_reads_metadata_and_flags_protection
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_nested_library_scan_reads_metadata_and_flags_protection
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+ Downloading crates ...
+  Downloaded errno v0.3.14
+  Downloaded tempfile v3.27.0
+  Downloaded rustix v1.1.4
+  Downloaded linux-raw-sys v0.12.1
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling syn v2.0.119
+   Compiling syn v3.0.4
+   Compiling synstructure v0.13.2
+   Compiling zerofrom-derive v0.1.7
+   Compiling yoke-derive v0.8.2
+   Compiling zerofrom v0.1.8
+   Compiling libc v0.2.189
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling cfg-if v1.0.4
+   Compiling itoa v1.0.18
+   Compiling stable_deref_trait v1.2.1
+   Compiling litemap v0.8.3
+   Compiling writeable v0.6.4
+   Compiling siphasher v1.0.3
+   Compiling phf_shared v0.13.1
+   Compiling utf8_iter v1.0.4
+   Compiling fastrand v2.5.0
+   Compiling smallvec v1.15.2
+   Compiling phf_generator v0.13.1
+   Compiling yoke v0.8.3
+   Compiling serde_derive v1.0.229
+   Compiling icu_properties_data v2.3.0
+   Compiling icu_normalizer_data v2.3.0
+   Compiling memchr v2.8.3
+   Compiling zerovec v0.11.8
+   Compiling serde v1.0.229
+   Compiling find-msvc-tools v0.1.11
+   Compiling bytes v1.12.1
+   Compiling shlex v2.0.1
+   Compiling cc v1.4.4
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling tinystr v0.8.4
+   Compiling phf_codegen v0.13.1
+   Compiling autocfg v1.5.1
+   Compiling zmij v1.0.23
+   Compiling icu_locale_core v2.3.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling log v0.4.34
+   Compiling typenum v1.20.1
+   Compiling parking_lot_core v0.9.12
+   Compiling icu_provider v2.3.1
+   Compiling icu_collections v2.3.0
+   Compiling http v1.5.0
+   Compiling phf_macros v0.13.1
+   Compiling pin-project-lite v0.2.17
+   Compiling scopeguard v1.2.0
+   Compiling new_debug_unreachable v1.0.6
+   Compiling lock_api v0.4.14
+   Compiling phf v0.13.1
+   Compiling string_cache_codegen v0.6.1
+   Compiling precomputed-hash v0.1.1
+   Compiling futures-core v0.3.34
+   Compiling winnow v1.0.4
+   Compiling serde_json v1.0.151
+   Compiling web_atoms v0.2.6
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling parking_lot v0.12.5
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling serde_spanned v1.1.1
+   Compiling strsim v0.11.1
+   Compiling ident_case v1.0.1
+   Compiling thiserror v2.0.20
+   Compiling toml_writer v1.1.2+spec-1.1.0
+   Compiling darling_core v0.23.0
+   Compiling idna_adapter v1.2.2
+   Compiling string_cache v0.9.0
+   Compiling ring v0.17.14
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.2
+   Compiling thiserror-impl v2.0.20
+   Compiling tokio-macros v2.7.2
+   Compiling semver v1.0.28
+   Compiling base64 v0.22.1
+   Compiling typeid v1.0.3
+   Compiling hashbrown v0.17.1
+   Compiling dtoa v1.0.11
+   Compiling once_cell v1.21.4
+   Compiling equivalent v1.0.2
+   Compiling percent-encoding v2.3.2
+   Compiling form_urlencoded v1.2.2
+   Compiling indexmap v2.14.0
+   Compiling dtoa-short v0.3.5
+   Compiling tokio v1.53.1
+   Compiling darling_macro v0.23.0
+   Compiling idna v1.1.0
+   Compiling tendril v0.5.1
+   Compiling crypto-common v0.1.7
+   Compiling indexmap v1.9.3
+   Compiling selectors v0.36.1
+   Compiling aho-corasick v1.1.5
+   Compiling derive_more-impl v2.1.1
+   Compiling cssparser-macros v0.6.1
+   Compiling uuid v1.26.0
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling thiserror v1.0.69
+   Compiling zeroize v1.9.0
+   Compiling time-core v0.1.9
+   Compiling unic-char-range v0.9.0
+   Compiling crossbeam-utils v0.8.22
+   Compiling num-conv v0.2.2
+   Compiling unic-common v0.9.0
+   Compiling camino v1.2.5
+   Compiling regex-syntax v0.8.11
+   Compiling deranged v0.5.8
+   Compiling powerfmt v0.2.0
+   Compiling erased-serde v0.4.10
+   Compiling time v0.3.55
+   Compiling regex-automata v0.4.18
+   Compiling unic-ucd-version v0.9.0
+   Compiling unic-char-property v0.9.0
+   Compiling rustls-pki-types v1.15.1
+   Compiling toml v1.1.4+spec-1.1.0
+   Compiling cssparser v0.36.0
+   Compiling derive_more v2.1.1
+   Compiling markup5ever v0.38.0
+   Compiling url v2.5.8
+   Compiling darling v0.23.0
+   Compiling http-body v1.1.0
+   Compiling servo_arc v0.4.3
+   Compiling getrandom v0.2.17
+   Compiling thiserror-impl v1.0.69
+   Compiling serde_derive_internals v0.29.1
+   Compiling byteorder v1.5.0
+   Compiling bit-vec v0.8.0
+   Compiling crossbeam-epoch v0.9.20
+   Compiling untrusted v0.9.0
+   Compiling hashbrown v0.12.3
+   Compiling httparse v1.10.1
+   Compiling futures-task v0.3.34
+   Compiling crc32fast v1.5.1
+   Compiling fnv v1.0.7
+   Compiling anyhow v1.0.104
+   Compiling bitflags v2.13.1
+   Compiling slab v0.4.12
+   Compiling rustc-hash v2.1.3
+   Compiling schemars v0.8.22
+   Compiling futures-util v0.3.34
+   Compiling cfb v0.7.3
+   Compiling bit-set v0.8.0
+   Compiling schemars_derive v0.8.22
+   Compiling serde_with_macros v3.22.0
+   Compiling html5ever v0.38.0
+   Compiling regex v1.13.1
+   Compiling unic-ucd-ident v0.9.0
+   Compiling rustc_version v0.4.1
+   Compiling jsonptr v0.6.3
+   Compiling block-padding v0.3.3
+   Compiling cargo-platform v0.1.9
+   Compiling quick-xml v0.41.0
+   Compiling toml_datetime v0.7.5+spec-1.1.0
+   Compiling simd-adler32 v0.3.10
+   Compiling ctor-proc-macro v0.0.7
+   Compiling try-lock v0.2.5
+   Compiling same-file v1.0.6
+   Compiling rustls v0.23.43
+   Compiling tower-service v0.3.3
+   Compiling dunce v1.0.5
+   Compiling foldhash v0.2.0
+   Compiling crossbeam-deque v0.8.7
+   Compiling option-ext v0.2.0
+   Compiling winnow v0.7.15
+   Compiling dyn-clone v1.0.20
+   Compiling dirs-sys v0.5.0
+   Compiling toml v0.9.12+spec-1.1.0
+   Compiling dom_query v0.27.0
+   Compiling walkdir v2.5.0
+   Compiling want v0.3.1
+   Compiling ctor v0.8.0
+   Compiling plist v1.10.0
+   Compiling cargo_metadata v0.19.2
+   Compiling inout v0.1.4
+   Compiling json-patch v3.0.1
+   Compiling embed-resource v3.0.11
+   Compiling urlpattern v0.3.0
+   Compiling serde_with v3.22.0
+   Compiling serde-untagged v0.1.9
+   Compiling rustls-webpki v0.103.15
+   Compiling infer v0.19.0
+   Compiling tracing-core v0.1.36
+   Compiling futures-channel v0.3.34
+   Compiling block-buffer v0.10.4
+   Compiling num-traits v0.2.19
+   Compiling rayon-core v1.13.0
+   Compiling subtle v2.6.1
+   Compiling glob v0.3.4
+   Compiling adler2 v2.0.1
+   Compiling atomic-waker v1.1.2
+   Compiling hyper v1.11.0
+   Compiling miniz_oxide v0.9.1
+   Compiling tauri-utils v2.9.3
+   Compiling digest v0.10.7
+   Compiling tracing v0.1.44
+   Compiling tauri-winres v0.3.6
+   Compiling cipher v0.4.4
+   Compiling cargo_toml v0.22.3
+   Compiling dirs v6.0.0
+   Compiling sync_wrapper v1.0.2
+   Compiling heck v0.5.0
+   Compiling getrandom v0.4.3
+   Compiling rustix v1.1.4
+   Compiling ipnet v2.12.1
+   Compiling minimal-lexical v0.2.1
+   Compiling cpufeatures v0.2.17
+   Compiling tower-layer v0.3.3
+   Compiling tower v0.5.3
+   Compiling nom v7.1.3
+   Compiling hyper-util v0.1.20
+   Compiling tauri-build v2.6.3
+   Compiling tokio-rustls v0.26.4
+   Compiling flate2 v1.1.10
+   Compiling webpki-roots v1.0.9
+   Compiling ryu v1.0.23
+   Compiling either v1.18.0
+   Compiling iana-time-zone v0.1.65
+   Compiling bumpalo v3.20.3
+   Compiling zip v2.4.2
+   Compiling bytecount v0.6.9
+   Compiling linux-raw-sys v0.12.1
+   Compiling nom_locate v4.2.0
+   Compiling zopfli v0.8.3
+   Compiling chrono v0.4.45
+   Compiling rayon v1.12.0
+   Compiling serde_urlencoded v0.7.1
+   Compiling hyper-rustls v0.27.9
+   Compiling reader-sideload-library v0.1.9 (/work/reader-sideload-library-verify10-clean/src-tauri)
+   Compiling tower-http v0.6.11
+   Compiling aes v0.8.4
+   Compiling cbc v0.1.2
+   Compiling md-5 v0.10.6
+   Compiling http-body-util v0.1.5
+   Compiling encoding_rs v0.8.35
+   Compiling rangemap v1.8.0
+   Compiling weezl v0.1.12
+   Compiling lopdf v0.35.0
+   Compiling tempfile v3.27.0
+   Compiling reqwest v0.12.28
+   Compiling sha2 v0.10.9
+   Compiling roxmltree v0.20.0
+   Compiling urlencoding v2.1.3
+   Compiling hex v0.4.3
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 16s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_nested_library_scan_reads_metadata_and_flags_protection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS nested-library-scan
+
+CLAIM source-preserved
+COMMAND npm run test:rust-core -- claim_source_scan_preserves_file_bytes
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_source_scan_preserves_file_bytes
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_source_scan_preserves_file_bytes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS source-preserved
+
+CLAIM pdf-metadata
+COMMAND npm run test:rust-core -- claim_pdf_metadata_survives_scan
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_pdf_metadata_survives_scan
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_pdf_metadata_survives_scan ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS pdf-metadata
+
+CLAIM ordered-collections
+COMMAND npm run test:claims -- --grep @claim:ordered-collections --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:ordered-collections --project=desktop-chromium
+
+[1A[2K[WebServer] (node:7642) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7661) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7706) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7763) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:7776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:7810) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:7810) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:232:1 › @claim:ordered-collections decoded metadata stays searchable and produces ordered safe filenames
+[1A[2K  1 passed (11.7s)
+RESULT PASS ordered-collections
+
+CLAIM verified-usb-copy
+COMMAND npm run test:rust-core -- claim_verified_usb_copy_is_idempotent
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_verified_usb_copy_is_idempotent
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_verified_usb_copy_is_idempotent ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS verified-usb-copy
+
+CLAIM usb-partial-copy
+COMMAND npm run test:rust-core -- claim_usb_partial_copy_keeps_existing_file
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_usb_partial_copy_keeps_existing_file
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_usb_partial_copy_keeps_existing_file ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS usb-partial-copy
+
+CLAIM webdav-credentials
+COMMAND npm run test:claims -- --grep @claim:webdav-credentials --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:webdav-credentials --project=desktop-chromium
+
+[1A[2K[WebServer] (node:8043) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8062) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8092) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8105) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8179) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:8210) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:8210) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/app.spec.ts:83:1 › @claim:webdav-credentials WebDAV setup is free, guided, and never persists credentials
+[1A[2K  1 passed (11.7s)
+RESULT PASS webdav-credentials
+
+CLAIM webdav-transfer
+COMMAND npm run test:rust-core -- claim_webdav_checks_and_uploads_with_recovery_errors
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_webdav_checks_and_uploads_with_recovery_errors
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_webdav_checks_and_uploads_with_recovery_errors ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS webdav-transfer
+
+CLAIM highlight-import-formats
+COMMAND npm run test:rust-core -- claim_supported_highlight_formats_import
+
+> reader-sideload-library@0.1.9 test:rust-core
+> node scripts/check-rust-core-isolation.mjs && cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib claim_supported_highlight_formats_import
+
+Rust core test graph excludes Tauri and Linux GUI libraries.
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/reader_sideload_library_lib-4ac67100de277753)
+
+running 1 test
+test tests::claim_supported_highlight_formats_import ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.00s
+
+RESULT PASS highlight-import-formats
+
+CLAIM markdown-export
+COMMAND npm run test:claims -- --grep @claim:markdown-export --project=desktop-chromium
+
+> reader-sideload-library@0.1.9 test:claims
+> playwright test --grep @claim:markdown-export --project=desktop-chromium
+
+[1A[2K[WebServer] (node:8462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8481) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8511) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8578) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8597) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[1A[2K[WebServer] (node:8610) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+[1A[2K(node:8628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K(node:8628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1A[2K[1/1] [desktop-chromium] › tests/e2e/site.spec.ts:247:1 › @claim:markdown-export exports sample highlights as Markdown
+[1A[2K  1 passed (11.4s)
+RESULT PASS markdown-export
+
+CLAIM release-manifest
+COMMAND npm run test:release
+
+> reader-sideload-library@0.1.9 test:release
+> vitest run tests/release.test.ts
+
+
+ RUN  v3.2.7 /work/reader-sideload-library-verify10-clean
+
+ ✓ tests/release.test.ts (2 tests) 78ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  04:41:01
+   Duration  705ms (transform 74ms, setup 0ms, collect 42ms, tests 78ms, environment 0ms, prepare 128ms)
+
+RESULT PASS release-manifest
+
+CLAIM unsigned-installers
+COMMAND npm run test:release
+
+> reader-sideload-library@0.1.9 test:release
+> vitest run tests/release.test.ts
+
+
+ RUN  v3.2.7 /work/reader-sideload-library-verify10-clean
+
+ ✓ tests/release.test.ts (2 tests) 77ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  04:41:03
+   Duration  671ms (transform 63ms, setup 0ms, collect 57ms, tests 77ms, environment 0ms, prepare 69ms)
+
+RESULT PASS unsigned-installers
